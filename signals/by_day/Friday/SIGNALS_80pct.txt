@@ -3,7 +3,7 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) ONLY
   Day:       Friday
-  Generated: 2026-10-21 20:33:26
+  Generated: 2026-10-21 20:41:25
   Threshold: ≥80% accuracy
   Data:      974 days × 5m candles (2021-2026)
   Total signals: 364
