@@ -8,7 +8,7 @@ For each (weekday, HH:MM, window):
   - Aggregate direction & movement across all matching weekday days (139 samples)
   - Compute recurring_rate = % of days with same direction
   - Compute avg/max movement in DOLLARS
-  - Keep signals with ≥80% recurring + ≥$1 movement
+  - Keep signals with ≥80% recurring + ≥$0.50 movement
 
 This is the CORRECT approach as user requested:
   - Group all Mondays together, all Tuesdays together, etc.
@@ -213,8 +213,8 @@ def compute_signals(results):
     return signals
 
 
-def filter_high_accuracy(signals, min_rate=80, min_move=1.0):
-    """Filter signals with ≥80% recurring rate AND ≥$1 movement."""
+def filter_high_accuracy(signals, min_rate=80, min_move=0.50):
+    """Filter signals with ≥80% recurring rate AND ≥$0.50 movement."""
     filtered = [s for s in signals 
                 if s['recurring_rate'] >= min_rate 
                 and s['avg_move'] >= min_move]
@@ -255,13 +255,13 @@ def generate_per_day_files(signals, base_dir):
         
         out_lines = []
         out_lines.append('=' * 110)
-        out_lines.append(f'  XAUUSD Signals — {day} — ≥80% recurring + ≥$1 movement')
+        out_lines.append(f'  XAUUSD Signals — {day} — ≥80% recurring + ≥$0.50 movement')
         out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
         out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
         out_lines.append(f'  Day:          {day}')
         out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
         out_lines.append(f'  Method:       All {day}s grouped together ({day_sigs[0]["samples"] if day_sigs else 139} days)')
-        out_lines.append(f'  Threshold:    ≥80% recurring direction + ≥$1 avg movement')
+        out_lines.append(f'  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement')
         out_lines.append(f'  Windows:      30/60/120 minutes (best picked per HH:MM)')
         out_lines.append(f'  Data:         974 days × 5m candles (2024-2026)')
         out_lines.append(f'  Total signals: {len(day_sigs)}')
@@ -376,17 +376,17 @@ def main():
     all_signals = compute_signals(results)
     print(f"  Total candidate signals: {len(all_signals):,}")
     
-    # Step 4: Filter high-accuracy (≥80% + ≥$1 movement)
-    print(f"\n  [4/5] Filtering HIGH-ACCURACY signals (≥80% recurring + ≥$1 movement)...")
-    high_acc = filter_high_accuracy(all_signals, min_rate=80, min_move=1.0)
+    # Step 4: Filter high-accuracy (≥80% + ≥$0.50 movement)
+    print(f"\n  [4/5] Filtering HIGH-ACCURACY signals (≥80% recurring + ≥$0.50 movement)...")
+    high_acc = filter_high_accuracy(all_signals, min_rate=80, min_move=0.50)
     print(f"  High-accuracy signals: {len(high_acc)}")
     
     # Also get lower-tier signals for users who want more options
-    tier_70 = filter_high_accuracy(all_signals, min_rate=70, min_move=1.0)
-    tier_60 = filter_high_accuracy(all_signals, min_rate=60, min_move=1.0)
+    tier_70 = filter_high_accuracy(all_signals, min_rate=70, min_move=0.50)
+    tier_60 = filter_high_accuracy(all_signals, min_rate=60, min_move=0.50)
     print(f"  For reference (more signals available at lower thresholds):")
-    print(f"    ≥70% recurring + ≥$1 movement: {len(tier_70)} signals")
-    print(f"    ≥60% recurring + ≥$1 movement: {len(tier_60)} signals")
+    print(f"    ≥70% recurring + ≥$0.50 movement: {len(tier_70)} signals")
+    print(f"    ≥60% recurring + ≥$0.50 movement: {len(tier_60)} signals")
     
     # Distribution by hour
     hour_dist = defaultdict(int)
@@ -416,12 +416,12 @@ def main():
     combined_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_80pct.txt'
     out_lines = []
     out_lines.append('=' * 110)
-    out_lines.append(f'  CANDALXAU Signal Engine v12.0 — HIGH-ACCURACY (≥80% + ≥$1 movement)')
+    out_lines.append(f'  CANDALXAU Signal Engine v12.0 — HIGH-ACCURACY (≥80% + ≥$0.50 movement)')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
     out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
     out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
     out_lines.append(f'  Method:       All same-weekday days grouped together (139 samples each)')
-    out_lines.append(f'  Threshold:    ≥80% recurring direction + ≥$1 avg movement')
+    out_lines.append(f'  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement')
     out_lines.append(f'  Windows:      30/60/120 minutes (best picked per HH:MM)')
     out_lines.append(f'  Data:         974 days × 5m candles (2024-2026)')
     out_lines.append(f'  Total signals: {len(high_acc)}')
@@ -466,7 +466,7 @@ def main():
     out_lines.append(f'      - Look at all 139 historical occurrences of this weekday at HH:MM')
     out_lines.append(f'      - Track direction (BUY if up move > down move, else SELL)')
     out_lines.append(f'      - Compute recurring_rate = % of days with same direction')
-    out_lines.append(f'      - Filter: ≥80% recurring + ≥$1 avg movement')
+    out_lines.append(f'      - Filter: ≥80% recurring + ≥$0.50 avg movement')
     out_lines.append('  ────────────────────────────────────────────────')
     out_lines.append('')
     
@@ -480,7 +480,7 @@ def main():
         'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'timezone': TZ_NAME,
         'method': 'Per-weekday aggregation (all Thursdays grouped, all Fridays grouped, etc.)',
-        'threshold': '≥80% recurring direction + ≥$1 avg movement',
+        'threshold': '≥80% recurring direction + ≥$0.50 avg movement',
         'windows': [w[1] for w in WINDOWS],
         'total_signals': len(high_acc),
         'signals': high_acc,
@@ -496,7 +496,7 @@ def main():
             'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
             'timezone': TZ_NAME,
             'method': 'Per-weekday aggregation',
-            'threshold': f'≥{threshold}% recurring direction + ≥$1 avg movement',
+            'threshold': f'≥{threshold}% recurring direction + ≥$0.50 avg movement',
             'total_signals': len(sigs),
             'signals': sigs,
         }
@@ -549,7 +549,7 @@ def main():
     readme.append('    recurring_rate = % of days with same direction')
     readme.append('    avg_move = average favorable movement in $')
     readme.append('')
-    readme.append('  Filter: ≥80% recurring + ≥$1 movement')
+    readme.append('  Filter: ≥80% recurring + ≥$0.50 movement')
     readme.append('```')
     readme.append('')
     readme.append('## 📊 Signal Counts Per Day')

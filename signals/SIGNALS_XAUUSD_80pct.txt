@@ -1,13 +1,13 @@
 ==============================================================================================================
-  CANDALXAU Signal Engine v12.0 — HIGH-ACCURACY (≥80% + ≥$1 movement)
+  CANDALXAU Signal Engine v12.0 — HIGH-ACCURACY (≥80% + ≥$0.50 movement)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
-  Generated:    2026-10-21 22:08:50
+  Generated:    2026-10-21 22:19:46
   Method:       All same-weekday days grouped together (139 samples each)
-  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
   Windows:      30/60/120 minutes (best picked per HH:MM)
   Data:         974 days × 5m candles (2024-2026)
-  Total signals: 25
+  Total signals: 56
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
   Timezone: UTC+1 (Algeria)
@@ -15,34 +15,73 @@
 ==============================================================================================================
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 WEDNESDAY  (3 signals)  — All Wednesdays grouped together
+  📅 MONDAY  (3 signals)  — All Mondays grouped together
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐⭐ 22:55 BUY   rate=88%  move=$0.79  max=$34.60  med=$0.00  win=60min  samples=139
+  ⭐⭐ 22:55 BUY   rate=89%  move=$0.75  max=$34.60  med=$0.00  win=30min  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐ 23:00 BUY   rate=88%  move=$0.66  max=$30.83  med=$0.00  win=30min  samples=139
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 TUESDAY  (3 signals)  — All Tuesdays grouped together
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐⭐ 22:55 BUY   rate=86%  move=$0.78  max=$19.76  med=$0.00  win=60min  samples=139
+  ⭐⭐ 22:55 BUY   rate=86%  move=$0.74  max=$19.76  med=$0.00  win=30min  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐ 23:15 BUY   rate=90%  move=$0.58  max=$13.35  med=$0.00  win=30min  samples=139
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 WEDNESDAY  (10 signals)  — All Wednesdays grouped together
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ── 22:00 UTC+1 (Algeria) ──
   ⭐⭐ 22:55 BUY   rate=88%  move=$1.31  max=$42.55  med=$0.00  win=60min  samples=139
+  ⭐ 22:55 BUY   rate=84%  move=$0.87  max=$21.55  med=$0.00  win=30min  samples=139
 
   ── 23:00 UTC+1 (Algeria) ──
+  ⭐ 23:00 BUY   rate=84%  move=$0.77  max=$19.49  med=$0.00  win=30min  samples=139
+  ⭐ 23:05 BUY   rate=85%  move=$0.80  max=$23.63  med=$0.00  win=30min  samples=139
+  ⭐ 23:10 BUY   rate=84%  move=$0.74  max=$16.71  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:15 BUY   rate=86%  move=$0.83  max=$16.24  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:20 BUY   rate=86%  move=$0.80  max=$24.77  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:25 BUY   rate=90%  move=$0.94  max=$34.80  med=$0.00  win=30min  samples=139
   ⭐ 23:55 BUY   rate=82%  move=$5.35  max=$36.76  med=$2.79  win=60min  samples=139
   ⭐ 23:55 BUY   rate=82%  move=$4.57  max=$36.76  med=$2.32  win=30min  samples=139
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 THURSDAY  (1 signals)  — All Thursdays grouped together
+  📅 THURSDAY  (7 signals)  — All Thursdays grouped together
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ── 22:00 UTC+1 (Algeria) ──
   ⭐⭐ 22:55 BUY   rate=87%  move=$1.15  max=$31.36  med=$0.00  win=60min  samples=139
+  ⭐⭐ 22:55 BUY   rate=86%  move=$0.89  max=$31.36  med=$0.00  win=30min  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐ 23:00 BUY   rate=84%  move=$0.80  max=$26.45  med=$0.00  win=30min  samples=139
+  ⭐ 23:05 BUY   rate=84%  move=$0.80  max=$37.63  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:10 BUY   rate=88%  move=$0.76  max=$27.15  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:15 BUY   rate=90%  move=$0.68  max=$30.76  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:25 BUY   rate=89%  move=$0.53  max=$15.53  med=$0.00  win=30min  samples=139
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 FRIDAY  (21 signals)  — All Fridays grouped together
+  📅 FRIDAY  (33 signals)  — All Fridays grouped together
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ── 22:00 UTC+1 (Algeria) ──
   ⭐⭐ 22:55 BUY   rate=90%  move=$1.69  max=$49.15  med=$0.00  win=60min  samples=139
   ⭐⭐ 22:55 BUY   rate=90%  move=$1.69  max=$49.15  med=$0.00  win=120min  samples=139
+  ⭐⭐ 22:55 BUY   rate=86%  move=$0.97  max=$42.45  med=$0.00  win=30min  samples=139
 
   ── 23:00 UTC+1 (Algeria) ──
   ⭐⭐ 23:00 BUY   rate=90%  move=$1.63  max=$37.47  med=$0.00  win=60min  samples=139
   ⭐⭐ 23:00 BUY   rate=90%  move=$1.63  max=$37.47  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:00 BUY   rate=86%  move=$0.93  max=$30.77  med=$0.00  win=30min  samples=139
   ⭐⭐ 23:05 BUY   rate=90%  move=$1.81  max=$51.88  med=$0.00  win=60min  samples=139
   ⭐⭐ 23:05 BUY   rate=90%  move=$1.81  max=$51.88  med=$0.00  win=120min  samples=139
   ⭐⭐ 23:05 BUY   rate=86%  move=$1.23  max=$45.18  med=$0.00  win=30min  samples=139
@@ -54,12 +93,22 @@
   ⭐⭐ 23:15 BUY   rate=88%  move=$1.13  max=$31.20  med=$0.00  win=30min  samples=139
   ⭐⭐⭐ 23:20 BUY   rate=91%  move=$1.05  max=$19.81  med=$0.00  win=60min  samples=139
   ⭐⭐⭐ 23:20 BUY   rate=91%  move=$1.05  max=$19.81  med=$0.00  win=120min  samples=139
+  ⭐⭐⭐ 23:20 BUY   rate=91%  move=$0.90  max=$19.81  med=$0.00  win=30min  samples=139
   ⭐⭐ 23:25 BUY   rate=90%  move=$1.00  max=$19.03  med=$0.00  win=30min  samples=139
   ⭐⭐ 23:25 BUY   rate=90%  move=$1.00  max=$19.03  med=$0.00  win=60min  samples=139
   ⭐⭐ 23:25 BUY   rate=90%  move=$1.00  max=$19.03  med=$0.00  win=120min  samples=139
+  ⭐⭐⭐ 23:30 BUY   rate=91%  move=$0.94  max=$19.20  med=$0.00  win=30min  samples=139
+  ⭐⭐⭐ 23:30 BUY   rate=91%  move=$0.94  max=$19.20  med=$0.00  win=60min  samples=139
+  ⭐⭐⭐ 23:30 BUY   rate=91%  move=$0.94  max=$19.20  med=$0.00  win=120min  samples=139
   ⭐⭐⭐ 23:35 BUY   rate=94%  move=$1.15  max=$41.52  med=$0.00  win=30min  samples=139
   ⭐⭐⭐ 23:35 BUY   rate=94%  move=$1.15  max=$41.52  med=$0.00  win=60min  samples=139
   ⭐⭐⭐ 23:35 BUY   rate=94%  move=$1.15  max=$41.52  med=$0.00  win=120min  samples=139
+  ⭐⭐⭐ 23:40 BUY   rate=94%  move=$0.98  max=$35.81  med=$0.00  win=30min  samples=139
+  ⭐⭐⭐ 23:40 BUY   rate=94%  move=$0.98  max=$35.81  med=$0.00  win=60min  samples=139
+  ⭐⭐⭐ 23:40 BUY   rate=94%  move=$0.98  max=$35.81  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:45 BUY   rate=90%  move=$0.75  max=$31.32  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:45 BUY   rate=90%  move=$0.75  max=$31.32  med=$0.00  win=60min  samples=139
+  ⭐⭐ 23:45 BUY   rate=90%  move=$0.75  max=$31.32  med=$0.00  win=120min  samples=139
 
   ────────────────────────────────────────────────
   Method: All same-weekday days grouped together
@@ -67,5 +116,5 @@
       - Look at all 139 historical occurrences of this weekday at HH:MM
       - Track direction (BUY if up move > down move, else SELL)
       - Compute recurring_rate = % of days with same direction
-      - Filter: ≥80% recurring + ≥$1 avg movement
+      - Filter: ≥80% recurring + ≥$0.50 avg movement
   ────────────────────────────────────────────────

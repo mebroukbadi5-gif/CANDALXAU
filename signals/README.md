@@ -5,7 +5,7 @@
 > **≥80% recurring rate** (high accuracy)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
-Generated: 2026-10-21 22:08:50
+Generated: 2026-10-21 22:19:46
 
 ## 🎯 Method (as user requested)
 
@@ -25,7 +25,7 @@ For each weekday (Mon/Tue/Wed/Thu/Fri):
     recurring_rate = % of days with same direction
     avg_move = average favorable movement in $
 
-  Filter: ≥80% recurring + ≥$1 movement
+  Filter: ≥80% recurring + ≥$0.50 movement
 ```
 
 ## 📊 Signal Counts Per Day
@@ -33,13 +33,13 @@ For each weekday (Mon/Tue/Wed/Thu/Fri):
 | Day | 80pct | Notes |
 |-----|-------|-------|
 | Sunday | 0 | Opens 23:00 UTC+1 (Algeria) |
-| Monday | 0 |  |
-| Tuesday | 0 |  |
-| Wednesday | 3 |  |
-| Thursday | 1 |  |
-| Friday | 21 |  |
+| Monday | 3 |  |
+| Tuesday | 3 |  |
+| Wednesday | 10 |  |
+| Thursday | 7 |  |
+| Friday | 33 |  |
 | Saturday | 0 | Market closed |
-| **TOTAL** | **25** | |
+| **TOTAL** | **56** | |
 
 ## 📐 Signal Format
 

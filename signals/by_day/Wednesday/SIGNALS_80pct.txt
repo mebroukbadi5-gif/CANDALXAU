@@ -1,14 +1,14 @@
 ==============================================================================================================
-  XAUUSD Signals — Wednesday — ≥80% recurring + ≥$1 movement
+  XAUUSD Signals — Wednesday — ≥80% recurring + ≥$0.50 movement
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Wednesday
-  Generated:    2026-10-21 22:08:50
+  Generated:    2026-10-21 22:19:46
   Method:       All Wednesdays grouped together (139 days)
-  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
   Windows:      30/60/120 minutes (best picked per HH:MM)
   Data:         974 days × 5m candles (2024-2026)
-  Total signals: 3
+  Total signals: 10
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
   Timezone: UTC+1 (Algeria)
@@ -18,29 +18,40 @@
 
   ── 22:00 UTC+1 (Algeria) ──
   ⭐⭐ 22:55 BUY   rate=88%  move=$1.31  max=$42.55  med=$0.00  win=60min  samples=139
+  ⭐ 22:55 BUY   rate=84%  move=$0.87  max=$21.55  med=$0.00  win=30min  samples=139
 
   ── 23:00 UTC+1 (Algeria) ──
+  ⭐ 23:00 BUY   rate=84%  move=$0.77  max=$19.49  med=$0.00  win=30min  samples=139
+  ⭐ 23:05 BUY   rate=85%  move=$0.80  max=$23.63  med=$0.00  win=30min  samples=139
+  ⭐ 23:10 BUY   rate=84%  move=$0.74  max=$16.71  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:15 BUY   rate=86%  move=$0.83  max=$16.24  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:20 BUY   rate=86%  move=$0.80  max=$24.77  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:25 BUY   rate=90%  move=$0.94  max=$34.80  med=$0.00  win=30min  samples=139
   ⭐ 23:55 BUY   rate=82%  move=$5.35  max=$36.76  med=$2.79  win=60min  samples=139
   ⭐ 23:55 BUY   rate=82%  move=$4.57  max=$36.76  med=$2.32  win=30min  samples=139
 
   ----------------------------------------------------------------------------------------------------------
   📊 Wednesday Summary
   ----------------------------------------------------------------------------------------------------------
-    Total: 3 high-accuracy signals
-    Direction split: BUY=3, SELL=0
+    Total: 10 high-accuracy signals
+    Direction split: BUY=10, SELL=0
     Window distribution:
-      30min: 1 signals
+      30min: 8 signals
       60min: 2 signals
 
   Top 5 highest recurring rates:
+    90%  23:25  BUY   move=$0.94  win=30min
     88%  22:55  BUY   move=$1.31  win=60min
-    82%  23:55  BUY   move=$5.35  win=60min
-    82%  23:55  BUY   move=$4.57  win=30min
+    86%  23:15  BUY   move=$0.83  win=30min
+    86%  23:20  BUY   move=$0.80  win=30min
+    85%  23:05  BUY   move=$0.80  win=30min
 
   Top 5 largest avg movements:
     $5.35  23:55  BUY   rate=82%  win=60min
     $4.57  23:55  BUY   rate=82%  win=30min
     $1.31  22:55  BUY   rate=88%  win=60min
+    $0.94  23:25  BUY   rate=90%  win=30min
+    $0.87  22:55  BUY   rate=84%  win=30min
 
   ────────────────────────────────────────────────
   Method: All Wednesdays grouped together (139 historical days)

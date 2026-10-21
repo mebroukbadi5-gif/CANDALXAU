@@ -1,7 +1,7 @@
 # CANDALXAU — XAUUSD (Gold) Trading Signal Repository
 
 > **XAUUSD (Gold)** — Real spot gold
-> **Per-weekday aggregation** — all Thursdays grouped together, all Fridays grouped together, etc.
+> **Per-weekday aggregation** — all Mondays grouped, all Tuesdays grouped, etc.
 > **≥80% recurring rate** (high accuracy)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
@@ -24,72 +24,98 @@ For each weekday (Mon/Tue/Wed/Thu/Fri):
     recurring_rate = % of days with same direction
     avg_move = average favorable movement in $
   
-  Filter: ≥80% recurring + ≥$1 movement
+  Filter: ≥80% recurring + ≥$0.50 movement
 ```
 
-## 📊 Signal Counts Per Day
+## 📊 Signal Counts Per Day (≥80% recurring + ≥$0.50 movement)
 
-| Day | 80pct | Notes |
-|-----|-------|-------|
-| Sunday | 0 | Market opens 23:00 Algeria |
-| Monday | 0 | |
-| Tuesday | 0 | |
-| Wednesday | 3 | |
-| Thursday | 1 | |
-| Friday | 21 | Best day (peak accuracy) |
-| Saturday | 0 | Market CLOSED |
-| **TOTAL** | **25** | |
+| Day | Signals | Best Signal | Notes |
+|-----|---------|-------------|-------|
+| Sunday | 0 | — | Market opens 23:00 Algeria |
+| Monday | 3 | 22:55 BUY rate=89% | |
+| Tuesday | 3 | 23:15 BUY rate=90% | |
+| Wednesday | 10 | 23:25 BUY rate=90% | Includes 23:55 rate=82% move=$5.35 |
+| Thursday | 7 | 22:15 BUY rate=90% | |
+| Friday | 33 | 22:35 BUY rate=94% | Best day (peak accuracy) |
+| Saturday | 0 | — | Market CLOSED |
+| **TOTAL** | **56** | | |
 
-Also available at lower thresholds:
-- 70pct: 47 signals
-- 60pct: 283 signals
+## 📊 Lower Tiers (more signals, lower accuracy)
+
+| Tier | Signals |
+|------|---------|
+| ≥80% + ≥$0.50 movement | 56 |
+| ≥70% + ≥$0.50 movement | 78 |
+| ≥60% + ≥$0.50 movement | 314 |
 
 ## 📐 Signal Format
 
 ```
-⭐⭐⭐ 23:35 BUY  rate=94%  move=$1.15  max=$41.52  med=$0.00  win=30min  samples=139
+⭐⭐ 23:25 BUY  rate=90%  move=$0.94  max=$34.80  med=$0.00  win=30min  samples=139
 ```
 
-- **23:35**: Entry time in UTC+1 (Algeria)
-- **BUY**: Direction
-- **rate=94%**: in 94% of 139 Fridays, price moved UP in this 30-min window
-- **move=$1.15**: average dollar movement in UP direction
-- **max=$41.52**: largest historical UP movement
+- **23:25**: Entry time in UTC+1 (Algeria)
+- **BUY**: Direction (BUY = long, SELL = short)
+- **rate=90%**: in 90% of 139 same-weekday days, price moved UP in this 30-min window
+- **move=$0.94**: average dollar movement in UP direction
+- **max=$34.80**: largest historical UP movement
 - **med=$0.00**: median (typical) UP movement
 - **win=30min**: optimal window size = 30 minutes
 - **samples=139**: based on 139 same-weekday days
 
-## 🏆 Top Signals (≥80% recurring)
+## 🏆 Top Signals Per Weekday
 
-### Friday (best day — 21 signals)
+### Monday (3 signals)
 | Time | Direction | Rate | Move | Max | Window |
 |------|-----------|------|------|-----|--------|
-| 23:35 | BUY | **94%** | $1.15 | $41.52 | 30/60/120min |
-| 23:10 | BUY | **91%** | $1.77 | $56.90 | 60/120min |
-| 23:15 | BUY | **91%** | $1.46 | $37.90 | 60/120min |
-| 23:20 | BUY | **91%** | $1.05 | $19.81 | 60/120min |
-| 23:00 | BUY | 90% | $1.63 | $37.47 | 60/120min |
-| 22:55 | BUY | 90% | $1.69 | $49.15 | 60/120min |
+| 22:55 | BUY | 89% | $0.75 | $34.60 | 30min |
+| 22:55 | BUY | 88% | $0.79 | $34.60 | 60min |
+| 23:00 | BUY | 88% | $0.66 | $30.83 | 30min |
 
-### Wednesday (3 signals)
-| Time | Direction | Rate | Move | Max |
-|------|-----------|------|------|-----|
-| 22:55 | BUY | 88% | $1.31 | $42.55 |
-| 23:55 | BUY | 82% | $5.35 | $36.76 (largest avg move!) |
+### Tuesday (3 signals)
+| Time | Direction | Rate | Move | Max | Window |
+|------|-----------|------|------|-----|--------|
+| 23:15 | BUY | 90% | $0.58 | $13.35 | 30min |
+| 22:55 | BUY | 86% | $0.78 | $19.76 | 60min |
+| 22:55 | BUY | 86% | $0.74 | $19.76 | 30min |
 
-### Thursday (1 signal)
-| Time | Direction | Rate | Move | Max |
-|------|-----------|------|------|-----|
-| 22:55 | BUY | 87% | $1.15 | $31.36 |
+### Wednesday (10 signals)
+| Time | Direction | Rate | Move | Max | Window |
+|------|-----------|------|------|-----|--------|
+| 23:25 | BUY | 90% | $0.94 | $34.80 | 30min |
+| 22:55 | BUY | 88% | $1.31 | $42.55 | 60min |
+| 23:15 | BUY | 86% | $0.83 | $16.24 | 30min |
+| 23:20 | BUY | 86% | $0.80 | $24.77 | 30min |
+| 23:05 | BUY | 85% | $0.80 | $23.63 | 30min |
+| 22:00 | BUY | 84% | $0.77 | $19.49 | 30min |
+| 22:10 | BUY | 84% | $0.74 | $16.71 | 30min |
+| 23:10 | BUY | 84% | $0.74 | $16.71 | 30min |
+| 22:55 | BUY | 84% | $0.87 | $21.55 | 30min |
+| 23:55 | BUY | 82% | $5.35 | $36.76 | 60min |
 
-## 🎯 Why Friday Late?
+### Thursday (7 signals)
+| Time | Direction | Rate | Move | Max | Window |
+|------|-----------|------|------|-----|--------|
+| 22:15 | BUY | 90% | $0.68 | $30.76 | 30min |
+| 22:25 | BUY | 89% | $0.53 | $15.53 | 30min |
+| 21:55 | BUY | 87% | $1.15 | $31.36 | 60min |
+| 22:10 | BUY | 88% | $0.76 | $27.15 | 30min |
+| 22:00 | BUY | 84% | $0.80 | $26.45 | 30min |
+| 22:05 | BUY | 84% | $0.80 | $37.63 | 30min |
 
-Friday 22:00-23:55 Algeria (21:00-22:55 UTC) is the period after NY close
-and before Asian session opens. During this time:
-- NY traders close positions before weekend
-- Price often continues in established direction
-- Less volatility = more predictable direction
-- Result: 90%+ recurring rate
+### Friday (33 signals — best day)
+| Time | Direction | Rate | Move | Max | Window |
+|------|-----------|------|------|-----|--------|
+| 22:35 | BUY | **94%** | $1.15 | $41.52 | 30min |
+| 22:40 | BUY | **94%** | $0.98 | $35.81 | 30min |
+| 22:10 | BUY | 91% | $1.77 | $56.90 | 60min |
+| 22:30 | BUY | 91% | $0.94 | $19.20 | 30min |
+| 22:20 | BUY | 91% | $1.05 | $19.81 | 60min |
+| 22:15 | BUY | 91% | $1.46 | $37.90 | 60min |
+| 22:05 | BUY | 90% | $1.81 | $51.88 | 60min |
+| 22:00 | BUY | 90% | $1.63 | $37.47 | 60min |
+| 21:55 | BUY | 90% | $1.69 | $49.15 | 60min |
+| ...  | ... | ... | ... | ... | ... |
 
 ## 🌍 Timezone
 
@@ -101,7 +127,7 @@ and before Asian session opens. During this time:
 - **Saturday**: Market CLOSED
 - **Sunday**: Opens at 23:00 Algeria (22:00 UTC)
 - **Monday-Friday**: 24h trading
-- **Best signals time**: Friday 22:00-23:55 Algeria (post-NY close)
+- **Best signal time**: 21:55-23:55 Algeria (post-NY close, pre-Asia open)
 
 ## 📂 Repository Structure
 
@@ -116,10 +142,10 @@ CANDALXAU/
 └── signals/
     ├── by_day/{Sunday..Saturday}/         ← Per-day folders
     │   └── SIGNALS_80pct.txt
-    ├── SIGNALS_XAUUSD_80pct.txt           ← 25 high-accuracy signals
+    ├── SIGNALS_XAUUSD_80pct.txt           ← 56 high-accuracy signals
     ├── SIGNALS_XAUUSD_80pct.json
-    ├── SIGNALS_XAUUSD_70pct.json          ← 47 signals (lower tier)
-    ├── SIGNALS_XAUUSD_60pct.json          ← 283 signals (more options)
+    ├── SIGNALS_XAUUSD_70pct.json          ← 78 signals (lower tier)
+    ├── SIGNALS_XAUUSD_60pct.json          ← 314 signals (more options)
     ├── all_high_accuracy_signals.csv      ← CSV for analysis
     └── README.md
 ```
@@ -142,11 +168,11 @@ with open('signals/SIGNALS_XAUUSD_80pct.json') as f:
 today_signals = [s for s in data['signals'] if s['day'] == today]
 
 # Each signal has:
-# - time: "23:35" (UTC+1 Algeria)
+# - time: "23:25" (UTC+1 Algeria)
 # - direction: "BUY" or "SELL"
-# - recurring_rate: 94.0 (% of same-weekday days with same direction)
-# - avg_move: 1.15 (avg $ moved in predicted direction)
-# - max_move: 41.52 (largest historical movement)
+# - recurring_rate: 90.0 (% of same-weekday days with same direction)
+# - avg_move: 0.94 (avg $ moved in predicted direction)
+# - max_move: 34.80 (largest historical movement)
 # - window_minutes: 30 (optimal hold time)
 # - samples: 139 (number of same-weekday days)
 ```
