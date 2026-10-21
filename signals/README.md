@@ -6,7 +6,7 @@
 > **≥80% recurring rate** (high accuracy)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
-Generated: 2026-10-21 22:30:32
+Generated: 2026-10-21 22:49:33
 
 ## 🎯 What v13.0 Does Different
 
@@ -20,17 +20,17 @@ Generated: 2026-10-21 22:30:32
 | Day | 80pct | Notes |
 |-----|-------|-------|
 | Sunday | 0 | Opens 23:00 UTC+1 (Algeria) |
-| Monday | 184 |  |
-| Tuesday | 133 |  |
-| Wednesday | 73 |  |
-| Thursday | 41 |  |
-| Friday | 85 |  |
+| Monday | 21 |  |
+| Tuesday | 20 |  |
+| Wednesday | 16 |  |
+| Thursday | 9 |  |
+| Friday | 21 |  |
 | Saturday | 0 | Market closed |
-| **TOTAL** | **516** | |
+| **TOTAL** | **87** | |
 
 Lower tiers:
-- 70pct: 2909 signals
-- 60pct: 5236 signals
+- 70pct: 229 signals
+- 60pct: 238 signals
 
 ## 📐 Signal Format
 

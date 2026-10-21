@@ -202,6 +202,35 @@ def filter_high_accuracy(signals, min_rate=80, min_move=0.50):
     return list(seen.values())
 
 
+def deduplicate_by_time_block(signals, block_minutes=30):
+    """Deduplicate signals by 30-min time blocks.
+    
+    For each (weekday, 30-min block), keep only the BEST signal.
+    This prevents showing 11:14, 11:17, 11:19, 11:20 etc. — only ONE per block.
+    
+    Block 0: HH:00-HH:29 (e.g., 11:00-11:29)
+    Block 1: HH:30-HH:59 (e.g., 11:30-11:59)
+    """
+    # Group by (day, hour, block)
+    blocks = defaultdict(list)
+    for s in signals:
+        block = s['minute'] // block_minutes  # 0 or 1
+        block_key = (s['day'], s['hour'], block)
+        blocks[block_key].append(s)
+    
+    # For each block, pick the best signal (highest recurring_rate × avg_move)
+    deduplicated = []
+    for block_key, candidates in blocks.items():
+        candidates.sort(key=lambda s: -(s['recurring_rate'] * s['avg_move']))
+        deduplicated.append(candidates[0])
+    
+    # Sort by day, then time
+    day_order = {day: i for i, day in enumerate(WEEKDAY_FULL)}
+    deduplicated.sort(key=lambda s: (day_order.get(s['day'], 99), s['hour'], s['minute']))
+    
+    return deduplicated
+
+
 def get_tier_badge(rate):
     if rate >= 95:
         return '⭐⭐⭐⭐'
@@ -355,14 +384,16 @@ def main():
     all_signals = compute_signals(results)
     print(f"  Total candidate signals: {len(all_signals):,}")
     
-    # Step 4: Filter high-accuracy
-    print(f"\n  [4/5] Filtering HIGH-ACCURACY signals (≥80% recurring + ≥$0.50 movement)...")
-    high_acc = filter_high_accuracy(all_signals, min_rate=80, min_move=0.50)
-    print(f"  High-accuracy signals: {len(high_acc)}")
+    # Step 4: Filter high-accuracy + deduplicate by 30-min blocks
+    print(f"\n  [4/5] Filtering + deduplicating signals (≥80% recurring + ≥$0.50 movement)...")
+    high_acc_raw = filter_high_accuracy(all_signals, min_rate=80, min_move=0.50)
+    high_acc = deduplicate_by_time_block(high_acc_raw, block_minutes=30)
+    print(f"  High-accuracy signals (raw): {len(high_acc_raw)}")
+    print(f"  After 30-min block deduplication: {len(high_acc)}")
     
-    tier_70 = filter_high_accuracy(all_signals, min_rate=70, min_move=0.50)
-    tier_60 = filter_high_accuracy(all_signals, min_rate=60, min_move=0.50)
-    print(f"  Lower tiers:")
+    tier_70 = deduplicate_by_time_block(filter_high_accuracy(all_signals, min_rate=70, min_move=0.50), 30)
+    tier_60 = deduplicate_by_time_block(filter_high_accuracy(all_signals, min_rate=60, min_move=0.50), 30)
+    print(f"  Lower tiers (deduplicated):")
     print(f"    ≥70% recurring: {len(tier_70)} signals")
     print(f"    ≥60% recurring: {len(tier_60)} signals")
     
