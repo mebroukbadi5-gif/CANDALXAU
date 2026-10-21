@@ -1,0 +1,40 @@
+==============================================================================================================
+  XAUUSD Signals — Thursday — ≥80% recurring + ≥$1 movement
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Thursday
+  Generated:    2026-10-21 22:08:50
+  Method:       All Thursdays grouped together (139 days)
+  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Windows:      30/60/120 minutes (best picked per HH:MM)
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 1
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
+  Timezone: UTC+1 (Algeria)
+  Movement: in DOLLARS (avg favorable move in predicted direction)
+==============================================================================================================
+
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐⭐ 22:55 BUY   rate=87%  move=$1.15  max=$31.36  med=$0.00  win=60min  samples=139
+
+  ----------------------------------------------------------------------------------------------------------
+  📊 Thursday Summary
+  ----------------------------------------------------------------------------------------------------------
+    Total: 1 high-accuracy signals
+    Direction split: BUY=1, SELL=0
+    Window distribution:
+      60min: 1 signals
+
+  Top 5 highest recurring rates:
+    87%  22:55  BUY   move=$1.15  win=60min
+
+  Top 5 largest avg movements:
+    $1.15  22:55  BUY   rate=87%  win=60min
+
+  ────────────────────────────────────────────────
+  Method: All Thursdays grouped together (139 historical days)
+  Pattern: At Thursday HH:MM, in 80%+ of historical Thursdays,
+           price moved in the predicted direction
+  ────────────────────────────────────────────────

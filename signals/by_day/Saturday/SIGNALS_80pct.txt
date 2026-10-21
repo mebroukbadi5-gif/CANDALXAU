@@ -1,33 +1,25 @@
 ==============================================================================================================
-  XAUUSD Signals — Sunday — BUY/SELL with TP & SL
+  XAUUSD Signals — Saturday — ≥80% recurring + ≥$1 movement
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
-  Day:          Sunday
-  Generated:    2026-10-21 21:57:26
-  Trade type:   BUY/SELL (spot trading with Stop Loss)
-  Filters:      Win rate ≥55%, Risk/Reward ≥1.0, EV > 0
+  Day:          Saturday
+  Generated:    2026-10-21 22:08:50
+  Method:       All Saturdays grouped together (139 days)
+  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Windows:      30/60/120 minutes (best picked per HH:MM)
   Data:         974 days × 5m candles (2024-2026)
   Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
-  Format: ⭐ HH:MM <BUY|SELL> TP=$X SL=$Y win=ZZ% R/R=A.B EV=$Z.ZZ win=Mmin
+  Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
   Timezone: UTC+1 (Algeria)
-  TP = Take Profit (avg favorable movement)
-  SL = Stop Loss (95th percentile adverse movement)
-  R/R = Risk/Reward ratio (TP/SL)
-  EV = Expected Value per trade
+  Movement: in DOLLARS (avg favorable move in predicted direction)
 ==============================================================================================================
 
-  ⚠ No profitable signals for this day.
-  📌 Note: XAUUSD market opens at 23:00 UTC+1 (Algeria).
+  ⚠ No signals for this day at this threshold.
+  📌 Note: XAUUSD market is CLOSED on Saturday.
 
   ────────────────────────────────────────────────
-  How to trade each signal:
-    1. Enter Sunday at HH:MM (UTC+1 (Algeria))
-    2. Set Take Profit at TP dollars from entry
-    3. Set Stop Loss at SL dollars from entry
-    4. Hold for window_minutes OR until TP/SL hit
-    5. R/R ≥ 1.0 ensures long-term profitability
-  ────────────────────────────────────────────────
-  Example: BUY XAUUSD at $2000 with TP=$2.00, SL=$1.50
-    → Close at $2002.00 (profit) or $1998.50 (loss)
+  Method: All Saturdays grouped together (139 historical days)
+  Pattern: At Saturday HH:MM, in 80%+ of historical Saturdays,
+           price moved in the predicted direction
   ────────────────────────────────────────────────

@@ -1,0 +1,25 @@
+==============================================================================================================
+  XAUUSD Signals — Monday — ≥80% recurring + ≥$1 movement
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Monday
+  Generated:    2026-10-21 22:08:50
+  Method:       All Mondays grouped together (139 days)
+  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Windows:      30/60/120 minutes (best picked per HH:MM)
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 0
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
+  Timezone: UTC+1 (Algeria)
+  Movement: in DOLLARS (avg favorable move in predicted direction)
+==============================================================================================================
+
+  ⚠ No signals for this day at this threshold.
+  Try lower threshold (≥70% or ≥60%) in combined file.
+
+  ────────────────────────────────────────────────
+  Method: All Mondays grouped together (139 historical days)
+  Pattern: At Monday HH:MM, in 80%+ of historical Mondays,
+           price moved in the predicted direction
+  ────────────────────────────────────────────────

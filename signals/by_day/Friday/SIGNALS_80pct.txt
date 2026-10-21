@@ -1,0 +1,72 @@
+==============================================================================================================
+  XAUUSD Signals — Friday — ≥80% recurring + ≥$1 movement
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Friday
+  Generated:    2026-10-21 22:08:50
+  Method:       All Fridays grouped together (139 days)
+  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Windows:      30/60/120 minutes (best picked per HH:MM)
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 21
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
+  Timezone: UTC+1 (Algeria)
+  Movement: in DOLLARS (avg favorable move in predicted direction)
+==============================================================================================================
+
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐⭐ 22:55 BUY   rate=90%  move=$1.69  max=$49.15  med=$0.00  win=60min  samples=139
+  ⭐⭐ 22:55 BUY   rate=90%  move=$1.69  max=$49.15  med=$0.00  win=120min  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐ 23:00 BUY   rate=90%  move=$1.63  max=$37.47  med=$0.00  win=60min  samples=139
+  ⭐⭐ 23:00 BUY   rate=90%  move=$1.63  max=$37.47  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:05 BUY   rate=90%  move=$1.81  max=$51.88  med=$0.00  win=60min  samples=139
+  ⭐⭐ 23:05 BUY   rate=90%  move=$1.81  max=$51.88  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:05 BUY   rate=86%  move=$1.23  max=$45.18  med=$0.00  win=30min  samples=139
+  ⭐⭐⭐ 23:10 BUY   rate=91%  move=$1.77  max=$56.90  med=$0.00  win=60min  samples=139
+  ⭐⭐⭐ 23:10 BUY   rate=91%  move=$1.77  max=$56.90  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:10 BUY   rate=88%  move=$1.31  max=$50.21  med=$0.00  win=30min  samples=139
+  ⭐⭐⭐ 23:15 BUY   rate=91%  move=$1.46  max=$37.90  med=$0.00  win=60min  samples=139
+  ⭐⭐⭐ 23:15 BUY   rate=91%  move=$1.46  max=$37.90  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:15 BUY   rate=88%  move=$1.13  max=$31.20  med=$0.00  win=30min  samples=139
+  ⭐⭐⭐ 23:20 BUY   rate=91%  move=$1.05  max=$19.81  med=$0.00  win=60min  samples=139
+  ⭐⭐⭐ 23:20 BUY   rate=91%  move=$1.05  max=$19.81  med=$0.00  win=120min  samples=139
+  ⭐⭐ 23:25 BUY   rate=90%  move=$1.00  max=$19.03  med=$0.00  win=30min  samples=139
+  ⭐⭐ 23:25 BUY   rate=90%  move=$1.00  max=$19.03  med=$0.00  win=60min  samples=139
+  ⭐⭐ 23:25 BUY   rate=90%  move=$1.00  max=$19.03  med=$0.00  win=120min  samples=139
+  ⭐⭐⭐ 23:35 BUY   rate=94%  move=$1.15  max=$41.52  med=$0.00  win=30min  samples=139
+  ⭐⭐⭐ 23:35 BUY   rate=94%  move=$1.15  max=$41.52  med=$0.00  win=60min  samples=139
+  ⭐⭐⭐ 23:35 BUY   rate=94%  move=$1.15  max=$41.52  med=$0.00  win=120min  samples=139
+
+  ----------------------------------------------------------------------------------------------------------
+  📊 Friday Summary
+  ----------------------------------------------------------------------------------------------------------
+    Total: 21 high-accuracy signals
+    Direction split: BUY=21, SELL=0
+    Window distribution:
+      30min: 5 signals
+      60min: 8 signals
+      120min: 8 signals
+
+  Top 5 highest recurring rates:
+    94%  23:35  BUY   move=$1.15  win=30min
+    94%  23:35  BUY   move=$1.15  win=60min
+    94%  23:35  BUY   move=$1.15  win=120min
+    91%  23:10  BUY   move=$1.77  win=60min
+    91%  23:10  BUY   move=$1.77  win=120min
+
+  Top 5 largest avg movements:
+    $1.81  23:05  BUY   rate=90%  win=60min
+    $1.81  23:05  BUY   rate=90%  win=120min
+    $1.77  23:10  BUY   rate=91%  win=60min
+    $1.77  23:10  BUY   rate=91%  win=120min
+    $1.69  22:55  BUY   rate=90%  win=60min
+
+  ────────────────────────────────────────────────
+  Method: All Fridays grouped together (139 historical days)
+  Pattern: At Friday HH:MM, in 80%+ of historical Fridays,
+           price moved in the predicted direction
+  ────────────────────────────────────────────────

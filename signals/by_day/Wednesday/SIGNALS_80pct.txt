@@ -1,0 +1,49 @@
+==============================================================================================================
+  XAUUSD Signals — Wednesday — ≥80% recurring + ≥$1 movement
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Wednesday
+  Generated:    2026-10-21 22:08:50
+  Method:       All Wednesdays grouped together (139 days)
+  Threshold:    ≥80% recurring direction + ≥$1 avg movement
+  Windows:      30/60/120 minutes (best picked per HH:MM)
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 3
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
+  Timezone: UTC+1 (Algeria)
+  Movement: in DOLLARS (avg favorable move in predicted direction)
+==============================================================================================================
+
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐⭐ 22:55 BUY   rate=88%  move=$1.31  max=$42.55  med=$0.00  win=60min  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐ 23:55 BUY   rate=82%  move=$5.35  max=$36.76  med=$2.79  win=60min  samples=139
+  ⭐ 23:55 BUY   rate=82%  move=$4.57  max=$36.76  med=$2.32  win=30min  samples=139
+
+  ----------------------------------------------------------------------------------------------------------
+  📊 Wednesday Summary
+  ----------------------------------------------------------------------------------------------------------
+    Total: 3 high-accuracy signals
+    Direction split: BUY=3, SELL=0
+    Window distribution:
+      30min: 1 signals
+      60min: 2 signals
+
+  Top 5 highest recurring rates:
+    88%  22:55  BUY   move=$1.31  win=60min
+    82%  23:55  BUY   move=$5.35  win=60min
+    82%  23:55  BUY   move=$4.57  win=30min
+
+  Top 5 largest avg movements:
+    $5.35  23:55  BUY   rate=82%  win=60min
+    $4.57  23:55  BUY   rate=82%  win=30min
+    $1.31  22:55  BUY   rate=88%  win=60min
+
+  ────────────────────────────────────────────────
+  Method: All Wednesdays grouped together (139 historical days)
+  Pattern: At Wednesday HH:MM, in 80%+ of historical Wednesdays,
+           price moved in the predicted direction
+  ────────────────────────────────────────────────
