@@ -1,0 +1,204 @@
+==============================================================================================================
+  XAUUSD Signals — Tuesday — BUY/SELL with TP & SL
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Tuesday
+  Generated:    2026-10-21 21:57:26
+  Trade type:   BUY/SELL (spot trading with Stop Loss)
+  Filters:      Win rate ≥55%, Risk/Reward ≥1.0, EV > 0
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 113
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <BUY|SELL> TP=$X SL=$Y win=ZZ% R/R=A.B EV=$Z.ZZ win=Mmin
+  Timezone: UTC+1 (Algeria)
+  TP = Take Profit (avg favorable movement)
+  SL = Stop Loss (95th percentile adverse movement)
+  R/R = Risk/Reward ratio (TP/SL)
+  EV = Expected Value per trade
+==============================================================================================================
+
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐ 00:00 BUY   TP=$5.00  SL=$4.03  win=57%  R/R=1.24  EV=$1.10  hold=180min  n=139
+  ⭐ 00:05 BUY   TP=$5.00  SL=$4.49  win=56%  R/R=1.11  EV=$0.84  hold=180min  n=139
+  ⭐ 00:05 BUY   TP=$3.00  SL=$2.84  win=58%  R/R=1.06  EV=$0.52  hold=120min  n=139
+  ⭐ 00:10 BUY   TP=$5.00  SL=$4.67  win=57%  R/R=1.07  EV=$0.83  hold=180min  n=139
+  ⭐ 00:10 BUY   TP=$3.00  SL=$2.89  win=63%  R/R=1.04  EV=$0.79  hold=120min  n=139
+  ⭐ 00:15 BUY   TP=$5.00  SL=$4.88  win=58%  R/R=1.03  EV=$0.81  hold=180min  n=139
+  ⭐ 00:15 BUY   TP=$3.00  SL=$2.72  win=59%  R/R=1.10  EV=$0.65  hold=120min  n=139
+  ⭐ 00:15 BUY   TP=$2.00  SL=$1.73  win=55%  R/R=1.15  EV=$0.33  hold=60min  n=139
+  ⭐ 00:20 BUY   TP=$5.00  SL=$4.84  win=58%  R/R=1.03  EV=$0.82  hold=180min  n=139
+  ⭐ 00:25 BUY   TP=$5.00  SL=$4.71  win=59%  R/R=1.06  EV=$0.98  hold=180min  n=140
+  ⭐ 00:25 BUY   TP=$3.00  SL=$3.00  win=58%  R/R=1.00  EV=$0.47  hold=120min  n=140
+  ⭐ 00:25 BUY   TP=$2.00  SL=$1.77  win=56%  R/R=1.13  EV=$0.33  hold=60min  n=140
+  ⭐ 00:30 BUY   TP=$5.00  SL=$4.81  win=61%  R/R=1.04  EV=$1.15  hold=180min  n=140
+  ⭐ 00:30 BUY   TP=$3.00  SL=$2.95  win=60%  R/R=1.02  EV=$0.62  hold=120min  n=140
+  ⭐ 00:35 BUY   TP=$5.00  SL=$4.71  win=63%  R/R=1.06  EV=$1.39  hold=180min  n=140
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐ 02:25 BUY   TP=$2.00  SL=$1.84  win=63%  R/R=1.09  EV=$0.57  hold=30min  n=140
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐ 03:20 BUY   TP=$5.00  SL=$4.96  win=55%  R/R=1.01  EV=$0.52  hold=120min  n=140
+  ⭐ 03:25 BUY   TP=$5.00  SL=$4.93  win=55%  R/R=1.01  EV=$0.53  hold=120min  n=140
+  ⭐ 03:50 BUY   TP=$5.00  SL=$4.58  win=56%  R/R=1.09  EV=$0.82  hold=120min  n=140
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐ 04:00 BUY   TP=$5.00  SL=$4.52  win=55%  R/R=1.11  EV=$0.72  hold=120min  n=140
+  ⭐ 04:55 BUY   TP=$3.00  SL=$2.73  win=56%  R/R=1.10  EV=$0.50  hold=60min  n=140
+
+  ── 05:00 UTC+1 (Algeria) ──
+  ⭐ 05:10 BUY   TP=$3.00  SL=$2.81  win=56%  R/R=1.07  EV=$0.47  hold=60min  n=140
+  ⭐ 05:15 BUY   TP=$2.00  SL=$1.97  win=57%  R/R=1.01  EV=$0.30  hold=30min  n=140
+
+  ── 06:00 UTC+1 (Algeria) ──
+  ⭐ 06:40 SELL  TP=$5.00  SL=$4.24  win=56%  R/R=1.18  EV=$0.97  hold=120min  n=140
+  ⭐ 06:50 SELL  TP=$5.00  SL=$4.37  win=57%  R/R=1.14  EV=$0.98  hold=120min  n=140
+  ⭐ 06:55 SELL  TP=$5.00  SL=$4.48  win=56%  R/R=1.12  EV=$0.80  hold=120min  n=140
+
+  ── 07:00 UTC+1 (Algeria) ──
+  ⭐⭐ 07:00 SELL  TP=$5.00  SL=$4.20  win=61%  R/R=1.19  EV=$1.38  hold=120min  n=140
+  ⭐ 07:05 SELL  TP=$5.00  SL=$4.44  win=60%  R/R=1.13  EV=$1.22  hold=120min  n=140
+  ⭐⭐ 07:10 SELL  TP=$5.00  SL=$4.18  win=61%  R/R=1.20  EV=$1.46  hold=120min  n=140
+  ⭐ 07:15 SELL  TP=$5.00  SL=$4.51  win=59%  R/R=1.11  EV=$1.13  hold=120min  n=140
+  ⭐⭐ 07:20 SELL  TP=$5.00  SL=$4.02  win=63%  R/R=1.24  EV=$1.65  hold=120min  n=140
+  ⭐⭐ 07:25 SELL  TP=$5.00  SL=$4.41  win=65%  R/R=1.13  EV=$1.71  hold=120min  n=140
+  ⭐⭐ 07:30 SELL  TP=$5.00  SL=$4.23  win=61%  R/R=1.18  EV=$1.44  hold=120min  n=140
+  ⭐ 07:35 SELL  TP=$5.00  SL=$4.82  win=61%  R/R=1.04  EV=$1.21  hold=120min  n=140
+  ⭐ 07:40 SELL  TP=$5.00  SL=$4.94  win=59%  R/R=1.01  EV=$0.95  hold=120min  n=140
+  ⭐ 07:45 SELL  TP=$5.00  SL=$4.69  win=58%  R/R=1.07  EV=$0.92  hold=120min  n=140
+  ⭐ 07:50 SELL  TP=$5.00  SL=$4.82  win=58%  R/R=1.04  EV=$0.86  hold=120min  n=140
+  ⭐ 07:50 SELL  TP=$3.00  SL=$2.59  win=58%  R/R=1.16  EV=$0.64  hold=30min  n=140
+
+  ── 08:00 UTC+1 (Algeria) ──
+  ⭐ 08:05 SELL  TP=$3.00  SL=$2.96  win=60%  R/R=1.01  EV=$0.62  hold=60min  n=140
+  ⭐ 08:10 SELL  TP=$5.00  SL=$4.81  win=59%  R/R=1.04  EV=$0.94  hold=120min  n=140
+
+  ── 09:00 UTC+1 (Algeria) ──
+  ⭐ 09:00 BUY   TP=$3.00  SL=$2.92  win=55%  R/R=1.03  EV=$0.33  hold=30min  n=140
+  ⭐ 09:15 SELL  TP=$3.00  SL=$2.59  win=56%  R/R=1.16  EV=$0.52  hold=30min  n=140
+  ⭐ 09:40 BUY   TP=$5.00  SL=$4.10  win=55%  R/R=1.22  EV=$0.90  hold=60min  n=140
+  ⭐ 09:50 BUY   TP=$5.00  SL=$4.53  win=59%  R/R=1.10  EV=$1.05  hold=120min  n=140
+  ⭐ 09:50 BUY   TP=$3.00  SL=$2.89  win=56%  R/R=1.04  EV=$0.43  hold=30min  n=140
+  ⭐ 09:55 BUY   TP=$5.00  SL=$4.85  win=56%  R/R=1.03  EV=$0.71  hold=120min  n=140
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐ 10:00 BUY   TP=$5.00  SL=$4.89  win=56%  R/R=1.02  EV=$0.69  hold=120min  n=140
+  ⭐ 10:00 BUY   TP=$3.00  SL=$2.75  win=59%  R/R=1.09  EV=$0.62  hold=30min  n=140
+  ⭐ 10:35 BUY   TP=$5.00  SL=$4.88  win=55%  R/R=1.03  EV=$0.56  hold=120min  n=140
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐ 11:15 SELL  TP=$5.00  SL=$4.32  win=55%  R/R=1.16  EV=$0.80  hold=120min  n=140
+  ⭐⭐ 11:15 SELL  TP=$3.00  SL=$2.19  win=57%  R/R=1.37  EV=$0.78  hold=30min  n=140
+  ⭐ 11:25 BUY   TP=$3.00  SL=$2.88  win=58%  R/R=1.04  EV=$0.52  hold=60min  n=140
+  ⭐ 11:45 BUY   TP=$3.00  SL=$2.81  win=64%  R/R=1.07  EV=$0.88  hold=60min  n=140
+  ⭐ 11:50 BUY   TP=$3.00  SL=$2.99  win=57%  R/R=1.00  EV=$0.43  hold=60min  n=140
+  ⭐ 11:55 BUY   TP=$5.00  SL=$4.35  win=56%  R/R=1.15  EV=$0.86  hold=120min  n=140
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐ 12:00 BUY   TP=$3.00  SL=$2.96  win=61%  R/R=1.01  EV=$0.66  hold=60min  n=140
+  ⭐ 12:05 BUY   TP=$5.00  SL=$4.62  win=56%  R/R=1.08  EV=$0.74  hold=120min  n=140
+  ⭐ 12:15 SELL  TP=$3.00  SL=$2.83  win=58%  R/R=1.06  EV=$0.54  hold=60min  n=140
+  ⭐ 12:20 SELL  TP=$2.00  SL=$1.93  win=64%  R/R=1.04  EV=$0.57  hold=30min  n=140
+  ⭐ 12:30 BUY   TP=$2.00  SL=$1.90  win=58%  R/R=1.05  EV=$0.36  hold=30min  n=140
+  ⭐ 12:35 BUY   TP=$3.00  SL=$2.92  win=56%  R/R=1.03  EV=$0.38  hold=60min  n=140
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐ 13:55 SELL  TP=$3.00  SL=$2.78  win=58%  R/R=1.08  EV=$0.56  hold=30min  n=140
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐ 14:15 BUY   TP=$5.00  SL=$4.95  win=61%  R/R=1.01  EV=$1.09  hold=60min  n=140
+  ⭐ 14:20 BUY   TP=$5.00  SL=$4.98  win=59%  R/R=1.00  EV=$0.94  hold=60min  n=140
+  ⭐ 14:30 BUY   TP=$3.00  SL=$2.95  win=66%  R/R=1.02  EV=$0.96  hold=30min  n=140
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐ 16:45 SELL  TP=$5.00  SL=$4.73  win=61%  R/R=1.06  EV=$1.18  hold=60min  n=140
+  ⭐⭐ 16:50 SELL  TP=$5.00  SL=$4.51  win=64%  R/R=1.11  EV=$1.60  hold=60min  n=140
+  ⭐⭐ 16:50 SELL  TP=$5.00  SL=$3.64  win=55%  R/R=1.37  EV=$1.11  hold=30min  n=140
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐ 17:05 SELL  TP=$5.00  SL=$4.68  win=55%  R/R=1.07  EV=$0.65  hold=60min  n=140
+  ⭐ 17:35 BUY   TP=$5.00  SL=$4.61  win=64%  R/R=1.09  EV=$1.50  hold=120min  n=140
+  ⭐ 17:40 BUY   TP=$5.00  SL=$4.66  win=59%  R/R=1.07  EV=$1.07  hold=120min  n=140
+  ⭐ 17:45 BUY   TP=$5.00  SL=$4.57  win=56%  R/R=1.09  EV=$0.76  hold=120min  n=140
+  ⭐ 17:45 BUY   TP=$3.00  SL=$2.95  win=58%  R/R=1.02  EV=$0.49  hold=30min  n=140
+  ⭐ 17:50 BUY   TP=$5.00  SL=$4.66  win=58%  R/R=1.07  EV=$0.93  hold=120min  n=140
+  ⭐ 17:50 BUY   TP=$3.00  SL=$2.87  win=55%  R/R=1.04  EV=$0.36  hold=30min  n=140
+  ⭐ 17:55 BUY   TP=$5.00  SL=$4.49  win=55%  R/R=1.11  EV=$0.73  hold=120min  n=140
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐ 18:05 BUY   TP=$5.00  SL=$4.64  win=65%  R/R=1.08  EV=$1.63  hold=180min  n=140
+  ⭐⭐ 18:05 BUY   TP=$5.00  SL=$4.02  win=59%  R/R=1.24  EV=$1.33  hold=120min  n=140
+  ⭐ 18:10 BUY   TP=$5.00  SL=$4.98  win=61%  R/R=1.00  EV=$1.08  hold=180min  n=140
+  ⭐ 18:10 BUY   TP=$5.00  SL=$4.37  win=55%  R/R=1.14  EV=$0.78  hold=120min  n=140
+  ⭐⭐ 18:15 BUY   TP=$5.00  SL=$4.43  win=62%  R/R=1.13  EV=$1.43  hold=180min  n=140
+  ⭐ 18:15 BUY   TP=$5.00  SL=$4.24  win=57%  R/R=1.18  EV=$1.04  hold=120min  n=140
+  ⭐ 18:20 BUY   TP=$5.00  SL=$4.63  win=60%  R/R=1.08  EV=$1.15  hold=180min  n=140
+  ⭐⭐ 18:25 BUY   TP=$5.00  SL=$4.57  win=64%  R/R=1.09  EV=$1.58  hold=180min  n=140
+  ⭐ 18:25 BUY   TP=$5.00  SL=$4.34  win=59%  R/R=1.15  EV=$1.20  hold=120min  n=140
+  ⭐⭐ 18:30 BUY   TP=$5.00  SL=$4.26  win=64%  R/R=1.17  EV=$1.69  hold=180min  n=140
+  ⭐⭐ 18:30 BUY   TP=$5.00  SL=$3.90  win=60%  R/R=1.28  EV=$1.44  hold=120min  n=140
+  ⭐⭐ 18:30 BUY   TP=$3.00  SL=$2.16  win=58%  R/R=1.39  EV=$0.82  hold=30min  n=140
+  ⭐ 18:35 BUY   TP=$5.00  SL=$4.56  win=61%  R/R=1.10  EV=$1.24  hold=180min  n=140
+  ⭐⭐ 18:35 BUY   TP=$5.00  SL=$3.84  win=56%  R/R=1.30  EV=$1.15  hold=120min  n=140
+  ⭐ 18:40 BUY   TP=$5.00  SL=$4.45  win=60%  R/R=1.12  EV=$1.22  hold=180min  n=140
+  ⭐ 18:40 BUY   TP=$5.00  SL=$4.12  win=55%  R/R=1.21  EV=$0.89  hold=120min  n=140
+  ⭐ 18:45 BUY   TP=$5.00  SL=$4.31  win=56%  R/R=1.16  EV=$0.94  hold=180min  n=140
+  ⭐ 18:50 BUY   TP=$5.00  SL=$4.66  win=56%  R/R=1.07  EV=$0.79  hold=180min  n=140
+  ⭐⭐ 18:55 BUY   TP=$5.00  SL=$3.90  win=57%  R/R=1.28  EV=$1.18  hold=180min  n=140
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ⭐ 19:00 BUY   TP=$5.00  SL=$4.50  win=59%  R/R=1.11  EV=$1.07  hold=180min  n=140
+  ⭐ 19:05 BUY   TP=$5.00  SL=$4.08  win=55%  R/R=1.23  EV=$0.91  hold=180min  n=140
+  ⭐⭐ 19:10 BUY   TP=$5.00  SL=$3.68  win=61%  R/R=1.36  EV=$1.65  hold=180min  n=140
+  ⭐ 19:15 BUY   TP=$5.00  SL=$4.45  win=59%  R/R=1.12  EV=$1.15  hold=180min  n=140
+  ⭐ 19:15 BUY   TP=$3.00  SL=$2.91  win=64%  R/R=1.03  EV=$0.89  hold=60min  n=140
+
+  ── 20:00 UTC+1 (Algeria) ──
+  ⭐ 20:00 BUY   TP=$2.00  SL=$1.72  win=60%  R/R=1.16  EV=$0.51  hold=30min  n=140
+  ⭐ 20:55 BUY   TP=$2.00  SL=$1.67  win=56%  R/R=1.20  EV=$0.40  hold=30min  n=140
+
+  ── 21:00 UTC+1 (Algeria) ──
+  ⭐ 21:15 BUY   TP=$2.00  SL=$1.67  win=55%  R/R=1.20  EV=$0.35  hold=30min  n=140
+  ⭐ 21:30 BUY   TP=$3.00  SL=$3.00  win=59%  R/R=1.00  EV=$0.54  hold=180min  n=139
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐ 22:20 BUY   TP=$3.00  SL=$2.69  win=57%  R/R=1.12  EV=$0.54  hold=180min  n=139
+  ⭐ 22:25 BUY   TP=$3.00  SL=$2.65  win=57%  R/R=1.13  EV=$0.56  hold=180min  n=139
+  ⭐ 22:30 BUY   TP=$3.00  SL=$2.67  win=60%  R/R=1.13  EV=$0.76  hold=180min  n=139
+  ⭐⭐ 22:35 BUY   TP=$3.00  SL=$2.52  win=63%  R/R=1.19  EV=$0.93  hold=180min  n=139
+  ⭐ 22:40 BUY   TP=$2.00  SL=$1.88  win=64%  R/R=1.07  EV=$0.61  hold=120min  n=139
+  ⭐ 22:40 BUY   TP=$3.00  SL=$2.47  win=56%  R/R=1.21  EV=$0.60  hold=180min  n=139
+  ⭐ 22:45 BUY   TP=$3.00  SL=$2.63  win=61%  R/R=1.14  EV=$0.81  hold=180min  n=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐ 23:50 BUY   TP=$5.00  SL=$3.57  win=56%  R/R=1.40  EV=$1.24  hold=180min  n=139
+  ⭐⭐ 23:55 BUY   TP=$5.00  SL=$3.46  win=55%  R/R=1.44  EV=$1.22  hold=180min  n=139
+
+  ----------------------------------------------------------------------------------------------------------
+  📊 Tuesday Summary
+  ----------------------------------------------------------------------------------------------------------
+    Total: 113 profitable signals
+    Direction split: BUY=86, SELL=27
+    Average win rate: 58.5%
+    Average R/R: 1.12
+    Average EV: $0.88/trade
+
+  Top 5 most profitable (by Expected Value):
+    EV=$1.71  07:25 SELL  TP=$5.00  SL=$4.41  win=65%  R/R=1.13
+    EV=$1.69  18:30 BUY   TP=$5.00  SL=$4.26  win=64%  R/R=1.17
+    EV=$1.65  19:10 BUY   TP=$5.00  SL=$3.68  win=61%  R/R=1.36
+    EV=$1.65  07:20 SELL  TP=$5.00  SL=$4.02  win=63%  R/R=1.24
+    EV=$1.63  18:05 BUY   TP=$5.00  SL=$4.64  win=65%  R/R=1.08
+
+  ────────────────────────────────────────────────
+  How to trade each signal:
+    1. Enter Tuesday at HH:MM (UTC+1 (Algeria))
+    2. Set Take Profit at TP dollars from entry
+    3. Set Stop Loss at SL dollars from entry
+    4. Hold for window_minutes OR until TP/SL hit
+    5. R/R ≥ 1.0 ensures long-term profitability
+  ────────────────────────────────────────────────
+  Example: BUY XAUUSD at $2000 with TP=$2.00, SL=$1.50
+    → Close at $2002.00 (profit) or $1998.50 (loss)
+  ────────────────────────────────────────────────

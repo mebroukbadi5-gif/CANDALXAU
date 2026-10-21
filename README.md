@@ -1,101 +1,104 @@
 # CANDALXAU — XAUUSD (Gold) Trading Signal Repository
 
 > **XAUUSD (Gold)** — Real spot gold
-> **Minute-level recurring patterns** at specific HH:MM times
-> **Movement measured in DOLLARS** (not points)
+> **BUY/SELL with Stop Loss + Take Profit** (NOT binary options, NOT MTG1)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
-## 🎯 What v9.1 Does
+## 🎯 What v11.0 Does
 
-For EACH minute of EACH day, scans 974 days of 5m candles:
+For each (weekday, HH:MM, window), computes:
 
 ```
-For each (weekday, HH:MM):
-  - Look at next 30 minutes of 5m candles (6 candles)
-  - entry_price = close at HH:MM
-  - max_high = max(high of next 6 candles)
-  - min_low  = min(low of next 6 candles)
-  - move_up   = max_high - entry_price  (in DOLLARS)
-  - move_down = entry_price - min_low   (in DOLLARS)
+Entry price = close at HH:MM
+For each historical day (974 days):
+  Look at next N minutes of 5m candles
+  max_high = max(high of next N candles)
+  min_low  = min(low of next N candles)
   
-  - if move_up >= move_down: direction = UP (CALL)
-  - else: direction = DOWN (PUT)
+  BUY:  favorable = max_high - entry
+        adverse   = entry - min_low
+  
+  SELL: favorable = entry - min_low
+        adverse  = max_high - entry
 
-After 974 days, compute:
-  - recurring_rate = % of days with same direction
-  - avg_movement_dollars = average $ moved in predicted direction
-  - max_movement_dollars = largest historical $ movement
+Direction = BUY if median BUY favorable > median SELL favorable
+TP = Take Profit level ($0.5, $1, $2, $3, $5)
+SL = Stop Loss = median or 75th/90th percentile adverse movement
+Win rate = % of days TP was hit
+R/R = TP / SL (must be ≥1.0)
+EV = (win_rate × TP) - (loss_rate × SL) (must be > 0)
 ```
 
-## 📊 Signal Counts (TRADABLE filters: ≥$1 movement + recurring rate)
+## 📊 Signal Counts Per Day
 
-| Day | 80pct | 70pct | 60pct | Notes |
-|-----|-------|-------|-------|-------|
-| Sunday | 0 | 0 | 0 | Market opens 23:00 Algeria |
-| Monday | 0 | 1 | 18 | |
-| Tuesday | 0 | 1 | 12 | |
-| Wednesday | 1 | 6 | 19 | |
-| Thursday | 0 | 1 | 20 | |
-| Friday | 5 | 6 | 20 | Best day for high recurring rate |
-| Saturday | 0 | 0 | 0 | Market CLOSED |
-| **TOTAL** | **6** | **15** | **89** | |
+| Day | Signals | Notes |
+|-----|---------|-------|
+| Sunday | 0 | Market opens 23:00 Algeria |
+| Monday | 55 | |
+| Tuesday | 113 | Best day (most signals) |
+| Wednesday | 84 | |
+| Thursday | 89 | |
+| Friday | 100 | |
+| Saturday | 0 | Market CLOSED |
+| **TOTAL** | **441** | |
 
-## 📊 Distribution Across Hours (60pct tier)
-
-Signals are distributed across the whole day, NOT concentrated at 23:00:
-
-| Hour (Algeria) | Signals | Peak Movement Time |
-|---|---|---|
-| 00:00 | 5 | Asian session open |
-| 01:00-03:00 | 4 | Asian trading |
-| 05:00-09:00 | 6 | London pre-open |
-| 11:00-12:00 | 6 | London session |
-| 15:00-16:00 | 3 | London/NY overlap (peak volatility) |
-| 22:00-23:00 | 8 | NY close / Asia open |
+All 441 signals are PROFITABLE: Win rate ≥55%, R/R ≥1.0, EV > 0
 
 ## 📐 Signal Format
 
 ```
-⭐ 15:15 PUT rate=61% move=$11.74 (avg) max=$81.00 med=$9.05 samples=139
+⭐⭐ 07:40 BUY  TP=$5.00  SL=$3.95  win=67%  R/R=1.27  EV=$2.04  hold=120min  n=139
 ```
 
-- **rate=61%**: in 61% of 974 days, price moved DOWN in this 30-min window
-- **move=$11.74**: average dollar movement in DOWN direction
-- **max=$81.00**: largest historical DOWN movement
-- **med=$9.05**: median (typical) DOWN movement
-- **samples=139**: number of historical days analyzed
+- **07:40**: Entry time in UTC+1 (Algeria)
+- **BUY**: Direction (BUY = long, SELL = short)
+- **TP=$5.00**: Take Profit = $5.00 from entry price
+- **SL=$3.95**: Stop Loss = $3.95 from entry price
+- **win=67%**: 67% of historical days hit TP before SL
+- **R/R=1.27**: Risk/Reward ratio = 5.00/3.95 = 1.27
+- **EV=$2.04**: Expected profit per trade = $2.04
+- **hold=120min**: Hold for 120 minutes or until TP/SL hit
+- **n=139**: Based on 139 historical samples
 
-## 🏆 Top Tradable Signals (high rate × large movement)
+## 🏆 Quality Badges
 
-### Monday
-- 15:15 PUT rate=61% move=$11.74 max=$81.00 (peak London/NY)
-- 15:10 PUT rate=62% move=$11.29 max=$114.01
-- 01:55 PUT rate=63% move=$9.82 max=$60.33 (Asian session)
+Based on R/R × win_rate:
+- ⭐⭐⭐⭐ **Excellent**: ≥1.5 (5 signals)
+- ⭐⭐⭐ **Very Good**: 1.0-1.5 (15 signals)
+- ⭐⭐ **Good**: 0.7-1.0
+- ⭐ **Decent**: 0.5-0.7
+- ✓ **Marginal**: <0.5
 
-### Tuesday
-- 16:25 PUT rate=58% move=$14.17 max=$129.42 (BIG movement!)
-- 16:30 PUT rate=57% move=$13.44 max=$104.30
+## 📈 Trading Example
 
-### Wednesday
-- 23:55 CALL rate=82% move=$4.57 max=$36.76 (highest recurring rate!)
-- 23:50 CALL rate=70% move=$5.58 max=$36.76
-- 15:45 CALL rate=61% move=$10.03 max=$45.42
+```
+Signal: 07:40 BUY  TP=$5.00  SL=$3.95  win=67%  R/R=1.27  EV=$2.04  hold=120min
 
-### Thursday
-- 16:50 PUT rate=55% move=$13.14 max=$228.90 (BIGGEST movement!)
-- 07:20 PUT rate=60% move=$8.27 max=$88.28
-- 02:05 CALL rate=66% move=$7.23 max=$36.39
+Current XAUUSD price: $2000.00
+  1. Open BUY position at $2000.00
+  2. Set Take Profit at $2005.00 (entry + $5.00)
+  3. Set Stop Loss at $1996.05 (entry - $3.95)
+  4. Hold for 120 minutes OR until TP/SL hit
 
-### Friday
-- 23:35 CALL rate=94% move=$1.15 max=$41.52 (highest rate!)
-- 23:40 CALL rate=94% move=$0.98 max=$35.81
-- 16:35 CALL rate=60% move=$10.71 max=$69.91
+Outcomes (based on 974 historical days):
+  67% of days → TP hit (profit $5.00)
+  33% of days → SL hit (loss $3.95)
+  Expected profit per trade: $2.04
+```
 
-## 🎲 MTG1 Strategy
+## 🎯 Why This Works
 
-1. Entry 1: bet 1× → if WIN, take profit & stop
-2. Entry 2: bet 2× → if WIN, recover loss & profit
-3. Stop: after Entry 2 loss → max drawdown = 3×
+For spot trading (not binary options):
+- We can use **Stop Loss** (limit losses)
+- We can use **Take Profit** (lock profits)
+- We don't need 80%+ win rate
+- We need **R/R ≥ 1.0** + **positive EV**
+
+Example:
+- Win rate = 55%, R/R = 1.5
+- Out of 100 trades: 55 wins × $1.50 - 45 losses × $1.00 = $82.50 - $45.00 = **+$37.50**
+
+This is **realistic and profitable** — no fake 90% accuracy needed.
 
 ## 🌍 Timezone
 
@@ -107,7 +110,7 @@ Signals are distributed across the whole day, NOT concentrated at 23:00:
 - **Saturday**: Market CLOSED
 - **Sunday**: Opens at 23:00 Algeria (22:00 UTC)
 - **Monday-Friday**: 24h trading
-- **Peak volatility**: 15:00-17:00 Algeria (London/NY overlap)
+- **Peak hours**: 13:00-17:00 Algeria (London/NY overlap)
 
 ## 📂 Repository Structure
 
@@ -118,39 +121,52 @@ CANDALXAU/
 ├── XAUUSD_5m_2190d_1a320748.json          ← Gold 5m candles (2190 days)
 ├── XAUUSD_1m_120d_e6d1e4c3.json           ← Gold 1m candles (120 days)
 ├── futurequantvexa_v4_xauusd.py          ← XAUUSD movement analyzer
-├── generate_xauusd_signals.py             ← v9.1 minute-level scanner
+├── generate_xauusd_signals.py             ← v11.0 BUY/SELL with TP/SL
 └── signals/
-    ├── by_day/{Sunday..Saturday}/         ← Per-day folders with 3 tier files
-    ├── SIGNALS_XAUUSD_80pct.txt           ← Ultra-Elite (≥80% recurring)
-    ├── SIGNALS_XAUUSD_70pct.txt           ← Elite (≥70% recurring)
-    ├── SIGNALS_XAUUSD_60pct.txt           ← High (≥60% recurring)
-    ├── SIGNALS_XAUUSD_BIG5.txt            ← Big movement (≥$5 avg)
-    ├── SIGNALS_XAUUSD_BIG10.txt           ← Ultra big movement (≥$10 avg)
-    ├── SIGNALS_XAUUSD_*.json               ← JSON versions
-    ├── xauusd_minute_patterns.csv        ← All 1,452 minute-level patterns
+    ├── by_day/{Sunday..Saturday}/         ← Per-day folders
+    │   └── SIGNALS_BUY_SELL.txt
+    ├── SIGNALS_XAUUSD_BUY_SELL.txt       ← All signals combined
+    ├── SIGNALS_XAUUSD_BUY_SELL.json      ← JSON version
+    ├── all_buy_sell_signals.csv          ← CSV for analysis
     └── README.md
 ```
 
-## ⚠️ Why v9.1 is Different
+## 🤖 Telegram Bot Integration
 
-Previous v9.0 had filters that:
-- Required ≥70% recurring rate
-- Required only ≥$0.50 movement
+```python
+import json
+from datetime import datetime
 
-This caused **late-night concentration** because:
-- Late night hours have low volatility → 90%+ recurring rate
-- But movement is only $0.50 (not tradable)
+# Load today's signals
+today = datetime.now().strftime('%A')
+path = f'signals/by_day/{today}/SIGNALS_BUY_SELL.txt'
+with open(path) as f:
+    signals_text = f.read()
 
-v9.1 fixes this:
-- ≥60% recurring rate (more inclusive)
-- ≥$1.00 movement (TRADABLE only)
-- Result: 89 signals spread across all hours, not just 23:00
+# Or use JSON version
+with open('signals/SIGNALS_XAUUSD_BUY_SELL.json') as f:
+    data = json.load(f)
+today_signals = [s for s in data['signals'] if s['day'] == today]
+
+# Each signal has:
+# - time: "07:40" (UTC+1 Algeria)
+# - direction: "BUY" or "SELL"
+# - tp_dollars: 5.00 (Take Profit)
+# - sl_dollars: 3.95 (Stop Loss)
+# - win_rate: 67.0 (% of days TP hit)
+# - risk_reward: 1.27 (TP/SL ratio)
+# - expected_value: 2.04 (EV per trade)
+# - window_minutes: 120 (hold time)
+```
 
 ## ⚠️ Disclaimer
 
-Trading binary options involves significant risk. Movement data reflects
-historical patterns — not a guarantee of future results. Use MTG1 strategy.
+Trading spot gold involves significant risk. Always:
+- Use proper position sizing (risk ≤2% per trade)
+- Honor Stop Loss (don't move it)
+- Be patient — winning trades need time to develop
+- Past performance doesn't guarantee future results
 
 ---
 
-Generated by **CANDALXAU Signal Engine v9.1** (tradable filters, minute-level, dollars, UTC+1 Algeria)
+Generated by **CANDALXAU Signal Engine v11.0** (BUY/SELL + TP/SL, UTC+1 Algeria)

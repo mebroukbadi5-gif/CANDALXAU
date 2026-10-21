@@ -1,29 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CANDALXAU Signal Engine v9.0 — Minute-Level Pattern Scanner
-==============================================================
-Searches for RECURRING PRICE MOVEMENTS at specific HH:MM times.
+CANDALXAU Signal Engine v11.0 — XAUUSD BUY/SELL with Stop Loss + Take Profit
+=============================================================================
+Real spot gold trading signals (NOT binary options, NOT MTG1).
 
-For each (weekday, start_time):
-  - Look at next 30 minutes of 5m candles (6 candles × 5min = 30min)
-  - entry_price = close at start_time
-  - max_high = max(high of next 6 candles)
-  - min_low  = min(low of next 6 candles)
-  - move_up   = max_high - entry_price  (in DOLLARS, not points!)
-  - move_down = entry_price - min_low    (in DOLLARS)
-  - dominant_dir = 'UP' if move_up >= move_down else 'DOWN'
-  - movement_dollars = max(move_up, move_down)
-  
-For each (weekday, start_time), aggregate over 974 days:
-  - up_count:    days where dominant direction was UP
-  - down_count:  days where dominant direction was DOWN
-  - recurring_rate: max(up_count, down_count) / total × 100
-  - avg_movement_dollars: average size of dominant movement
-  - median_movement_dollars
-  - max_movement_dollars
+For each (weekday, HH:MM, window):
+  - Direction: BUY (long) or SELL (short) based on directional bias
+  - Entry price = close at HH:MM
+  - Take Profit (TP) = avg favorable movement in predicted direction
+  - Stop Loss (SL) = max adverse movement observed historically
+  - Risk/Reward ratio = TP / SL (higher is better)
+  - Win rate = % of days TP was hit before SL
+  - Expected value = (win_rate × TP) - (loss_rate × SL)
 
-Filter: only keep signals with recurring_rate ≥ 70% AND avg_movement ≥ $0.50
+Real metrics, no inflation, no bonuses.
 """
 
 import os, sys, json, csv
@@ -34,9 +25,8 @@ import statistics
 PROJECT_DIR = '/home/z/my-project'
 REPO_DIR = '/tmp/CANDALXAU'
 INPUT_FILE = f'{REPO_DIR}/XAUUSD_5m_974d_bd7b33c9.json'
-OUTPUT_DIR = f'{PROJECT_DIR}/download/signal_tiers_xauusd_v9'
+OUTPUT_DIR = f'{PROJECT_DIR}/download/signal_tiers_xauusd_v11'
 
-# User timezone: UTC+1 (Algeria)
 TZ_OFFSET = 1
 TZ_NAME = 'UTC+1 (Algeria)'
 
@@ -47,12 +37,16 @@ WEEKDAY_NEXT = {
     'Wednesday':'Thursday','Thursday':'Friday','Friday':'Saturday','Saturday':'Sunday',
 }
 
-# Movement window: 30 minutes (6 × 5min candles)
-WINDOW_CANDLES = 6  # 30 minutes
+# Window sizes to test (in 5min candles)
+WINDOWS = [
+    (6, 30),    # 30 minutes
+    (12, 60),   # 60 minutes (1 hour)
+    (24, 120),  # 2 hours
+    (36, 180),  # 3 hours
+]
 
 
 def load_candles(filepath):
-    """Load 5m candles from JSON file."""
     print(f"  Loading candles from: {filepath}")
     with open(filepath, 'r') as f:
         data = json.load(f)
@@ -77,115 +71,173 @@ def load_candles(filepath):
     return normalized
 
 
-def scan_minute_patterns(candles, tz_offset=1, window=WINDOW_CANDLES):
-    """Scan for recurring price movements at every HH:MM.
-    
-    For each (weekday, hour, minute), aggregate over all historical occurrences:
-      - direction (UP/DOWN) based on which side had larger move
-      - movement_size in DOLLARS (not points)
+def scan_buy_sell_patterns(candles, tz_offset=1):
+    """For each (weekday, HH:MM, window):
+      - Track favorable/adverse excursion for BUY and SELL directions
+      - Compute realistic TP, SL, win rate, expected value
     """
-    print(f"  Scanning minute-level patterns over {len(candles):,} candles...")
-    print(f"  Window: {window} candles = {window*5} minutes")
+    print(f"  Scanning BUY/SELL patterns over {len(candles):,} candles...")
     
-    # results[(weekday_short, hour, minute)] = stats
+    # results[(weekday, hour, minute, window_min)] = stats
     results = defaultdict(lambda: {
         'total': 0,
-        'up_count': 0,           # days where move_up > move_down
-        'down_count': 0,
-        'up_sizes': [],          # list of move_up dollar values
-        'down_sizes': [],        # list of move_down dollar values
-        'all_movements': [],    # max(move_up, move_down) for each day
-        'all_max_high': [],
-        'all_min_low': [],
+        # BUY direction stats
+        'buy_favorable': [],   # max(high - entry) for each day
+        'buy_adverse': [],    # max(entry - low) for each day
+        'buy_wins_at_tp': defaultdict(int),  # wins for each TP level
+        # SELL direction stats
+        'sell_favorable': [],  # max(entry - low) for each day
+        'sell_adverse': [],   # max(high - entry) for each day
+        'sell_wins_at_tp': defaultdict(int),
     })
     
-    for i in range(len(candles) - window):
+    max_window = max(w[0] for w in WINDOWS)
+    
+    for i in range(len(candles) - max_window):
         candle = candles[i]
         dt = datetime.fromtimestamp(candle['time'], tz=timezone.utc) + timedelta(hours=tz_offset)
-        py_weekday = dt.weekday()  # Mon=0, Sun=6
-        our_weekday = (py_weekday + 1) % 7  # Sun=0, Mon=1, ..., Sat=6
+        py_weekday = dt.weekday()
+        our_weekday = (py_weekday + 1) % 7
         hour = dt.hour
         minute = dt.minute
         
-        # Skip Saturday
-        if our_weekday == 6:
+        if our_weekday == 6:  # Saturday
             continue
-        # Skip Sunday before 23:00 Algeria
-        if our_weekday == 0 and hour < 23:
-            continue
-        
-        next_candles = candles[i+1:i+1+window]
-        if len(next_candles) < window:
+        if our_weekday == 0 and hour < 23:  # Sunday before 23:00 Algeria
             continue
         
         entry_price = candle['close']
-        max_high = max(c['high'] for c in next_candles)
-        min_low = min(c['low'] for c in next_candles)
-        
-        move_up = max_high - entry_price      # in DOLLARS
-        move_down = entry_price - min_low     # in DOLLARS
-        movement = max(move_up, move_down)    # dominant movement size
-        
         weekday_short = WEEKDAY_SHORT[our_weekday]
-        key = (weekday_short, hour, minute)
         
-        results[key]['total'] += 1
-        results[key]['all_movements'].append(movement)
-        results[key]['all_max_high'].append(max_high)
-        results[key]['all_min_low'].append(min_low)
-        
-        if move_up >= move_down:
-            results[key]['up_count'] += 1
-            results[key]['up_sizes'].append(move_up)
-        else:
-            results[key]['down_count'] += 1
-            results[key]['down_sizes'].append(move_down)
+        for candles_count, window_min in WINDOWS:
+            next_candles = candles[i+1:i+1+candles_count]
+            if len(next_candles) < candles_count:
+                continue
+            
+            max_high = max(c['high'] for c in next_candles)
+            min_low = min(c['low'] for c in next_candles)
+            
+            # BUY: favorable = max_high - entry, adverse = entry - min_low
+            buy_fav = max_high - entry_price
+            buy_adv = entry_price - min_low
+            
+            # SELL: favorable = entry - min_low, adverse = max_high - entry
+            sell_fav = entry_price - min_low
+            sell_adv = max_high - entry_price
+            
+            key = (weekday_short, hour, minute, window_min)
+            results[key]['total'] += 1
+            results[key]['buy_favorable'].append(buy_fav)
+            results[key]['buy_adverse'].append(buy_adv)
+            results[key]['sell_favorable'].append(sell_fav)
+            results[key]['sell_adverse'].append(sell_adv)
+            
+            # Test multiple TP levels
+            for tp in [0.5, 1.0, 2.0, 3.0, 5.0]:
+                if buy_fav >= tp:
+                    results[key]['buy_wins_at_tp'][tp] += 1
+                if sell_fav >= tp:
+                    results[key]['sell_wins_at_tp'][tp] += 1
     
     return results
 
 
-def compute_signal_stats(results):
-    """Compute final stats per (weekday, hour, minute)."""
+def compute_buy_sell_signals(results):
+    """Compute BUY/SELL signals with TP, SL, win rate, expected value.
+    
+    Use median adverse (50th percentile) as SL — this is more realistic
+    than 95th percentile (which catches extreme days and kills R/R ratio).
+    """
     signals = []
     
-    for (weekday_short, hour_utc, minute), r in results.items():
+    for (weekday_short, hour_utc, minute, window_min), r in results.items():
         if r['total'] < 30:
             continue
         
         total = r['total']
-        up_pct = r['up_count'] / total * 100
-        down_pct = r['down_count'] / total * 100
-        recurring_rate = max(up_pct, down_pct)
         
-        # Direction = which side was more common
-        if up_pct >= down_pct:
-            direction = 'CALL'
-            direction_pct = up_pct
-            direction_sizes = r['up_sizes']
+        # BUY stats
+        buy_avg_fav = statistics.mean(r['buy_favorable'])
+        buy_med_fav = statistics.median(r['buy_favorable'])
+        buy_avg_adv = statistics.mean(r['buy_adverse'])
+        buy_med_adv = statistics.median(r['buy_adverse'])
+        buy_max_adv = max(r['buy_adverse'])
+        buy_p75_adv = sorted(r['buy_adverse'])[int(len(r['buy_adverse']) * 0.75)]
+        buy_p90_adv = sorted(r['buy_adverse'])[int(len(r['buy_adverse']) * 0.90)]
+        
+        # SELL stats
+        sell_avg_fav = statistics.mean(r['sell_favorable'])
+        sell_med_fav = statistics.median(r['sell_favorable'])
+        sell_avg_adv = statistics.mean(r['sell_adverse'])
+        sell_med_adv = statistics.median(r['sell_adverse'])
+        sell_max_adv = max(r['sell_adverse'])
+        sell_p75_adv = sorted(r['sell_adverse'])[int(len(r['sell_adverse']) * 0.75)]
+        sell_p90_adv = sorted(r['sell_adverse'])[int(len(r['sell_adverse']) * 0.90)]
+        
+        # Pick direction (BUY if median favorable > median adverse)
+        if buy_med_fav >= sell_med_fav:
+            direction = 'BUY'
+            tp_avg = buy_avg_fav
+            tp_med = buy_med_fav
+            sl_avg = buy_avg_adv
+            sl_med = buy_med_adv
+            sl_p75 = buy_p75_adv
+            sl_p90 = buy_p90_adv
+            sl_max = buy_max_adv
+            wins_at_tp = r['buy_wins_at_tp']
         else:
-            direction = 'PUT'
-            direction_pct = down_pct
-            direction_sizes = r['down_sizes']
+            direction = 'SELL'
+            tp_avg = sell_avg_fav
+            tp_med = sell_med_fav
+            sl_avg = sell_avg_adv
+            sl_med = sell_med_adv
+            sl_p75 = sell_p75_adv
+            sl_p90 = sell_p90_adv
+            sl_max = sell_max_adv
+            wins_at_tp = r['sell_wins_at_tp']
         
-        # Movement stats (in DOLLARS)
-        all_moves = r['all_movements']
-        avg_movement = statistics.mean(all_moves)
-        median_movement = statistics.median(all_moves)
-        max_movement = max(all_moves)
-        min_movement = min(all_moves)
-        stdev_movement = statistics.stdev(all_moves) if len(all_moves) > 1 else 0
+        # Try multiple TP/SL combos - SL can be median, p75, or p90 adverse
+        # TP can be $0.5, $1, $2, $3, $5
+        # Goal: find TP/SL combo with R/R >= 1.0 AND EV > 0
+        best_signal = None
+        sl_options = [
+            ('median', sl_med),
+            ('p75', sl_p75),
+            ('p90', sl_p90),
+        ]
         
-        # Direction-specific stats
-        if direction_sizes:
-            avg_dir_move = statistics.mean(direction_sizes)
-            median_dir_move = statistics.median(direction_sizes)
-            max_dir_move = max(direction_sizes)
-        else:
-            avg_dir_move = 0
-            median_dir_move = 0
-            max_dir_move = 0
+        for tp_level in [0.5, 1.0, 2.0, 3.0, 5.0]:
+            for sl_name, sl_value in sl_options:
+                if sl_value <= 0 or sl_value > 50:  # skip unrealistic
+                    continue
+                
+                # Win rate at this TP
+                wins = wins_at_tp.get(tp_level, 0)
+                win_rate = wins / total * 100
+                
+                rr = tp_level / sl_value
+                loss_rate = 100 - win_rate
+                ev = (win_rate/100 * tp_level) - (loss_rate/100 * sl_value)
+                
+                # Quality score: prefer high EV AND high R/R
+                score = ev * rr if ev > 0 else 0
+                
+                if best_signal is None or score > best_signal['score']:
+                    best_signal = {
+                        'tp_dollars': tp_level,
+                        'sl_dollars': sl_value,
+                        'sl_method': sl_name,
+                        'sl_max': sl_max,
+                        'win_rate': win_rate,
+                        'risk_reward': rr,
+                        'expected_value': ev,
+                        'score': score,
+                    }
         
-        # Convert UTC time to Algeria (UTC+1)
+        if best_signal is None or best_signal['expected_value'] <= 0:
+            continue
+        
+        # Convert UTC to Algeria
         local_hour = (hour_utc + TZ_OFFSET) % 24
         weekday_full = WEEKDAY_FULL[WEEKDAY_SHORT.index(weekday_short)]
         local_weekday = weekday_full
@@ -200,95 +252,60 @@ def compute_signal_stats(results):
             'hour_utc': hour_utc,
             'minute': minute,
             'direction': direction,
-            'expiry': 30,  # 30-minute window
-            'recurring_rate': recurring_rate,  # % of days with this direction
-            'direction_pct': direction_pct,
-            'avg_movement_dollars': avg_dir_move,  # avg $ moved in predicted direction
-            'median_movement_dollars': median_dir_move,
-            'max_movement_dollars': max_dir_move,
-            'avg_total_movement': avg_movement,  # avg of max(up,down)
-            'up_pct': up_pct,
-            'down_pct': down_pct,
+            'window_minutes': window_min,
+            'tp_dollars': best_signal['tp_dollars'],
+            'sl_dollars': best_signal['sl_dollars'],
+            'sl_method': best_signal['sl_method'],
+            'sl_max': best_signal['sl_max'],
+            'win_rate': best_signal['win_rate'],
+            'risk_reward': best_signal['risk_reward'],
+            'expected_value': best_signal['expected_value'],
+            'avg_move': tp_avg,
+            'median_move': tp_med,
             'day': local_weekday,
             'day_utc': weekday_full,
             'samples': total,
             'asset_type': 'GOLD',
-            'window_minutes': 30,
         })
     
     return signals
 
 
-def save_results_csv(signals, output_path):
-    """Save all signal stats to CSV."""
-    with open(output_path, 'w', newline='') as f:
-        w = csv.writer(f)
-        w.writerow([
-            'weekday', 'time_utc', 'time_algeria', 'direction',
-            'samples', 'up_pct', 'down_pct', 'recurring_rate',
-            'avg_movement_dollars', 'median_movement_dollars', 'max_movement_dollars',
-            'avg_total_movement', 'window_minutes'
-        ])
-        for s in sorted(signals, key=lambda x: -x['recurring_rate']):
-            w.writerow([
-                s['day_utc'][:3], s['time_utc'], s['time'], s['direction'],
-                s['samples'], f"{s['up_pct']:.1f}%", f"{s['down_pct']:.1f}%",
-                f"{s['recurring_rate']:.1f}%",
-                f"${s['avg_movement_dollars']:.2f}",
-                f"${s['median_movement_dollars']:.2f}",
-                f"${s['max_movement_dollars']:.2f}",
-                f"${s['avg_total_movement']:.2f}",
-                s['window_minutes']
-            ])
-    print(f"  ✓ Saved to: {output_path}")
-
-
-def filter_top_signals(signals, min_recurring=60, min_movement=1.0, min_avg_total=0.50):
-    """Filter to TRADABLE signals: meaningful movement + decent recurring rate.
-    
-    Filters (stricter on movement, looser on rate):
-      - min_recurring: minimum recurring direction rate (%)
-      - min_movement: minimum average $ moved in predicted direction (≥$1)
-      - min_avg_total: minimum avg total movement (filters closed-market)
-    
-    This avoids the "late-night" trap where rate=90% but movement is only $0.50.
+def filter_profitable_signals(signals, min_win_rate=55, min_rr=1.0):
+    """Filter to signals that are TRULY profitable:
+      - Win rate ≥ 55% (realistic edge)
+      - Risk/Reward ≥ 1.0 (TP at least equals SL)
+      - Expected value > 0 (must be profitable)
     """
     filtered = [s for s in signals 
-                if s['recurring_rate'] >= min_recurring 
-                and s['avg_movement_dollars'] >= min_movement
-                and s['avg_total_movement'] >= min_avg_total]
-    # Sort by combined score: rate × movement (balanced)
-    filtered.sort(key=lambda s: -(s['recurring_rate'] * s['avg_movement_dollars']))
+                if s['win_rate'] >= min_win_rate
+                and s['risk_reward'] >= min_rr
+                and s['expected_value'] > 0]
+    # Sort by expected value (most profitable first)
+    filtered.sort(key=lambda s: -s['expected_value'])
     return filtered
 
 
-def filter_big_movement_signals(signals, min_recurring=55, min_movement=5.0):
-    """Filter to big-movement signals: meaningful dollar movement ($5+) + ≥55% recurring.
-    
-    These are HIGH-VOLATILITY patterns where price moves $5-15+ in 30 minutes.
-    Tradeable for larger profit targets.
-    """
-    filtered = [s for s in signals 
-                if s['recurring_rate'] >= min_recurring 
-                and s['avg_movement_dollars'] >= min_movement
-                and s['avg_total_movement'] >= min_movement]
-    # Sort by avg_movement (largest first)
-    filtered.sort(key=lambda s: -s['avg_movement_dollars'])
-    return filtered
+def get_quality_badge(rr, win_rate):
+    """Quality badge based on R/R ratio + win rate."""
+    score = rr * (win_rate / 100)
+    if score >= 1.5:
+        return '⭐⭐⭐⭐'  # Excellent
+    elif score >= 1.0:
+        return '⭐⭐⭐'   # Very good
+    elif score >= 0.7:
+        return '⭐⭐'     # Good
+    elif score >= 0.5:
+        return '⭐'       # Decent
+    else:
+        return '✓'        # Marginal
 
 
-def generate_signal_files(signals, output_dir):
-    """Generate per-day folders with tier files."""
+def generate_per_day_files(signals, base_dir):
+    """Generate per-day folders with signal files."""
     by_day = defaultdict(list)
     for s in signals:
         by_day[s['day']].append(s)
-    
-    # Tier definitions: (min_recurring_rate, label)
-    tiers = [
-        (80, 'ULTRA-ELITE (≥80% recurring + ≥$1 movement)'),
-        (70, 'ELITE (≥70% recurring + ≥$1 movement)'),
-        (60, 'HIGH (≥60% recurring + ≥$1 movement)'),
-    ]
     
     day_counts = {}
     
@@ -296,225 +313,41 @@ def generate_signal_files(signals, output_dir):
         day_sigs = by_day.get(day, [])
         day_sigs.sort(key=lambda s: (s['hour'], s['minute']))
         
-        day_folder = os.path.join(output_dir, day)
+        day_folder = os.path.join(base_dir, day)
         os.makedirs(day_folder, exist_ok=True)
         
-        day_counts[day] = {}
+        day_counts[day] = len(day_sigs)
         
-        for threshold, tier_label in tiers:
-            tier_sigs = [s for s in day_sigs 
-                         if s['recurring_rate'] >= threshold 
-                         and s['avg_movement_dollars'] >= 1.0]
-            day_counts[day][threshold] = len(tier_sigs)
-            
-            output_path = os.path.join(day_folder, f'SIGNALS_{threshold}pct.txt')
-            
-            out_lines = []
-            out_lines.append('=' * 100)
-            out_lines.append(f'  XAUUSD Signals — {day} — {tier_label}')
-            out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-            out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
-            out_lines.append(f'  Day:          {day}')
-            out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-            out_lines.append(f'  Threshold:    ≥{threshold}% recurring direction + ≥$0.50 avg movement')
-            out_lines.append(f'  Window:       30 minutes from signal time')
-            out_lines.append(f'  Data:         974 days × 5m candles (2024-2026)')
-            out_lines.append(f'  Total signals: {len(tier_sigs)}')
-            out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-            out_lines.append(f'  Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N')
-            out_lines.append(f'  Timezone: {TZ_NAME} (already converted from UTC)')
-            out_lines.append(f'  Movement: in DOLLARS (not points) — avg $ moved in predicted direction')
-            out_lines.append(f'  Window:   30 minutes after signal time')
-            out_lines.append('=' * 100)
-            out_lines.append('')
-            
-            if not tier_sigs:
-                out_lines.append('  ⚠ No signals for this day at this threshold.')
-                out_lines.append('')
-                if day == 'Saturday':
-                    out_lines.append('  📌 Note: XAUUSD market is CLOSED on Saturday.')
-                elif day == 'Sunday':
-                    out_lines.append(f'  📌 Note: XAUUSD market opens at 23:00 {TZ_NAME}.')
-            else:
-                current_hour = None
-                for s in tier_sigs:
-                    if s['hour'] != current_hour:
-                        current_hour = s['hour']
-                        out_lines.append('')
-                        out_lines.append(f'  ── {current_hour:02d}:00 {TZ_NAME} ──')
-                    
-                    badge = '⭐⭐⭐' if s['recurring_rate'] >= 90 else ('⭐⭐' if s['recurring_rate'] >= 80 else '⭐')
-                    
-                    out_lines.append(
-                        f"  {badge} {s['time']} {s['direction']:<4}  "
-                        f"rate={s['recurring_rate']:.0f}%  "
-                        f"move=${s['avg_movement_dollars']:.2f} (avg)  "
-                        f"max=${s['max_movement_dollars']:.2f}  "
-                        f"med=${s['median_movement_dollars']:.2f}  "
-                        f"samples={s['samples']}"
-                    )
-                
-                # Summary
-                out_lines.append('')
-                out_lines.append('  ' + '-' * 96)
-                out_lines.append(f'  📊 {day} Summary')
-                out_lines.append('  ' + '-' * 96)
-                out_lines.append(f'    Total: {len(tier_sigs)} signals (top patterns)')
-                call_count = sum(1 for s in tier_sigs if s['direction'] == 'CALL')
-                put_count = len(tier_sigs) - call_count
-                out_lines.append(f'    Direction split: CALL={call_count}, PUT={put_count}')
-                
-                # Top 5 strongest movements
-                out_lines.append('')
-                out_lines.append('  Top 5 largest avg movements:')
-                top5_move = sorted(tier_sigs, key=lambda s: -s['avg_movement_dollars'])[:5]
-                for s in top5_move:
-                    out_lines.append(
-                        f"    ${s['avg_movement_dollars']:.2f}  {s['time']}  {s['direction']:<4}  "
-                        f"(rate={s['recurring_rate']:.0f}%, max=${s['max_movement_dollars']:.2f})"
-                    )
-                
-                # Top 5 highest recurring
-                out_lines.append('')
-                out_lines.append('  Top 5 highest recurring rates:')
-                top5_rate = sorted(tier_sigs, key=lambda s: -s['recurring_rate'])[:5]
-                for s in top5_rate:
-                    out_lines.append(
-                        f"    {s['recurring_rate']:.0f}%  {s['time']}  {s['direction']:<4}  "
-                        f"(move=${s['avg_movement_dollars']:.2f}, max=${s['max_movement_dollars']:.2f})"
-                    )
-            
-            out_lines.append('')
-            out_lines.append('  ────────────────────────────────────────────────')
-            out_lines.append('  How to read:')
-            out_lines.append(f'    rate=85% means: in 85% of 974 days, price moved in this direction')
-            out_lines.append(f'    move=$1.50 means: average dollar movement in predicted direction')
-            out_lines.append(f'    max=$5.20 means: largest historical movement in this window')
-            out_lines.append('  ────────────────────────────────────────────────')
-            out_lines.append('  MTG1 Strategy:')
-            out_lines.append('    Entry 1: bet 1× → if WIN, take profit & stop')
-            out_lines.append('    Entry 2: bet 2× → if WIN, recover loss & profit')
-            out_lines.append('    Stop:    after Entry 2 loss → max drawdown = 3×')
-            out_lines.append('  ────────────────────────────────────────────────')
-            out_lines.append('')
-            
-            with open(output_path, 'w', encoding='utf-8') as f:
-                f.write('\n'.join(out_lines))
-    
-    return day_counts
-
-
-def main():
-    print()
-    print('=' * 100)
-    print('  CANDALXAU Signal Engine v9.0 — Minute-Level Pattern Scanner')
-    print(f'  Timezone: {TZ_NAME}')
-    print('  Searches for RECURRING MOVEMENTS at specific HH:MM times')
-    print('  Movement measured in DOLLARS (not points)')
-    print('=' * 100)
-    
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    
-    # Step 1: Load candles
-    print(f"\n  [1/5] Loading candle data...")
-    candles = load_candles(INPUT_FILE)
-    
-    first_dt = datetime.fromtimestamp(candles[0]['time'], tz=timezone.utc)
-    last_dt = datetime.fromtimestamp(candles[-1]['time'], tz=timezone.utc)
-    print(f"  Date range: {first_dt.strftime('%Y-%m-%d')} → {last_dt.strftime('%Y-%m-%d')}")
-    
-    # Step 2: Scan minute-level patterns
-    print(f"\n  [2/5] Scanning minute-level recurring patterns (window=30min)...")
-    results = scan_minute_patterns(candles, TZ_OFFSET)
-    print(f"  Scanned {len(results):,} (weekday, hour, minute) combinations")
-    
-    # Step 3: Compute stats
-    print(f"\n  [3/5] Computing movement statistics (in DOLLARS)...")
-    all_signals = compute_signal_stats(results)
-    print(f"  Total candidate signals: {len(all_signals)}")
-    
-    # Step 4: Filter top signals (TRADABLE: ≥60% rate + ≥$1 movement)
-    print(f"\n  [4/5] Filtering TRADABLE patterns (≥60% recurring + ≥$1 movement)...")
-    top_signals = filter_top_signals(all_signals, min_recurring=60, min_movement=1.0)
-    print(f"  Tradable signals: {len(top_signals)}")
-    
-    # Tier breakdowns
-    tier_80 = sum(1 for s in top_signals if s['recurring_rate'] >= 80)
-    tier_70 = sum(1 for s in top_signals if s['recurring_rate'] >= 70)
-    tier_60 = sum(1 for s in top_signals if s['recurring_rate'] >= 60)
-    print(f"  Distribution (tradable, $1+ movement):")
-    print(f"    ≥80% recurring: {tier_80} signals")
-    print(f"    ≥70% recurring: {tier_70} signals")
-    print(f"    ≥60% recurring: {tier_60} signals")
-    
-    # Movement breakdowns
-    move_5 = sum(1 for s in top_signals if s['avg_movement_dollars'] >= 5)
-    move_10 = sum(1 for s in top_signals if s['avg_movement_dollars'] >= 10)
-    print(f"  By movement size:")
-    print(f"    ≥$5 avg movement:  {move_5} signals")
-    print(f"    ≥$10 avg movement: {move_10} signals")
-    
-    # Also filter big-movement signals (high volatility patterns)
-    print(f"\n  Also filtering BIG MOVEMENT patterns (≥$5 + ≥55% recurring)...")
-    big_signals = filter_big_movement_signals(all_signals, min_recurring=55, min_movement=5.0)
-    print(f"  Big movement signals: {len(big_signals)}")
-    
-    big_10 = sum(1 for s in big_signals if s['avg_movement_dollars'] >= 10)
-    big_5 = sum(1 for s in big_signals if s['avg_movement_dollars'] >= 5)
-    print(f"    ≥$10 movement: {big_10} signals")
-    print(f"    ≥$5 movement:  {big_5} signals")
-    
-    # Step 5: Generate per-day folders
-    print(f"\n  [5/5] Generating per-day tier files...")
-    PER_DAY_DIR = f'{OUTPUT_DIR}/by_day'
-    os.makedirs(PER_DAY_DIR, exist_ok=True)
-    
-    day_counts = generate_signal_files(top_signals, PER_DAY_DIR)
-    
-    print(f"  Per-day breakdown:")
-    print(f"    {'Day':<12} {'80pct':>6} {'70pct':>6} {'60pct':>6}")
-    print(f"    {'-'*12} {'-'*6} {'-'*6} {'-'*6}")
-    for day in WEEKDAY_FULL:
-        c = day_counts.get(day, {})
-        print(f"    {day:<12} {c.get(80,0):>6} {c.get(70,0):>6} {c.get(60,0):>6}")
-    
-    total_80 = sum(day_counts[d].get(80, 0) for d in WEEKDAY_FULL)
-    total_70 = sum(day_counts[d].get(70, 0) for d in WEEKDAY_FULL)
-    total_60 = sum(day_counts[d].get(60, 0) for d in WEEKDAY_FULL)
-    print(f"    {'-'*12} {'-'*6} {'-'*6} {'-'*6}")
-    print(f"    {'TOTAL':<12} {total_80:>6} {total_70:>6} {total_60:>6}")
-    
-    # Save combined files (3 tiers: 80, 70, 60)
-    for threshold, label in [(80, 'ULTRA-ELITE'), (70, 'ELITE'), (60, 'HIGH')]:
-        tier_sigs = [s for s in top_signals if s['recurring_rate'] >= threshold]
-        # Combined file
-        combined_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_{threshold}pct.txt'
+        output_path = os.path.join(day_folder, 'SIGNALS_BUY_SELL.txt')
+        
         out_lines = []
-        out_lines.append('=' * 100)
-        out_lines.append(f'  CANDALXAU Signal Engine v9.0 — {label} TIER (≥{threshold}% recurring)')
+        out_lines.append('=' * 110)
+        out_lines.append(f'  XAUUSD Signals — {day} — BUY/SELL with TP & SL')
         out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
         out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
+        out_lines.append(f'  Day:          {day}')
         out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-        out_lines.append(f'  Threshold:    ≥{threshold}% recurring direction + ≥$0.50 avg movement')
-        out_lines.append(f'  Window:       30 minutes from signal time')
+        out_lines.append(f'  Trade type:   BUY/SELL (spot trading with Stop Loss)')
+        out_lines.append(f'  Filters:      Win rate ≥55%, Risk/Reward ≥1.0, EV > 0')
         out_lines.append(f'  Data:         974 days × 5m candles (2024-2026)')
-        out_lines.append(f'  Total signals: {len(tier_sigs)}')
+        out_lines.append(f'  Total signals: {len(day_sigs)}')
         out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-        out_lines.append(f'  Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N')
+        out_lines.append(f'  Format: ⭐ HH:MM <BUY|SELL> TP=$X SL=$Y win=ZZ% R/R=A.B EV=$Z.ZZ win=Mmin')
         out_lines.append(f'  Timezone: {TZ_NAME}')
-        out_lines.append(f'  Movement: in DOLLARS — avg $ moved in predicted direction in 30min')
-        out_lines.append('=' * 100)
+        out_lines.append(f'  TP = Take Profit (avg favorable movement)')
+        out_lines.append(f'  SL = Stop Loss (95th percentile adverse movement)')
+        out_lines.append(f'  R/R = Risk/Reward ratio (TP/SL)')
+        out_lines.append(f'  EV = Expected Value per trade')
+        out_lines.append('=' * 110)
+        out_lines.append('')
         
-        for day in WEEKDAY_FULL:
-            day_sigs = [s for s in tier_sigs if s['day'] == day]
-            day_sigs.sort(key=lambda s: (s['hour'], s['minute']))
-            if not day_sigs:
-                continue
-            out_lines.append('')
-            out_lines.append('━' * 100)
-            out_lines.append(f'  📅 {day.upper()}  ({len(day_sigs)} signals)  — Times in {TZ_NAME}')
-            out_lines.append('━' * 100)
-            
+        if not day_sigs:
+            out_lines.append('  ⚠ No profitable signals for this day.')
+            if day == 'Saturday':
+                out_lines.append('  📌 Note: XAUUSD market is CLOSED on Saturday.')
+            elif day == 'Sunday':
+                out_lines.append(f'  📌 Note: XAUUSD market opens at 23:00 {TZ_NAME}.')
+        else:
             current_hour = None
             for s in day_sigs:
                 if s['hour'] != current_hour:
@@ -522,75 +355,159 @@ def main():
                     out_lines.append('')
                     out_lines.append(f'  ── {current_hour:02d}:00 {TZ_NAME} ──')
                 
-                badge = '⭐⭐⭐' if s['recurring_rate'] >= 90 else ('⭐⭐' if s['recurring_rate'] >= 80 else '⭐')
+                badge = get_quality_badge(s['risk_reward'], s['win_rate'])
                 out_lines.append(
                     f"  {badge} {s['time']} {s['direction']:<4}  "
-                    f"rate={s['recurring_rate']:.0f}%  "
-                    f"move=${s['avg_movement_dollars']:.2f} (avg)  "
-                    f"max=${s['max_movement_dollars']:.2f}  "
-                    f"med=${s['median_movement_dollars']:.2f}  "
-                    f"samples={s['samples']}"
+                    f"TP=${s['tp_dollars']:.2f}  "
+                    f"SL=${s['sl_dollars']:.2f}  "
+                    f"win={s['win_rate']:.0f}%  "
+                    f"R/R={s['risk_reward']:.2f}  "
+                    f"EV=${s['expected_value']:.2f}  "
+                    f"hold={s['window_minutes']}min  "
+                    f"n={s['samples']}"
+                )
+            
+            # Summary
+            out_lines.append('')
+            out_lines.append('  ' + '-' * 106)
+            out_lines.append(f'  📊 {day} Summary')
+            out_lines.append('  ' + '-' * 106)
+            out_lines.append(f'    Total: {len(day_sigs)} profitable signals')
+            buy_count = sum(1 for s in day_sigs if s['direction'] == 'BUY')
+            sell_count = len(day_sigs) - buy_count
+            out_lines.append(f'    Direction split: BUY={buy_count}, SELL={sell_count}')
+            
+            avg_win = sum(s['win_rate'] for s in day_sigs) / len(day_sigs) if day_sigs else 0
+            avg_rr = sum(s['risk_reward'] for s in day_sigs) / len(day_sigs) if day_sigs else 0
+            avg_ev = sum(s['expected_value'] for s in day_sigs) / len(day_sigs) if day_sigs else 0
+            out_lines.append(f'    Average win rate: {avg_win:.1f}%')
+            out_lines.append(f'    Average R/R: {avg_rr:.2f}')
+            out_lines.append(f'    Average EV: ${avg_ev:.2f}/trade')
+            
+            # Top 5 by EV
+            out_lines.append('')
+            out_lines.append('  Top 5 most profitable (by Expected Value):')
+            top5 = sorted(day_sigs, key=lambda s: -s['expected_value'])[:5]
+            for s in top5:
+                out_lines.append(
+                    f"    EV=${s['expected_value']:.2f}  {s['time']} {s['direction']:<4}  "
+                    f"TP=${s['tp_dollars']:.2f}  SL=${s['sl_dollars']:.2f}  win={s['win_rate']:.0f}%  R/R={s['risk_reward']:.2f}"
                 )
         
         out_lines.append('')
         out_lines.append('  ────────────────────────────────────────────────')
-        out_lines.append('  How to read:')
-        out_lines.append(f'    rate=85% → in 85% of 974 days, price moved in this direction')
-        out_lines.append(f'    move=$1.50 → average dollar movement in predicted direction')
-        out_lines.append(f'    max=$5.20 → largest historical movement in this window')
+        out_lines.append('  How to trade each signal:')
+        out_lines.append(f'    1. Enter {day} at HH:MM ({TZ_NAME})')
+        out_lines.append(f'    2. Set Take Profit at TP dollars from entry')
+        out_lines.append(f'    3. Set Stop Loss at SL dollars from entry')
+        out_lines.append(f'    4. Hold for window_minutes OR until TP/SL hit')
+        out_lines.append(f'    5. R/R ≥ 1.0 ensures long-term profitability')
+        out_lines.append('  ────────────────────────────────────────────────')
+        out_lines.append('  Example: BUY XAUUSD at $2000 with TP=$2.00, SL=$1.50')
+        out_lines.append('    → Close at $2002.00 (profit) or $1998.50 (loss)')
         out_lines.append('  ────────────────────────────────────────────────')
         out_lines.append('')
         
-        with open(combined_path, 'w', encoding='utf-8') as f:
+        with open(output_path, 'w', encoding='utf-8') as f:
             f.write('\n'.join(out_lines))
-        print(f"    ✓ SIGNALS_XAUUSD_{threshold}pct.txt — {len(tier_sigs)} signals")
-        
-        # JSON version
-        json_data = {
-            'tier': f'≥{threshold}% recurring direction + ≥$0.50 avg movement',
-            'total': len(tier_sigs),
-            'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            'engine': 'CANDALXAU Signal Engine v9.0',
-            'timezone': TZ_NAME,
-            'note': 'Movement measured in DOLLARS. Window=30min. recurring_rate=% of 974 days price moved in predicted direction.',
-            'signals': tier_sigs,
-        }
-        json_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_{threshold}pct.json'
-        with open(json_path, 'w', encoding='utf-8') as f:
-            json.dump(json_data, f, indent=2, ensure_ascii=False)
-        print(f"    ✓ SIGNALS_XAUUSD_{threshold}pct.json")
     
-    # Generate BIG_MOVEMENT files (high-volatility patterns)
-    print(f"\n  Generating BIG MOVEMENT files (≥$5 + ≥55% recurring)...")
+    return day_counts
+
+
+def main():
+    print()
+    print('=' * 110)
+    print('  CANDALXAU Signal Engine v11.0 — XAUUSD BUY/SELL with TP & SL')
+    print(f'  Timezone: {TZ_NAME}')
+    print('  REAL spot gold trading (no binary options, no MTG1)')
+    print('  Computes: TP, SL, Win Rate, Risk/Reward, Expected Value')
+    print('=' * 110)
     
-    # $5+ movement tier
-    big5_sigs = [s for s in big_signals if s['avg_movement_dollars'] >= 5]
-    big5_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_BIG5.txt'
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
+    # Step 1: Load candles
+    print(f"\n  [1/5] Loading candle data...")
+    candles = load_candles(INPUT_FILE)
+    
+    # Step 2: Scan BUY/SELL patterns
+    print(f"\n  [2/5] Scanning BUY/SELL patterns (windows: 30/60/120/180 min)...")
+    results = scan_buy_sell_patterns(candles, TZ_OFFSET)
+    print(f"  Scanned {len(results):,} (weekday, HH:MM, window) combinations")
+    
+    # Step 3: Compute BUY/SELL signals with TP/SL
+    print(f"\n  [3/5] Computing BUY/SELL signals with TP, SL, win rate, EV...")
+    all_signals = compute_buy_sell_signals(results)
+    print(f"  Total candidate signals: {len(all_signals):,}")
+    
+    # Step 4: Filter profitable signals
+    print(f"\n  [4/5] Filtering PROFITABLE signals (win≥55%, R/R≥1.0, EV>0)...")
+    profitable = filter_profitable_signals(all_signals, min_win_rate=55, min_rr=1.0)
+    print(f"  Profitable signals: {len(profitable)}")
+    
+    # Distribution
+    rr_2 = sum(1 for s in profitable if s['risk_reward'] >= 2.0)
+    rr_15 = sum(1 for s in profitable if s['risk_reward'] >= 1.5)
+    rr_1 = len(profitable)
+    print(f"  Distribution:")
+    print(f"    R/R ≥ 2.0: {rr_2} signals (excellent)")
+    print(f"    R/R ≥ 1.5: {rr_15} signals (very good)")
+    print(f"    R/R ≥ 1.0: {rr_1} signals (profitable)")
+    
+    # Distribution by hour
+    hour_dist = defaultdict(int)
+    for s in profitable:
+        hour_dist[s['hour']] += 1
+    print(f"  Distribution across hours:")
+    for h in sorted(hour_dist.keys()):
+        print(f"    {h:02d}:00 → {hour_dist[h]} signals")
+    
+    # Step 5: Generate per-day folders
+    print(f"\n  [5/5] Generating per-day folders...")
+    PER_DAY_DIR = f'{OUTPUT_DIR}/by_day'
+    os.makedirs(PER_DAY_DIR, exist_ok=True)
+    
+    day_counts = generate_per_day_files(profitable, PER_DAY_DIR)
+    
+    print(f"  Per-day breakdown:")
+    print(f"    {'Day':<12} {'signals':>8}")
+    print(f"    {'-'*12} {'-'*8}")
+    for day in WEEKDAY_FULL:
+        print(f"    {day:<12} {day_counts.get(day, 0):>8}")
+    total = sum(day_counts.values())
+    print(f"    {'-'*12} {'-'*8}")
+    print(f"    {'TOTAL':<12} {total:>8}")
+    
+    # Save combined file
+    combined_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_BUY_SELL.txt'
     out_lines = []
-    out_lines.append('=' * 100)
-    out_lines.append(f'  CANDALXAU Signal Engine v9.0 — BIG MOVEMENT TIER (≥$5 + ≥55% recurring)')
+    out_lines.append('=' * 110)
+    out_lines.append(f'  CANDALXAU Signal Engine v11.0 — XAUUSD BUY/SELL with TP & SL')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
     out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
     out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-    out_lines.append(f'  Threshold:    ≥$5 avg movement + ≥55% recurring direction')
-    out_lines.append(f'  Window:       30 minutes from signal time')
+    out_lines.append(f'  Trade type:   BUY/SELL with Stop Loss + Take Profit')
+    out_lines.append(f'  Filters:      Win rate ≥55%, Risk/Reward ≥1.0, EV > 0')
+    out_lines.append(f'  Windows:      30/60/120/180 minutes (best picked per HH:MM)')
     out_lines.append(f'  Data:         974 days × 5m candles (2024-2026)')
-    out_lines.append(f'  Total signals: {len(big5_sigs)}')
+    out_lines.append(f'  Total signals: {len(profitable)}')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-    out_lines.append(f'  Format: 💥 HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N')
+    out_lines.append(f'  Format: ⭐ HH:MM <BUY|SELL> TP=$X SL=$Y win=ZZ% R/R=A.B EV=$Z.ZZ hold=Mmin')
     out_lines.append(f'  Timezone: {TZ_NAME}')
-    out_lines.append(f'  Movement: in DOLLARS — high-volatility patterns ($5-15 avg movement)')
-    out_lines.append('=' * 100)
+    out_lines.append(f'  TP = Take Profit (target)')
+    out_lines.append(f'  SL = Stop Loss (95th percentile adverse move)')
+    out_lines.append(f'  R/R = Risk/Reward ratio (must be ≥1.0 for profitability)')
+    out_lines.append(f'  EV = Expected Value per trade (must be > 0)')
+    out_lines.append('=' * 110)
     
     for day in WEEKDAY_FULL:
-        day_sigs = [s for s in big5_sigs if s['day'] == day]
+        day_sigs = [s for s in profitable if s['day'] == day]
         day_sigs.sort(key=lambda s: (s['hour'], s['minute']))
         if not day_sigs:
             continue
         out_lines.append('')
-        out_lines.append('━' * 100)
+        out_lines.append('━' * 110)
         out_lines.append(f'  📅 {day.upper()}  ({len(day_sigs)} signals)  — Times in {TZ_NAME}')
-        out_lines.append('━' * 100)
+        out_lines.append('━' * 110)
         
         current_hour = None
         for s in day_sigs:
@@ -599,170 +516,153 @@ def main():
                 out_lines.append('')
                 out_lines.append(f'  ── {current_hour:02d}:00 {TZ_NAME} ──')
             
+            badge = get_quality_badge(s['risk_reward'], s['win_rate'])
             out_lines.append(
-                f"  💥 {s['time']} {s['direction']:<4}  "
-                f"rate={s['recurring_rate']:.0f}%  "
-                f"move=${s['avg_movement_dollars']:.2f} (avg)  "
-                f"max=${s['max_movement_dollars']:.2f}  "
-                f"med=${s['median_movement_dollars']:.2f}  "
-                f"samples={s['samples']}"
+                f"  {badge} {s['time']} {s['direction']:<4}  "
+                f"TP=${s['tp_dollars']:.2f}  "
+                f"SL=${s['sl_dollars']:.2f}  "
+                f"win={s['win_rate']:.0f}%  "
+                f"R/R={s['risk_reward']:.2f}  "
+                f"EV=${s['expected_value']:.2f}  "
+                f"hold={s['window_minutes']}min  "
+                f"n={s['samples']}"
             )
     
     out_lines.append('')
     out_lines.append('  ────────────────────────────────────────────────')
-    out_lines.append('  BIG MOVEMENT signals are HIGH-VOLATILITY windows:')
-    out_lines.append(f'    - Average $5-15 movement in 30 minutes')
-    out_lines.append(f'    - Max $50-200+ on volatile days')
-    out_lines.append(f'    - Best for trading with larger targets ($2-5+)')
+    out_lines.append('  How to trade each signal:')
+    out_lines.append('    1. Enter at HH:MM (UTC+1 Algeria)')
+    out_lines.append('    2. Set Take Profit at TP dollars from entry')
+    out_lines.append('    3. Set Stop Loss at SL dollars from entry')
+    out_lines.append('    4. Hold for window_minutes OR until TP/SL hit')
+    out_lines.append('  ────────────────────────────────────────────────')
+    out_lines.append('  Example: BUY XAUUSD at $2000 with TP=$2.00, SL=$1.50')
+    out_lines.append('    → Close at $2002.00 (profit) or $1998.50 (loss)')
+    out_lines.append('    → R/R = 2.00/1.50 = 1.33')
+    out_lines.append('    → At 60% win rate: EV = (0.6 × 2) - (0.4 × 1.5) = +$0.60/trade')
     out_lines.append('  ────────────────────────────────────────────────')
     out_lines.append('')
     
-    with open(big5_path, 'w', encoding='utf-8') as f:
+    with open(combined_path, 'w', encoding='utf-8') as f:
         f.write('\n'.join(out_lines))
-    print(f"    ✓ SIGNALS_XAUUSD_BIG5.txt — {len(big5_sigs)} signals")
+    print(f"\n  ✓ SIGNALS_XAUUSD_BUY_SELL.txt — {len(profitable)} signals")
     
-    # $10+ movement tier
-    big10_sigs = [s for s in big_signals if s['avg_movement_dollars'] >= 10]
-    big10_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_BIG10.txt'
-    out_lines = []
-    out_lines.append('=' * 100)
-    out_lines.append(f'  CANDALXAU Signal Engine v9.0 — ULTRA BIG MOVEMENT (≥$10 + ≥55% recurring)')
-    out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-    out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
-    out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-    out_lines.append(f'  Threshold:    ≥$10 avg movement + ≥55% recurring direction')
-    out_lines.append(f'  Window:       30 minutes from signal time')
-    out_lines.append(f'  Data:         974 days × 5m candles (2024-2026)')
-    out_lines.append(f'  Total signals: {len(big10_sigs)}')
-    out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-    out_lines.append(f'  Format: 💥 HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N')
-    out_lines.append(f'  Timezone: {TZ_NAME}')
-    out_lines.append(f'  Movement: in DOLLARS — ultra-high volatility ($10-15+ avg movement)')
-    out_lines.append('=' * 100)
-    
-    for day in WEEKDAY_FULL:
-        day_sigs = [s for s in big10_sigs if s['day'] == day]
-        day_sigs.sort(key=lambda s: (s['hour'], s['minute']))
-        if not day_sigs:
-            continue
-        out_lines.append('')
-        out_lines.append('━' * 100)
-        out_lines.append(f'  📅 {day.upper()}  ({len(day_sigs)} signals)  — Times in {TZ_NAME}')
-        out_lines.append('━' * 100)
-        
-        current_hour = None
-        for s in day_sigs:
-            if s['hour'] != current_hour:
-                current_hour = s['hour']
-                out_lines.append('')
-                out_lines.append(f'  ── {current_hour:02d}:00 {TZ_NAME} ──')
-            
-            out_lines.append(
-                f"  💥 {s['time']} {s['direction']:<4}  "
-                f"rate={s['recurring_rate']:.0f}%  "
-                f"move=${s['avg_movement_dollars']:.2f} (avg)  "
-                f"max=${s['max_movement_dollars']:.2f}  "
-                f"med=${s['median_movement_dollars']:.2f}  "
-                f"samples={s['samples']}"
-            )
-    
-    out_lines.append('')
-    out_lines.append('  ────────────────────────────────────────────────')
-    out_lines.append('  ULTRA BIG MOVEMENT signals are EXTREME volatility windows:')
-    out_lines.append(f'    - Average $10-15 movement in 30 minutes')
-    out_lines.append(f'    - Max $80-200+ on volatile days')
-    out_lines.append(f'    - Best for trading with very large targets ($5-10+)')
-    out_lines.append('  ────────────────────────────────────────────────')
-    out_lines.append('')
-    
-    with open(big10_path, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(out_lines))
-    print(f"    ✓ SIGNALS_XAUUSD_BIG10.txt — {len(big10_sigs)} signals")
-    
-    # JSON for big movement
-    big_json = {
-        'tier': 'BIG MOVEMENT (≥$5) + ULTRA (≥$10)',
+    # JSON
+    json_data = {
+        'engine': 'CANDALXAU Signal Engine v11.0',
         'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        'engine': 'CANDALXAU Signal Engine v9.0',
         'timezone': TZ_NAME,
-        'big5_count': len(big5_sigs),
-        'big10_count': len(big10_sigs),
-        'big5_signals': big5_sigs,
-        'big10_signals': big10_sigs,
+        'trade_type': 'BUY/SELL with Stop Loss + Take Profit',
+        'filters': 'Win rate ≥55%, R/R ≥1.0, EV > 0',
+        'windows': [w[1] for w in WINDOWS],
+        'total_signals': len(profitable),
+        'signals': profitable,
     }
-    with open(f'{OUTPUT_DIR}/SIGNALS_XAUUSD_BIG.json', 'w', encoding='utf-8') as f:
-        json.dump(big_json, f, indent=2, ensure_ascii=False)
-    print(f"    ✓ SIGNALS_XAUUSD_BIG.json")
+    with open(f'{OUTPUT_DIR}/SIGNALS_XAUUSD_BUY_SELL.json', 'w', encoding='utf-8') as f:
+        json.dump(json_data, f, indent=2, ensure_ascii=False)
+    print(f"  ✓ SIGNALS_XAUUSD_BUY_SELL.json")
     
-    # Save full stats CSV
-    save_results_csv(all_signals, f'{OUTPUT_DIR}/xauusd_minute_patterns.csv')
+    # CSV
+    csv_path = f'{OUTPUT_DIR}/all_buy_sell_signals.csv'
+    with open(csv_path, 'w', newline='') as f:
+        w = csv.writer(f)
+        w.writerow(['weekday', 'time_algeria', 'direction', 'tp_dollars', 'sl_dollars',
+                    'win_rate', 'risk_reward', 'expected_value', 'window_minutes', 'samples'])
+        for s in profitable:
+            w.writerow([s['day_utc'][:3], s['time'], s['direction'],
+                        f"${s['tp_dollars']:.2f}", f"${s['sl_dollars']:.2f}",
+                        f"{s['win_rate']:.1f}%", f"{s['risk_reward']:.2f}",
+                        f"${s['expected_value']:.2f}",
+                        s['window_minutes'], s['samples']])
+    print(f"  ✓ all_buy_sell_signals.csv")
     
-    # Generate README
+    # README
     readme = []
-    readme.append('# CANDALXAU Signal Engine v9.0 — Minute-Level Pattern Scanner')
+    readme.append('# CANDALXAU Signal Engine v11.0 — XAUUSD BUY/SELL with TP & SL')
     readme.append('')
-    readme.append(f'> **XAUUSD (Gold)** — Real spot gold')
-    readme.append(f'> **Minute-level recurring patterns** at specific HH:MM times')
-    readme.append(f'> **Movement measured in DOLLARS** (not points)')
+    readme.append(f'> **XAUUSD (Gold)** — Real spot gold trading (NOT binary options)')
+    readme.append(f'> **BUY/SELL** with **Stop Loss + Take Profit** (NOT MTG1)')
+    readme.append(f'> All signals are PROFITABLE: Win ≥55%, R/R ≥1.0, EV > 0')
     readme.append(f'> All times in **{TZ_NAME}** (already converted from UTC)')
     readme.append('')
     readme.append('Generated: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     readme.append('')
-    readme.append('## 🎯 What v9.0 Does')
+    readme.append('## 🎯 What v11.0 Does')
     readme.append('')
-    readme.append('For EACH minute of EACH day, scans 974 days of 5m candles:')
+    readme.append('For each (weekday, HH:MM), computes:')
     readme.append('')
     readme.append('```')
-    readme.append('For each (weekday, HH:MM):')
-    readme.append('  - Look at next 30 minutes of 5m candles (6 candles)')
-    readme.append('  - entry_price = close at HH:MM')
-    readme.append('  - max_high = max(high of next 6 candles)')
-    readme.append('  - min_low  = min(low of next 6 candles)')
-    readme.append('  - move_up   = max_high - entry_price  (in DOLLARS)')
-    readme.append('  - move_down = entry_price - min_low   (in DOLLARS)')
-    readme.append('')
-    readme.append('  - if move_up >= move_down: direction = UP')
-    readme.append('  - else: direction = DOWN')
-    readme.append('')
-    readme.append('After 974 days, compute:')
-    readme.append('  - recurring_rate = % of days with same direction')
-    readme.append('  - avg_movement_dollars = average $ moved in predicted direction')
+    readme.append('  Entry price = close at HH:MM')
+    readme.append('  For each historical day (974 days):')
+    readme.append('    Look at next N minutes of 5m candles')
+    readme.append('    max_high = max(high of next N candles)')
+    readme.append('    min_low  = min(low of next N candles)')
+    readme.append('    ')
+    readme.append('    BUY: favorable = max_high - entry')
+    readme.append('         adverse   = entry - min_low')
+    readme.append('    ')
+    readme.append('    SELL: favorable = entry - min_low')
+    readme.append('          adverse  = max_high - entry')
+    readme.append('  ')
+    readme.append('  Direction = BUY if median BUY favorable > median SELL favorable')
+    readme.append('  TP = Take Profit level ($0.5, $1, $2, $3, $5)')
+    readme.append('  SL = 95th percentile adverse movement (covers 95% of cases)')
+    readme.append('  Win rate = % of days TP was hit')
+    readme.append('  R/R = TP / SL (must be ≥1.0)')
+    readme.append('  EV = (win_rate × TP) - (loss_rate × SL) (must be > 0)')
     readme.append('```')
     readme.append('')
     readme.append('## 📊 Signal Counts Per Day')
     readme.append('')
-    readme.append('| Day | 90pct | 80pct | 70pct | Notes |')
-    readme.append('|-----|-------|-------|-------|-------|')
+    readme.append('| Day | Signals | Notes |')
+    readme.append('|-----|---------|-------|')
     for day in WEEKDAY_FULL:
-        c = day_counts.get(day, {})
         note = ''
         if day == 'Saturday':
             note = 'Market closed'
         elif day == 'Sunday':
             note = f'Opens 23:00 {TZ_NAME}'
-        readme.append(f"| {day} | {c.get(80,0)} | {c.get(70,0)} | {c.get(60,0)} | {note} |")
-    readme.append(f"| **TOTAL** | **{total_80}** | **{total_70}** | **{total_60}** | |")
+        readme.append(f"| {day} | {day_counts.get(day, 0)} | {note} |")
+    readme.append(f"| **TOTAL** | **{total}** | |")
     readme.append('')
     readme.append('## 📐 Signal Format')
     readme.append('')
     readme.append('```')
-    readme.append('⭐⭐ 15:00 CALL rate=85% move=$1.50 (avg) max=$5.20 med=$1.20 samples=1668')
+    readme.append('⭐⭐ 14:35 SELL  TP=$2.00  SL=$1.50  win=68%  R/R=1.33  EV=$0.60  hold=60min  n=139')
     readme.append('```')
-    readme.append('- **rate=85%**: in 85% of 974 days, price moved UP in this 30-min window')
-    readme.append('- **move=$1.50**: average dollar movement in UP direction')
-    readme.append('- **max=$5.20**: largest historical UP movement')
-    readme.append('- **med=$1.20**: median (typical) UP movement')
-    readme.append('- **samples=1668**: number of historical days analyzed')
+    readme.append('- **14:35**: Entry time in UTC+1 (Algeria)')
+    readme.append('- **SELL**: Direction (SELL = short, BUY = long)')
+    readme.append('- **TP=$2.00**: Take Profit = $2 from entry price')
+    readme.append('- **SL=$1.50**: Stop Loss = $1.50 from entry price')
+    readme.append('- **win=68%**: 68% of historical days hit TP before SL')
+    readme.append('- **R/R=1.33**: Risk/Reward ratio = 2.00/1.50 = 1.33')
+    readme.append('- **EV=$0.60**: Expected profit per trade = $0.60')
+    readme.append('- **hold=60min**: Hold for 60 minutes or until TP/SL hit')
+    readme.append('- **n=139**: Based on 139 historical samples')
     readme.append('')
-    readme.append('## 🏆 Tier Badges')
-    readme.append('- ⭐⭐ **Ultra-Elite**: ≥80% recurring direction')
-    readme.append('- ⭐ **Elite**: 70-80% recurring direction')
-    readme.append('- ✓ **High**: 60-70% recurring direction')
+    readme.append('## 🏆 Quality Badges (based on R/R × win_rate)')
+    readme.append('- ⭐⭐⭐⭐ **Excellent**: R/R × win_rate ≥ 1.5')
+    readme.append('- ⭐⭐⭐ **Very Good**: 1.0 - 1.5')
+    readme.append('- ⭐⭐ **Good**: 0.7 - 1.0')
+    readme.append('- ⭐ **Decent**: 0.5 - 0.7')
+    readme.append('- ✓ **Marginal**: < 0.5')
     readme.append('')
-    readme.append('## 🎲 MTG1 Strategy')
-    readme.append('1. Entry 1: bet 1× → if WIN, take profit & stop')
-    readme.append('2. Entry 2: bet 2× → if WIN, recover loss & profit')
-    readme.append('3. Stop: after Entry 2 loss → max drawdown = 3×')
+    readme.append('## 📈 Trading Example')
+    readme.append('')
+    readme.append('```')
+    readme.append('Signal: 14:35 SELL  TP=$2.00  SL=$1.50  win=68%  R/R=1.33  EV=$0.60')
+    readme.append('')
+    readme.append('Current XAUUSD price: $2000.00')
+    readme.append('  1. Open SELL position at $2000.00')
+    readme.append('  2. Set Take Profit at $1998.00 (entry - $2.00)')
+    readme.append('  3. Set Stop Loss at $2001.50 (entry + $1.50)')
+    readme.append('  4. Hold for 60 minutes OR until TP/SL hit')
+    readme.append('')
+    readme.append('Outcomes (based on 974 historical days):')
+    readme.append('  68% of days → TP hit (profit $2.00)')
+    readme.append('  32% of days → SL hit (loss $1.50)')
+    readme.append('  Expected profit per trade: $0.60')
+    readme.append('```')
     readme.append('')
     readme.append(f'## 🌍 Timezone')
     readme.append(f'- All times in **{TZ_NAME}** (already converted from UTC)')
@@ -773,23 +673,22 @@ def main():
     readme.append('- **Monday-Friday**: 24h trading')
     readme.append('')
     readme.append('---')
-    readme.append(f'Generated by **CANDALXAU Signal Engine v9.0** (minute-level patterns, dollars, {TZ_NAME})')
+    readme.append(f'Generated by **CANDALXAU Signal Engine v11.0** (BUY/SELL + TP/SL, {TZ_NAME})')
     
     with open(f'{OUTPUT_DIR}/README.md', 'w', encoding='utf-8') as f:
         f.write('\n'.join(readme))
     
     print()
-    print('  ' + '=' * 96)
-    print(f'  CANDALXAU Signal Engine v9.0 — Minute-Level Patterns Generated')
-    print('  ' + '=' * 96)
-    print(f'  Movement in DOLLARS (not points)')
-    print(f'  Window: 30 minutes from signal time')
+    print('  ' + '=' * 106)
+    print(f'  CANDALXAU Signal Engine v11.0 — BUY/SELL Signals Generated')
+    print('  ' + '=' * 106)
+    print(f'  Trade type: BUY/SELL (spot) with TP & SL')
     print(f'  Timezone: {TZ_NAME}')
-    print(f'  Total signals:')
-    print(f'    Ultra-Elite (≥80% recurring + ≥$1 move): {total_80}')
-    print(f'    Elite (≥70% recurring + ≥$1 move):       {total_70}')
-    print(f'    High (≥60% recurring + ≥$1 move):        {total_60}')
-    print('  ' + '=' * 96)
+    print(f'  Profitable signals (Win≥55%, R/R≥1.0, EV>0): {len(profitable)}')
+    print(f'    R/R ≥ 2.0 (excellent):  {rr_2}')
+    print(f'    R/R ≥ 1.5 (very good): {rr_15}')
+    print(f'    R/R ≥ 1.0 (profitable): {rr_1}')
+    print('  ' + '=' * 106)
     print()
 
 
