@@ -3,11 +3,11 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Saturday
-  Generated:    2026-10-21 22:19:46
-  Method:       All Saturdays grouped together (139 days)
+  Generated:    2026-10-21 22:30:32
+  Method:       All Saturdays grouped together (17 days)
+  Data source:  1-minute candles (120 days, 172,797 candles)
   Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
-  Windows:      30/60/120 minutes (best picked per HH:MM)
-  Data:         974 days × 5m candles (2024-2026)
+  Windows:      15/30/60/120 minutes (best picked per HH:MM)
   Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
@@ -19,7 +19,8 @@
   📌 Note: XAUUSD market is CLOSED on Saturday.
 
   ────────────────────────────────────────────────
-  Method: All Saturdays grouped together (139 historical days)
+  Method: All Saturdays grouped together (17 historical days)
   Pattern: At Saturday HH:MM, in 80%+ of historical Saturdays,
            price moved in the predicted direction
+  Data: 1-minute candles (120 days, 172,797 candles)
   ────────────────────────────────────────────────
