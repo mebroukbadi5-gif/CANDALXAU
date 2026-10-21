@@ -1,0 +1,125 @@
+====================================================================================================
+  CANDALXAU Signal Engine v9.0 — ULTRA BIG MOVEMENT (≥$10 + ≥55% recurring)
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Generated:    2026-10-21 21:34:03
+  Threshold:    ≥$10 avg movement + ≥55% recurring direction
+  Window:       30 minutes from signal time
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 48
+  ──────────────────────────────────────────────────────────────────────────
+  Format: 💥 HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
+  Timezone: UTC+1 (Algeria)
+  Movement: in DOLLARS — ultra-high volatility ($10-15+ avg movement)
+====================================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 MONDAY  (13 signals)  — Times in UTC+1 (Algeria)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 00:00 UTC+1 (Algeria) ──
+  💥 00:40 CALL  rate=56%  move=$10.07 (avg)  max=$101.87  med=$5.43  samples=139
+
+  ── 02:00 UTC+1 (Algeria) ──
+  💥 02:05 PUT   rate=56%  move=$10.32 (avg)  max=$109.78  med=$5.72  samples=139
+  💥 02:30 PUT   rate=56%  move=$10.64 (avg)  max=$86.78  med=$6.38  samples=139
+
+  ── 15:00 UTC+1 (Algeria) ──
+  💥 15:10 PUT   rate=62%  move=$11.29 (avg)  max=$114.01  med=$7.59  samples=139
+  💥 15:15 PUT   rate=61%  move=$11.74 (avg)  max=$81.00  med=$9.05  samples=139
+  💥 15:30 PUT   rate=55%  move=$12.90 (avg)  max=$51.17  med=$11.09  samples=139
+  💥 15:50 PUT   rate=58%  move=$12.09 (avg)  max=$49.24  med=$8.83  samples=139
+
+  ── 16:00 UTC+1 (Algeria) ──
+  💥 16:10 PUT   rate=55%  move=$11.77 (avg)  max=$68.66  med=$9.51  samples=139
+  💥 16:15 CALL  rate=55%  move=$10.42 (avg)  max=$97.48  med=$7.37  samples=139
+  💥 16:20 CALL  rate=55%  move=$10.48 (avg)  max=$92.16  med=$7.69  samples=139
+  💥 16:40 PUT   rate=55%  move=$10.52 (avg)  max=$62.94  med=$6.76  samples=139
+  💥 16:45 PUT   rate=55%  move=$10.10 (avg)  max=$51.78  med=$6.49  samples=139
+  💥 16:55 PUT   rate=58%  move=$10.59 (avg)  max=$57.09  med=$7.26  samples=139
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 TUESDAY  (9 signals)  — Times in UTC+1 (Algeria)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 02:00 UTC+1 (Algeria) ──
+  💥 02:30 PUT   rate=56%  move=$10.03 (avg)  max=$59.37  med=$7.04  samples=140
+
+  ── 15:00 UTC+1 (Algeria) ──
+  💥 15:05 CALL  rate=55%  move=$11.03 (avg)  max=$33.79  med=$8.79  samples=140
+  💥 15:10 CALL  rate=55%  move=$10.74 (avg)  max=$32.71  med=$8.52  samples=140
+
+  ── 16:00 UTC+1 (Algeria) ──
+  💥 16:00 CALL  rate=55%  move=$10.21 (avg)  max=$37.08  med=$7.58  samples=140
+  💥 16:25 PUT   rate=58%  move=$14.17 (avg)  max=$129.42  med=$8.57  samples=140
+  💥 16:30 PUT   rate=57%  move=$13.44 (avg)  max=$104.30  med=$8.63  samples=140
+  💥 16:35 PUT   rate=56%  move=$12.78 (avg)  max=$108.58  med=$8.87  samples=140
+  💥 16:50 PUT   rate=55%  move=$11.68 (avg)  max=$52.59  med=$8.44  samples=140
+
+  ── 17:00 UTC+1 (Algeria) ──
+  💥 17:10 PUT   rate=56%  move=$11.21 (avg)  max=$43.74  med=$8.17  samples=140
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 WEDNESDAY  (9 signals)  — Times in UTC+1 (Algeria)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 15:00 UTC+1 (Algeria) ──
+  💥 15:30 CALL  rate=55%  move=$11.51 (avg)  max=$59.96  med=$8.41  samples=139
+  💥 15:35 CALL  rate=58%  move=$10.77 (avg)  max=$36.93  med=$8.32  samples=139
+  💥 15:40 CALL  rate=56%  move=$10.73 (avg)  max=$37.15  med=$8.00  samples=139
+  💥 15:45 CALL  rate=61%  move=$10.03 (avg)  max=$45.42  med=$7.53  samples=139
+
+  ── 16:00 UTC+1 (Algeria) ──
+  💥 16:35 PUT   rate=58%  move=$11.28 (avg)  max=$45.95  med=$8.63  samples=139
+  💥 16:40 PUT   rate=58%  move=$11.81 (avg)  max=$43.28  med=$10.39  samples=139
+  💥 16:45 PUT   rate=57%  move=$11.47 (avg)  max=$47.70  med=$9.21  samples=139
+  💥 16:50 PUT   rate=60%  move=$11.48 (avg)  max=$60.17  med=$7.83  samples=139
+
+  ── 17:00 UTC+1 (Algeria) ──
+  💥 17:00 PUT   rate=56%  move=$11.48 (avg)  max=$76.01  med=$7.90  samples=139
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 THURSDAY  (8 signals)  — Times in UTC+1 (Algeria)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 03:00 UTC+1 (Algeria) ──
+  💥 03:00 PUT   rate=56%  move=$10.45 (avg)  max=$93.98  med=$7.85  samples=139
+
+  ── 14:00 UTC+1 (Algeria) ──
+  💥 14:30 PUT   rate=57%  move=$11.86 (avg)  max=$101.63  med=$8.36  samples=139
+  💥 14:35 PUT   rate=58%  move=$12.15 (avg)  max=$103.37  med=$8.59  samples=139
+
+  ── 15:00 UTC+1 (Algeria) ──
+  💥 15:05 CALL  rate=56%  move=$11.08 (avg)  max=$46.77  med=$8.41  samples=139
+  💥 15:25 PUT   rate=55%  move=$12.83 (avg)  max=$38.57  med=$10.68  samples=139
+  💥 15:40 PUT   rate=58%  move=$12.17 (avg)  max=$31.21  med=$11.66  samples=139
+  💥 15:55 CALL  rate=58%  move=$10.43 (avg)  max=$43.07  med=$7.95  samples=139
+
+  ── 16:00 UTC+1 (Algeria) ──
+  💥 16:00 CALL  rate=57%  move=$10.94 (avg)  max=$48.90  med=$8.97  samples=139
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 FRIDAY  (9 signals)  — Times in UTC+1 (Algeria)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 14:00 UTC+1 (Algeria) ──
+  💥 14:00 CALL  rate=55%  move=$10.11 (avg)  max=$49.27  med=$6.33  samples=139
+  💥 14:05 CALL  rate=57%  move=$10.29 (avg)  max=$48.71  med=$6.43  samples=139
+
+  ── 15:00 UTC+1 (Algeria) ──
+  💥 15:25 CALL  rate=55%  move=$12.22 (avg)  max=$47.60  med=$10.01  samples=139
+  💥 15:35 PUT   rate=56%  move=$14.24 (avg)  max=$57.30  med=$11.38  samples=139
+  💥 15:55 CALL  rate=57%  move=$12.06 (avg)  max=$68.23  med=$8.91  samples=139
+
+  ── 16:00 UTC+1 (Algeria) ──
+  💥 16:35 CALL  rate=60%  move=$10.71 (avg)  max=$69.91  med=$7.81  samples=139
+  💥 16:40 CALL  rate=60%  move=$11.38 (avg)  max=$69.77  med=$8.60  samples=139
+  💥 16:45 CALL  rate=55%  move=$12.10 (avg)  max=$68.22  med=$8.45  samples=139
+  💥 16:50 CALL  rate=55%  move=$11.05 (avg)  max=$65.96  med=$7.95  samples=139
+
+  ────────────────────────────────────────────────
+  ULTRA BIG MOVEMENT signals are EXTREME volatility windows:
+    - Average $10-15 movement in 30 minutes
+    - Max $80-200+ on volatile days
+    - Best for trading with very large targets ($5-10+)
+  ────────────────────────────────────────────────

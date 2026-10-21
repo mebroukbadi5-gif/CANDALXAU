@@ -1,9 +1,0 @@
-{
-  "tier": "≥95% movement success rate",
-  "total": 0,
-  "generated": "2026-10-21 21:26:54",
-  "engine": "CANDALXAU Signal Engine v8.0",
-  "timezone": "UTC+1 (Algeria)",
-  "note": "Accuracy = P(price reaches target in predicted direction) from 974 days of 5m candles",
-  "signals": []
-}

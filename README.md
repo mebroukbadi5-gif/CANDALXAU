@@ -1,59 +1,75 @@
 # CANDALXAU — XAUUSD (Gold) Trading Signal Repository
 
 > **XAUUSD (Gold)** — Real spot gold
-> **REAL Movement Success Rate** = P(price reaches target in 1 hour)
-> Computed from 974 days × 5m candles (2024-2026)
+> **Minute-level recurring patterns** at specific HH:MM times
+> **Movement measured in DOLLARS** (not points)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
-## 🎯 What is Movement Success Rate?
+## 🎯 What v9.0 Does
+
+For EACH minute of EACH day, scans 974 days of 5m candles:
 
 ```
-accuracy = (days price reached target in 1 hour) / (total days) × 100
+For each (weekday, HH:MM):
+  - Look at next 30 minutes of 5m candles (6 candles)
+  - entry_price = close at HH:MM
+  - max_high = max(high of next 6 candles)
+  - min_low  = min(low of next 6 candles)
+  - move_up   = max_high - entry_price  (in DOLLARS)
+  - move_down = entry_price - min_low   (in DOLLARS)
+  
+  - if move_up >= move_down: direction = UP (CALL)
+  - else: direction = DOWN (PUT)
+  
+After 974 days, compute:
+  - recurring_rate = % of days with same direction
+  - avg_movement_dollars = average $ moved in predicted direction
+  - max_movement_dollars = largest historical $ movement
 ```
 
-For each signal:
-- Look at all 974 historical occurrences at this hour
-- Count how many times price moved ≥ target_points in the predicted direction
-- accuracy = wins / total × 100
+## 📊 Signal Tiers
 
-**Smaller target = higher success rate:**
-- $0.5 (5pt target) → typically 85-95% success
-- $1 (10pt target) → typically 30-67% success
-- $2 (20pt target) → typically 10-30% success
+### Recurring Rate Tiers (high % same direction)
+- ⭐⭐⭐ ≥90% recurring: 5 signals (best: Friday 23:35 CALL 94%)
+- ⭐⭐ ≥80% recurring: 29 signals
+- ⭐ ≥70% recurring: 38 signals
 
-## 📊 Signal Counts Per Day
-
-| Day | 95pct | 90pct | 80pct | Notes |
-|-----|-------|-------|-------|-------|
-| Sunday | 0 | 0 | 0 | Market opens 23:00 Algeria |
-| Monday | 0 | 1 | 3 | |
-| Tuesday | 0 | 1 | 3 | |
-| Wednesday | 0 | 1 | 3 | |
-| Thursday | 0 | 2 | 3 | |
-| Friday | 0 | 1 | 3 | |
-| Saturday | 0 | 0 | 0 | Market CLOSED |
-| **TOTAL** | **0** | **6** | **15** | |
-
-## 🏆 Tier Badges (Movement Success Rate)
-
-- ⭐⭐⭐⭐ **Ultra-Elite**: ≥95% (price reaches target almost every time)
-- ⭐⭐⭐ **Elite**: 90-95% (very high probability)
-- ⭐⭐ **High-Elite**: 85-90%
-- ⭐ **High**: 80-85%
-- 🔥 **Good**: 75-80%
-- ⚡ **Standard**: 70-75%
-- ✓ **Basic**: <70%
+### Big Movement Tiers (high $ volatility)
+- 💥 **BIG5**: ≥$5 avg movement + ≥55% recurring → 337 signals
+- 💥 **BIG10**: ≥$10 avg movement + ≥55% recurring → 48 signals
 
 ## 📐 Signal Format
 
 ```
-⭐⭐⭐ M10 XAUUSD 15:00 CALL acc=92% target=$0.5 | move=20pt dir_bias=54% up:54% down:46% samples=1668
+⭐⭐ 23:25 CALL rate=90% move=$0.94 (avg) max=$34.80 med=$0.00 samples=139
+💥 16:25 PUT  rate=58% move=$14.17 (avg) max=$129.42 med=$8.57 samples=140
 ```
 
-- **acc=92%**: REAL probability that price reaches $0.5 (5pt) target in 1 hour
-- **move=20pt**: average price movement during this hour
-- **dir_bias=54%**: directional bias (54% of days went UP)
-- **samples=1668**: number of historical days analyzed
+- **rate=90%**: in 90% of 974 days, price moved UP in this 30-min window
+- **move=$0.94**: average dollar movement in UP direction
+- **max=$34.80**: largest historical UP movement in this window
+- **med=$0.00**: median (typical) UP movement
+- **samples=139**: number of historical days analyzed
+
+## 🏆 Top ULTRA-ELITE Signals (≥90% recurring)
+
+| Day | Time (Algeria) | Direction | Rate | Avg Move | Max Move |
+|-----|----------------|-----------|------|----------|----------|
+| Tuesday | 23:15 | CALL | 90% | $0.57 | $13.35 |
+| Friday | 23:20 | CALL | 91% | $0.90 | $19.81 |
+| Friday | 23:30 | CALL | 91% | $0.94 | $19.20 |
+| Friday | 23:35 | CALL | 94% | $1.15 | $41.52 |
+| Friday | 23:40 | CALL | 94% | $0.98 | $35.81 |
+
+## 💥 Top BIG MOVEMENT Signals (≥$10 avg)
+
+| Day | Time (Algeria) | Direction | Rate | Avg Move | Max Move |
+|-----|----------------|-----------|------|----------|----------|
+| Tuesday | 16:25 | PUT | 58% | $14.17 | $129.42 |
+| Friday | 15:35 | PUT | 56% | $14.24 | $57.30 |
+| Tuesday | 16:30 | PUT | 57% | $13.44 | $104.30 |
+| Monday | 02:50 | CALL | 52% | $14.11 | $108.02 |
+| Thursday | 16:50 | PUT | 55% | $13.14 | $228.90 |
 
 ## 🎲 MTG1 Strategy
 
@@ -71,7 +87,7 @@ For each signal:
 - **Saturday**: Market CLOSED
 - **Sunday**: Opens at 23:00 Algeria (22:00 UTC)
 - **Monday-Friday**: 24h trading
-- **Peak hours**: 13:00-17:00 Algeria (London/NY overlap)
+- **Peak volatility**: 15:00-17:00 Algeria (London/NY overlap)
 
 ## 📂 Repository Structure
 
@@ -82,14 +98,16 @@ CANDALXAU/
 ├── XAUUSD_5m_2190d_1a320748.json          ← Gold 5m candles (2190 days)
 ├── XAUUSD_1m_120d_e6d1e4c3.json           ← Gold 1m candles (120 days)
 ├── futurequantvexa_v4_xauusd.py          ← XAUUSD movement analyzer
-├── generate_xauusd_signals.py             ← v8.0 REAL movement success analyzer
+├── generate_xauusd_signals.py             ← v9.0 minute-level scanner
 └── signals/
     ├── by_day/{Sunday..Saturday}/         ← Per-day folders with 3 tier files
-    ├── SIGNALS_XAUUSD_95pct.txt           ← Ultra-Elite (≥95%)
-    ├── SIGNALS_XAUUSD_90pct.txt           ← Elite (≥90%)
-    ├── SIGNALS_XAUUSD_80pct.txt           ← High (≥80%)
+    ├── SIGNALS_XAUUSD_90pct.txt           ← Ultra-Elite (≥90% recurring)
+    ├── SIGNALS_XAUUSD_80pct.txt           ← Elite (≥80% recurring)
+    ├── SIGNALS_XAUUSD_70pct.txt           ← High (≥70% recurring)
+    ├── SIGNALS_XAUUSD_BIG5.txt            ← Big movement (≥$5 avg)
+    ├── SIGNALS_XAUUSD_BIG10.txt           ← Ultra big movement (≥$10 avg)
     ├── SIGNALS_XAUUSD_*.json               ← JSON versions
-    ├── xauusd_movement_success.csv        ← Source statistics
+    ├── xauusd_minute_patterns.csv        ← All minute-level patterns
     └── README.md
 ```
 
@@ -110,21 +128,21 @@ with open('signals/SIGNALS_XAUUSD_90pct.json') as f:
     data = json.load(f)
 today_signals = [s for s in data['signals'] if s['day'] == today]
 
-# Each signal:
-# - time: "15:00" (UTC+1 Algeria)
+# Each signal has:
+# - time: "23:35" (UTC+1 Algeria)
 # - direction: "CALL" or "PUT"
-# - expiry: 10 (minutes)
-# - target_dollars: 0.5
-# - accuracy: 92 (REAL movement success %)
-# - avg_move: 20.0 (points)
+# - recurring_rate: 94.0 (% of 974 days with same direction)
+# - avg_movement_dollars: 1.15 (avg $ moved in predicted direction)
+# - max_movement_dollars: 41.52 (largest historical $ movement)
+# - samples: 139 (number of days analyzed)
 ```
 
 ## ⚠️ Disclaimer
 
-Trading binary options involves significant risk. Movement success rate reflects
-historical probability that price touched the target level — actual binary option
-CALL/PUT win rate (directional_success in JSON) is typically 50-60%.
+Trading binary options involves significant risk. The recurring rate reflects
+the historical frequency of a directional movement, not a guarantee of future
+results. Always use proper bankroll management with MTG1 strategy.
 
 ---
 
-Generated by **CANDALXAU Signal Engine v8.0** (real movement success rate, UTC+1 Algeria)
+Generated by **CANDALXAU Signal Engine v9.0** (minute-level patterns, dollars, UTC+1 Algeria)
