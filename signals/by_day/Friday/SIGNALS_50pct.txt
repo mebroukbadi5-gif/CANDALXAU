@@ -1,0 +1,61 @@
+================================================================================
+  XAUUSD Signals — Friday — ANY EDGE (≥50% directional accuracy)
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:     XAUUSD (Gold) — Real spot gold
+  Day:       Friday
+  Generated: 2026-10-21 21:14:52
+  Threshold: ≥50% REAL directional accuracy
+  Data:      974 days × 5m candles (2021-2026)
+  Total signals: 23
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
+  Timezone: UTC+1 (Algeria) (times already converted from UTC)
+  Note:     ONE signal per hour — no duplicates
+  Accuracy: REAL directional bias from historical data
+================================================================================
+
+  ⭐ M1  XAUUSD  00:00 CALL  acc=55% target=$1  | move=8pt up:55% down:45% bias:UP
+  ✓ M3  XAUUSD  01:00 CALL  acc=50% target=$1  | move=10pt up:50% down:50% bias:UP
+  🔥 M5  XAUUSD  02:00 CALL  acc=53% target=$1  | move=15pt up:53% down:47% bias:UP
+  ⚡ M3  XAUUSD  03:00 CALL  acc=52% target=$1  | move=14pt up:52% down:48% bias:UP
+  ⚡ M3  XAUUSD  04:00 CALL  acc=51% target=$1  | move=12pt up:51% down:49% bias:UP
+  ⭐ M1  XAUUSD  05:00 CALL  acc=58% target=$1  | move=9pt up:58% down:42% bias:UP
+  ⭐ M1  XAUUSD  06:00 CALL  acc=56% target=$1  | move=9pt up:56% down:44% bias:UP
+  🔥 M3  XAUUSD  07:00 CALL  acc=54% target=$1  | move=12pt up:54% down:46% bias:UP
+  ⚡ M3  XAUUSD  08:00 CALL  acc=52% target=$1  | move=12pt up:52% down:48% bias:UP
+  ⚡ M3  XAUUSD  09:00 CALL  acc=52% target=$1  | move=12pt up:52% down:48% bias:UP
+  🔥 M3  XAUUSD  10:00 CALL  acc=54% target=$1  | move=11pt up:54% down:46% bias:UP
+  ✓ M3  XAUUSD  11:00 CALL  acc=50% target=$1  | move=11pt up:50% down:50% bias:UP
+  ✓ M3  XAUUSD  12:00 CALL  acc=50% target=$1  | move=11pt up:50% down:50% bias:UP
+  🔥 M3  XAUUSD  13:00 CALL  acc=54% target=$1  | move=14pt up:54% down:46% bias:UP
+  ✓ M5  XAUUSD  14:00 CALL  acc=50% target=$2  | move=20pt up:50% down:50% bias:UP
+  ⚡ M5  XAUUSD  15:00 CALL  acc=51% target=$2  | move=23pt up:51% down:49% bias:UP
+  ⭐ M5  XAUUSD  16:00 CALL  acc=55% target=$2  | move=20pt up:55% down:45% bias:UP
+  🔥 M5  XAUUSD  17:00 CALL  acc=53% target=$1  | move=17pt up:53% down:47% bias:UP
+  ✓ M3  XAUUSD  18:00 CALL  acc=50% target=$1  | move=13pt up:50% down:50% bias:UP
+  🔥 M3  XAUUSD  19:00 PUT   acc=54% target=$1  | move=12pt up:46% down:54% bias:DOWN
+  ⭐ M3  XAUUSD  20:00 PUT   acc=55% target=$1  | move=10pt up:45% down:55% bias:DOWN
+  ⚡ M1  XAUUSD  21:00 PUT   acc=51% target=$1  | move=9pt up:49% down:51% bias:DOWN
+  ⭐⭐ M1  XAUUSD  22:00 CALL  acc=61% target=$1  | move=6pt up:61% down:39% bias:UP
+
+  ----------------------------------------------------------------------------
+  📊 Friday Summary
+  ----------------------------------------------------------------------------
+    Total: 23 signals (one per hour)
+    Direction split: CALL=20, PUT=3
+    Average accuracy: 53.1%
+
+  Top 5 highest-accuracy signals:
+    61%  22:00  CALL  M1  target=$1  (move=6pt)
+    58%  05:00  CALL  M1  target=$1  (move=9pt)
+    56%  06:00  CALL  M1  target=$1  (move=9pt)
+    55%  00:00  CALL  M1  target=$1  (move=8pt)
+    55%  16:00  CALL  M5  target=$2  (move=20pt)
+
+  ────────────────────────────────────────────────
+  MTG1 Strategy:
+    Entry 1: bet 1× → if WIN, take profit & stop
+    Entry 2: bet 2× → if WIN, recover loss & profit
+    Stop:    after Entry 2 loss → max drawdown = 3×
+  ────────────────────────────────────────────────
+  ⚠ REAL accuracy = directional bias from 974 days

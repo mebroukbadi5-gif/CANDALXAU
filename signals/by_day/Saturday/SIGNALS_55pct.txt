@@ -1,0 +1,27 @@
+================================================================================
+  XAUUSD Signals — Saturday — GOOD BIAS (≥55% directional accuracy)
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:     XAUUSD (Gold) — Real spot gold
+  Day:       Saturday
+  Generated: 2026-10-21 21:14:52
+  Threshold: ≥55% REAL directional accuracy
+  Data:      974 days × 5m candles (2021-2026)
+  Total signals: 0
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
+  Timezone: UTC+1 (Algeria) (times already converted from UTC)
+  Note:     ONE signal per hour — no duplicates
+  Accuracy: REAL directional bias from historical data
+================================================================================
+
+  ⚠ No signals for this day at this threshold.
+
+  📌 Note: XAUUSD market is CLOSED on Saturday.
+
+  ────────────────────────────────────────────────
+  MTG1 Strategy:
+    Entry 1: bet 1× → if WIN, take profit & stop
+    Entry 2: bet 2× → if WIN, recover loss & profit
+    Stop:    after Entry 2 loss → max drawdown = 3×
+  ────────────────────────────────────────────────
+  ⚠ REAL accuracy = directional bias from 974 days

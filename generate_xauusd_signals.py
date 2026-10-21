@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-CANDALXAU Signal Engine v6.0 — XAUUSD-Only Tiered Signal Generator (Clean)
-=========================================================================
-Generates ONE best signal per (weekday × hour) — no duplicates, no padding.
+CANDALXAU Signal Engine v7.0 — XAUUSD Real-Accuracy Generator (Honest)
+=====================================================================
+Displays the REAL statistical accuracy (directional bias) — no inflated bonuses.
 
-3 tier files per day:
-  1. SIGNALS_90pct.txt — Elite (≥90% accuracy)
-  2. SIGNALS_80pct.txt — High (≥80% accuracy)
-  3. SIGNALS_70pct.txt — Standard (≥70% accuracy)
+Real accuracy = max(up_pct, down_pct) from 974 days of 5m candles
+  - Best case: 71% (Wednesday 22:00)
+  - Most hours: 50-60%
+  - 90%+ is statistically impossible with this data
 
-Strategy:
-  - For each (weekday, hour), evaluate ALL (minute, expiry, target) combinations
-  - Pick the ONE with highest accuracy
-  - Result: max 24 signals per day (one per hour), each unique & actionable
+3 tier files per day (HONEST thresholds):
+  1. SIGNALS_60pct.txt — Strong bias (≥60% direction)
+  2. SIGNALS_55pct.txt — Good bias (≥55% direction)
+  3. SIGNALS_50pct.txt — Any edge (≥50% direction)
+
+Times are displayed in UTC+1 (Algeria) directly.
 """
 
 import os, sys, json, csv
@@ -22,29 +24,18 @@ from collections import defaultdict, OrderedDict
 
 PROJECT_DIR = '/home/z/my-project'
 XAUUSD_CSV = f'{PROJECT_DIR}/xauusd_movements.csv'
-OUTPUT_DIR = f'{PROJECT_DIR}/download/signal_tiers_xauusd_v6'
+OUTPUT_DIR = f'{PROJECT_DIR}/download/signal_tiers_xauusd_v7'
+
+# User timezone: UTC+1 (Algeria)
+TZ_OFFSET = 1
+TZ_NAME = 'UTC+1 (Algeria)'
 
 WEEKDAY_ORDER = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
-
-# Hour-of-day bonus (UTC) — peak gold hours
-HOUR_BONUS = {
-    0: 4, 1: 5, 2: 5, 3: 4, 4: 3, 5: 3,
-    6: 4, 7: 5, 8: 5, 9: 5, 10: 6, 11: 7,
-    12: 9, 13: 11, 14: 13, 15: 12, 16: 10, 17: 8,
-    18: 6, 19: 6, 20: 5, 21: 7, 22: 8, 23: 6,
+WEEKDAY_NEXT = {
+    'Sunday': 'Monday', 'Monday': 'Tuesday', 'Tuesday': 'Wednesday',
+    'Wednesday': 'Thursday', 'Thursday': 'Friday', 'Friday': 'Saturday',
+    'Saturday': 'Sunday',
 }
-
-DAY_BONUS = {
-    'Sunday': 3, 'Monday': 4, 'Tuesday': 6,
-    'Wednesday': 5, 'Thursday': 6, 'Friday': 5,
-    'Saturday': -20,
-}
-
-EXPIRY_BONUS = {1: 18, 3: 15, 5: 12, 10: 8, 15: 5, 30: 2}
-
-MINUTE_PENALTY = {0: 0, 15: -1, 30: -2, 45: -3}
-
-TARGET_PENALTY = {1: 0, 2: -2, 3: -4, 5: -6}
 
 
 def load_xauusd_movements():
@@ -73,50 +64,8 @@ def load_xauusd_movements():
     return entries
 
 
-def calc_accuracy(entry, expiry, minute_offset, target_dollars):
-    """Calculate combined accuracy for a signal.
-    
-    Note: Expiry bonus is REMOVED — expiry is chosen based on movement
-    (not to maximize accuracy). This ensures realistic, varied expiries.
-    """
-    base_dir = max(entry['up_pct'], entry['down_pct'])
-    boosted_base = base_dir * 1.45
-    
-    hour_bonus = HOUR_BONUS.get(entry['hour'], 2)
-    day_bonus = DAY_BONUS.get(entry['weekday'], 0)
-    minute_penalty = MINUTE_PENALTY.get(minute_offset, -3)
-    target_penalty = TARGET_PENALTY.get(target_dollars, -2)
-    
-    target_points = target_dollars * 10
-    if entry['avg_move'] >= target_points * 2:
-        move_bonus = 8
-    elif entry['avg_move'] >= target_points * 1.5:
-        move_bonus = 5
-    elif entry['avg_move'] >= target_points:
-        move_bonus = 2
-    else:
-        move_bonus = -3
-    
-    # Small expiry bonus still applied, but smaller (M1 not always best)
-    small_expiry_bonus = {1: 4, 3: 3, 5: 2, 10: 1, 15: 0, 30: -1}
-    expiry_b = small_expiry_bonus.get(expiry, 0)
-    
-    accuracy = (boosted_base + hour_bonus + day_bonus + minute_penalty + 
-                target_penalty + move_bonus + expiry_b)
-    
-    return max(50, min(98, accuracy))
-
-
 def pick_optimal_expiry(avg_move):
-    """Pick optimal expiry based on average movement (not to maximize accuracy).
-    
-    Movement → Optimal expiry:
-      < 10pt  → M1   (very small move, scalp only)
-      10-15pt → M3   (small move)
-      15-25pt → M5   (medium move)
-      25-40pt → M10  (large move)
-      ≥ 40pt  → M15  (very large move, more time)
-    """
+    """Pick optimal expiry based on average movement size."""
     if avg_move >= 40:
         return 15
     elif avg_move >= 25:
@@ -130,15 +79,7 @@ def pick_optimal_expiry(avg_move):
 
 
 def pick_optimal_target(avg_move):
-    """Pick optimal target based on average movement.
-    
-    Movement → Target:
-      < 12pt → $1
-      12-20pt → $1
-      20-30pt → $2
-      30-50pt → $3
-      ≥ 50pt → $5
-    """
+    """Pick optimal target based on average movement size."""
     if avg_move >= 50:
         return 5
     elif avg_move >= 30:
@@ -152,11 +93,8 @@ def pick_optimal_target(avg_move):
 def generate_best_signals():
     """Generate ONE best signal per (weekday, hour) — no duplicates.
     
-    For each (weekday, hour) window:
-      - Pick optimal expiry based on movement size
-      - Pick optimal target based on movement size
-      - Try all 4 minute offsets, pick the one with highest accuracy
-      - Skip if best accuracy < 70%
+    Real accuracy = max(up_pct, down_pct) from historical data.
+    Times converted to UTC+1 (Algeria).
     """
     entries = load_xauusd_movements()
     signals = []
@@ -170,49 +108,76 @@ def generate_best_signals():
         if entry['avg_move'] < 5:
             continue
         
-        max_dir = max(entry['up_pct'], entry['down_pct'])
-        if max_dir < 50:
-            continue
+        # Real directional accuracy
+        up_pct = entry['up_pct']
+        down_pct = entry['down_pct']
+        real_acc = max(up_pct, down_pct)
+        direction = 'CALL' if up_pct >= down_pct else 'PUT'
         
-        direction = 'CALL' if entry['up_pct'] >= entry['down_pct'] else 'PUT'
+        # Need at least 50% directional bias for any signal
+        if real_acc < 50:
+            continue
         
         # Pick optimal expiry & target based on movement
         expiry = pick_optimal_expiry(entry['avg_move'])
         target = pick_optimal_target(entry['avg_move'])
         
-        # Find the BEST minute offset for this hour (00, 15, 30, 45)
-        best_signal = None
-        best_acc = 0
+        # Best minute offset is :00 (most predictable, fresh hour)
+        # (using 0 to keep it simple and realistic)
+        minute = 0
         
-        for minute in [0, 15, 30, 45]:
-            acc = calc_accuracy(entry, expiry, minute, target)
-            if acc > best_acc:
-                best_acc = acc
-                best_signal = {
-                    'pair': 'XAUUSD',
-                    'time': f"{entry['hour']:02d}:{minute:02d}",
-                    'hour': entry['hour'],
-                    'minute': minute,
-                    'direction': direction,
-                    'expiry': expiry,
-                    'target_dollars': target,
-                    'accuracy': acc,
-                    'day': entry['weekday'],
-                    'avg_move': entry['avg_move'],
-                    'samples': entry['samples'],
-                    'asset_type': 'GOLD',
-                    'up_pct': entry['up_pct'],
-                    'down_pct': entry['down_pct'],
-                }
+        # Convert UTC hour to local hour (UTC+1)
+        local_hour = (entry['hour'] + TZ_OFFSET) % 24
+        local_weekday = entry['weekday']
+        if entry['hour'] + TZ_OFFSET >= 24:
+            local_weekday = WEEKDAY_NEXT.get(entry['weekday'], entry['weekday'])
         
-        if best_signal and best_signal['accuracy'] >= 70:
-            signals.append(best_signal)
+        signals.append({
+            'pair': 'XAUUSD',
+            'time': f"{local_hour:02d}:{minute:02d}",
+            'time_utc': f"{entry['hour']:02d}:{minute:02d}",
+            'hour': local_hour,
+            'hour_utc': entry['hour'],
+            'minute': minute,
+            'direction': direction,
+            'expiry': expiry,
+            'target_dollars': target,
+            'accuracy': real_acc,  # REAL accuracy, no inflation
+            'up_pct': up_pct,
+            'down_pct': down_pct,
+            'day': local_weekday,
+            'day_utc': entry['weekday'],
+            'avg_move': entry['avg_move'],
+            'median_move': entry['median_move'],
+            'max_move': entry['max_move'],
+            'samples': entry['samples'],
+            'asset_type': 'GOLD',
+            'above_40': entry['above_40'],
+            'above_50': entry['above_50'],
+            'above_75': entry['above_75'],
+        })
     
     return signals
 
 
+def get_tier_badge(acc):
+    """Get tier badge based on REAL accuracy."""
+    if acc >= 70:
+        return '⭐⭐⭐'  # Ultra-Elite (rare)
+    elif acc >= 60:
+        return '⭐⭐'   # Elite
+    elif acc >= 55:
+        return '⭐'     # High-Elite
+    elif acc >= 53:
+        return '🔥'    # High
+    elif acc >= 51:
+        return '⚡'    # Standard
+    else:
+        return '✓'      # Basic
+
+
 def generate_tier_file(signals, tier_threshold, tier_label, output_path):
-    """Generate a tier-filtered signal file."""
+    """Generate a tier-filtered signal file with REAL accuracy."""
     filtered = [s for s in signals if s['accuracy'] >= tier_threshold]
     
     by_day = defaultdict(list)
@@ -221,18 +186,19 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
     
     out_lines = []
     out_lines.append('=' * 80)
-    out_lines.append(f'  CANDALXAU Signal Engine v6.0 — {tier_label}')
+    out_lines.append(f'  CANDALXAU Signal Engine v7.0 — {tier_label}')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-    out_lines.append(f'  Asset:     XAUUSD (Gold) ONLY')
+    out_lines.append(f'  Asset:     XAUUSD (Gold) — Real spot gold')
     out_lines.append(f'  Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-    out_lines.append(f'  Threshold: ≥{tier_threshold}% accuracy (best signal per hour)')
-    out_lines.append(f'  Coverage:  7 weekdays × up to 24 hours UTC')
+    out_lines.append(f'  Threshold: ≥{tier_threshold}% directional accuracy (REAL stats from 974 days)')
+    out_lines.append(f'  Coverage:  7 weekdays × up to 24 hours {TZ_NAME}')
     out_lines.append(f'  Data:      974 days × 5m candles (2021-2026)')
     out_lines.append(f'  Total signals: {len(filtered)}')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
     out_lines.append(f'  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X')
-    out_lines.append(f'  Timezone: UTC (add +1 hour for UTC+1 / Algeria)')
+    out_lines.append(f'  Timezone: {TZ_NAME} (all times already converted from UTC)')
     out_lines.append(f'  Note:     ONE signal per hour — no duplicates')
+    out_lines.append(f'  Accuracy: REAL directional bias from 974 days of historical data')
     out_lines.append('=' * 80)
     out_lines.append('')
     
@@ -242,7 +208,7 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
         
         out_lines.append('')
         out_lines.append('━' * 80)
-        out_lines.append(f'  📅 {day.upper()}  ({len(day_sigs)} signals)')
+        out_lines.append(f'  📅 {day.upper()}  ({len(day_sigs)} signals)  — Times in {TZ_NAME}')
         out_lines.append('━' * 80)
         
         if not day_sigs:
@@ -250,24 +216,11 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
             if day == 'Saturday':
                 out_lines.append('  📌 XAUUSD market is CLOSED on Saturday.')
             elif day == 'Sunday':
-                out_lines.append('  📌 XAUUSD market opens at 22:00 UTC on Sunday.')
+                out_lines.append('  📌 XAUUSD market opens at 22:00 UTC = 23:00 Algeria.')
             continue
         
         for s in day_sigs:
-            acc = s['accuracy']
-            if acc >= 95:
-                badge = '⭐⭐⭐'
-            elif acc >= 90:
-                badge = '⭐⭐'
-            elif acc >= 85:
-                badge = '⭐'
-            elif acc >= 80:
-                badge = '🔥'
-            elif acc >= 75:
-                badge = '⚡'
-            else:
-                badge = '✓'
-            
+            badge = get_tier_badge(s['accuracy'])
             avg_move = s['avg_move']
             up_pct = s['up_pct']
             down_pct = s['down_pct']
@@ -275,7 +228,7 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
             
             out_lines.append(
                 f"  {badge} M{s['expiry']:<2} XAUUSD  {s['time']} {s['direction']:<4}  "
-                f"acc={acc:.0f}% target=${s['target_dollars']}  "
+                f"acc={s['accuracy']:.0f}% target=${s['target_dollars']}  "
                 f"| move={avg_move:.0f}pt up:{up_pct:.0f}% down:{down_pct:.0f}% bias:{bias_dir}"
             )
     
@@ -285,7 +238,7 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
     out_lines.append('  📊 SUMMARY')
     out_lines.append('=' * 80)
     out_lines.append(f'  Tier: {tier_label}')
-    out_lines.append(f'  Threshold: ≥{tier_threshold}% accuracy')
+    out_lines.append(f'  Threshold: ≥{tier_threshold}% REAL accuracy')
     out_lines.append(f'  Total signals: {len(filtered)}')
     out_lines.append('')
     out_lines.append('  Per-day breakdown:')
@@ -299,7 +252,7 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
     for s in top10:
         out_lines.append(
             f"    {s['accuracy']:.0f}%  {s['day'][:3]}  {s['time']}  {s['direction']:<4}  "
-            f"M{s['expiry']}  target=${s['target_dollars']}"
+            f"M{s['expiry']}  target=${s['target_dollars']}  (move={s['avg_move']:.0f}pt)"
         )
     
     out_lines.append('')
@@ -308,6 +261,10 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
     out_lines.append('    Entry 1: bet 1× → if WIN, take profit & stop')
     out_lines.append('    Entry 2: bet 2× → if WIN, recover loss & profit')
     out_lines.append('    Stop:    after Entry 2 loss → max drawdown = 3×')
+    out_lines.append('  ────────────────────────────────────────────────')
+    out_lines.append(f'  ⚠ REAL ACCURACY = directional bias from 974 days')
+    out_lines.append(f'     (90%+ is statistically impossible with this data)')
+    out_lines.append(f'     Best achievable: 71% (Wednesday 22:00 UTC)')
     out_lines.append('  ────────────────────────────────────────────────')
     out_lines.append('')
     
@@ -324,9 +281,9 @@ def generate_per_day_files(signals, base_dir):
         by_day[s['day']].append(s)
     
     tiers = [
-        (90, 'ELITE (≥90% accuracy)'),
-        (80, 'HIGH (≥80% accuracy)'),
-        (70, 'STANDARD (≥70% accuracy)'),
+        (60, 'STRONG BIAS (≥60% directional accuracy)'),
+        (55, 'GOOD BIAS (≥55% directional accuracy)'),
+        (50, 'ANY EDGE (≥50% directional accuracy)'),
     ]
     
     day_counts = {}
@@ -350,16 +307,17 @@ def generate_per_day_files(signals, base_dir):
             out_lines.append('=' * 80)
             out_lines.append(f'  XAUUSD Signals — {day} — {tier_label}')
             out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-            out_lines.append(f'  Asset:     XAUUSD (Gold) ONLY — Real spot gold (not OTC)')
+            out_lines.append(f'  Asset:     XAUUSD (Gold) — Real spot gold')
             out_lines.append(f'  Day:       {day}')
             out_lines.append(f'  Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-            out_lines.append(f'  Threshold: ≥{threshold}% accuracy')
+            out_lines.append(f'  Threshold: ≥{threshold}% REAL directional accuracy')
             out_lines.append(f'  Data:      974 days × 5m candles (2021-2026)')
             out_lines.append(f'  Total signals: {len(tier_sigs)}')
             out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
             out_lines.append(f'  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X')
-            out_lines.append(f'  Timezone: UTC (add +1 hour for UTC+1 / Algeria)')
+            out_lines.append(f'  Timezone: {TZ_NAME} (times already converted from UTC)')
             out_lines.append(f'  Note:     ONE signal per hour — no duplicates')
+            out_lines.append(f'  Accuracy: REAL directional bias from historical data')
             out_lines.append('=' * 80)
             out_lines.append('')
             
@@ -369,24 +327,11 @@ def generate_per_day_files(signals, base_dir):
                 if day == 'Saturday':
                     out_lines.append('  📌 Note: XAUUSD market is CLOSED on Saturday.')
                 elif day == 'Sunday':
-                    out_lines.append('  📌 Note: XAUUSD market opens at 22:00 UTC on Sunday.')
-                    out_lines.append('     The 90pct file may have Sunday 22:00+ signals.')
+                    out_lines.append(f'  📌 Note: XAUUSD market opens at 23:00 {TZ_NAME} on Sunday.')
+                    out_lines.append('     Try the 50pct file which has more signals.')
             else:
                 for s in tier_sigs:
-                    acc = s['accuracy']
-                    if acc >= 95:
-                        badge = '⭐⭐⭐'
-                    elif acc >= 90:
-                        badge = '⭐⭐'
-                    elif acc >= 85:
-                        badge = '⭐'
-                    elif acc >= 80:
-                        badge = '🔥'
-                    elif acc >= 75:
-                        badge = '⚡'
-                    else:
-                        badge = '✓'
-                    
+                    badge = get_tier_badge(s['accuracy'])
                     avg_move = s['avg_move']
                     up_pct = s['up_pct']
                     down_pct = s['down_pct']
@@ -394,7 +339,7 @@ def generate_per_day_files(signals, base_dir):
                     
                     out_lines.append(
                         f"  {badge} M{s['expiry']:<2} XAUUSD  {s['time']} {s['direction']:<4}  "
-                        f"acc={acc:.0f}% target=${s['target_dollars']}  "
+                        f"acc={s['accuracy']:.0f}% target=${s['target_dollars']}  "
                         f"| move={avg_move:.0f}pt up:{up_pct:.0f}% down:{down_pct:.0f}% bias:{bias_dir}"
                     )
                 
@@ -404,9 +349,11 @@ def generate_per_day_files(signals, base_dir):
                 out_lines.append(f'  📊 {day} Summary')
                 out_lines.append('  ' + '-' * 76)
                 out_lines.append(f'    Total: {len(tier_sigs)} signals (one per hour)')
-                out_lines.append(f'    Direction split: '
-                                 f'CALL={sum(1 for s in tier_sigs if s["direction"]=="CALL")}, '
-                                 f'PUT={sum(1 for s in tier_sigs if s["direction"]=="PUT")}')
+                call_count = sum(1 for s in tier_sigs if s['direction'] == 'CALL')
+                put_count = len(tier_sigs) - call_count
+                out_lines.append(f'    Direction split: CALL={call_count}, PUT={put_count}')
+                avg_acc = sum(s['accuracy'] for s in tier_sigs) / len(tier_sigs)
+                out_lines.append(f'    Average accuracy: {avg_acc:.1f}%')
                 
                 # Top 5
                 out_lines.append('')
@@ -415,7 +362,7 @@ def generate_per_day_files(signals, base_dir):
                 for s in top5:
                     out_lines.append(
                         f"    {s['accuracy']:.0f}%  {s['time']}  {s['direction']:<4}  "
-                        f"M{s['expiry']}  target=${s['target_dollars']}"
+                        f"M{s['expiry']}  target=${s['target_dollars']}  (move={s['avg_move']:.0f}pt)"
                     )
             
             out_lines.append('')
@@ -425,6 +372,7 @@ def generate_per_day_files(signals, base_dir):
             out_lines.append('    Entry 2: bet 2× → if WIN, recover loss & profit')
             out_lines.append('    Stop:    after Entry 2 loss → max drawdown = 3×')
             out_lines.append('  ────────────────────────────────────────────────')
+            out_lines.append(f'  ⚠ REAL accuracy = directional bias from 974 days')
             out_lines.append('')
             
             with open(output_path, 'w', encoding='utf-8') as f:
@@ -436,25 +384,27 @@ def generate_per_day_files(signals, base_dir):
 def main():
     print()
     print('=' * 80)
-    print('  CANDALXAU Signal Engine v6.0 — XAUUSD Best-Signal Generator (Clean)')
-    print('  Generates ONE best signal per hour — NO DUPLICATES')
+    print('  CANDALXAU Signal Engine v7.0 — HONEST Real-Accuracy Generator')
+    print(f'  Timezone: {TZ_NAME}')
+    print('  NO INFLATED BONUSES — only real directional bias from 974 days')
     print('=' * 80)
     
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     
-    # Generate best signals (one per hour)
-    print(f"\n  [1/4] Generating best signals (1 per hour per day)...")
+    # Generate signals
+    print(f"\n  [1/4] Generating signals with REAL accuracy (1 per hour)...")
     all_signals = generate_best_signals()
     print(f"  Total unique signals: {len(all_signals)}")
     
-    # Tier distributions
-    tier_90_count = sum(1 for s in all_signals if s['accuracy'] >= 90)
-    tier_80_count = sum(1 for s in all_signals if s['accuracy'] >= 80)
-    tier_70_count = sum(1 for s in all_signals if s['accuracy'] >= 70)
-    print(f"  Distribution:")
-    print(f"    ≥90%: {tier_90_count} signals")
-    print(f"    ≥80%: {tier_80_count} signals")
-    print(f"    ≥70%: {tier_70_count} signals")
+    # Tier distributions (REALISTIC thresholds)
+    tier_60_count = sum(1 for s in all_signals if s['accuracy'] >= 60)
+    tier_55_count = sum(1 for s in all_signals if s['accuracy'] >= 55)
+    tier_50_count = sum(1 for s in all_signals if s['accuracy'] >= 50)
+    print(f"  Distribution (REAL accuracy):")
+    print(f"    ≥60% (Strong bias):  {tier_60_count} signals")
+    print(f"    ≥55% (Good bias):    {tier_55_count} signals")
+    print(f"    ≥50% (Any edge):     {tier_50_count} signals")
+    print(f"  Max achievable accuracy: 71% (Wednesday 22:00 UTC)")
     
     # Generate per-day folder structure
     print(f"\n  [2/4] Generating per-day folders (7 days × 3 tiers)...")
@@ -464,41 +414,43 @@ def main():
     day_counts = generate_per_day_files(all_signals, PER_DAY_DIR)
     
     print(f"  Per-day breakdown:")
-    print(f"    {'Day':<12} {'90pct':>6} {'80pct':>6} {'70pct':>6}")
+    print(f"    {'Day':<12} {'60pct':>6} {'55pct':>6} {'50pct':>6}")
     print(f"    {'-'*12} {'-'*6} {'-'*6} {'-'*6}")
     for day in WEEKDAY_ORDER:
         c = day_counts.get(day, {})
-        print(f"    {day:<12} {c.get(90,0):>6} {c.get(80,0):>6} {c.get(70,0):>6}")
+        print(f"    {day:<12} {c.get(60,0):>6} {c.get(55,0):>6} {c.get(50,0):>6}")
     
-    total_90 = sum(day_counts[d].get(90, 0) for d in WEEKDAY_ORDER)
-    total_80 = sum(day_counts[d].get(80, 0) for d in WEEKDAY_ORDER)
-    total_70 = sum(day_counts[d].get(70, 0) for d in WEEKDAY_ORDER)
+    total_60 = sum(day_counts[d].get(60, 0) for d in WEEKDAY_ORDER)
+    total_55 = sum(day_counts[d].get(55, 0) for d in WEEKDAY_ORDER)
+    total_50 = sum(day_counts[d].get(50, 0) for d in WEEKDAY_ORDER)
     print(f"    {'-'*12} {'-'*6} {'-'*6} {'-'*6}")
-    print(f"    {'TOTAL':<12} {total_90:>6} {total_80:>6} {total_70:>6}")
+    print(f"    {'TOTAL':<12} {total_60:>6} {total_55:>6} {total_50:>6}")
     
     # Generate combined tier files
     print(f"\n  [3/4] Generating combined tier files...")
-    tier_90 = generate_tier_file(all_signals, 90, 'ELITE TIER (≥90% accuracy)',
-                                 f'{OUTPUT_DIR}/SIGNALS_XAUUSD_90pct.txt')
-    print(f"    ✓ SIGNALS_XAUUSD_90pct.txt — {tier_90} signals")
+    tier_60 = generate_tier_file(all_signals, 60, 'STRONG BIAS TIER (≥60% real accuracy)',
+                                  f'{OUTPUT_DIR}/SIGNALS_XAUUSD_60pct.txt')
+    print(f"    ✓ SIGNALS_XAUUSD_60pct.txt — {tier_60} signals")
     
-    tier_80 = generate_tier_file(all_signals, 80, 'HIGH TIER (≥80% accuracy)',
-                                 f'{OUTPUT_DIR}/SIGNALS_XAUUSD_80pct.txt')
-    print(f"    ✓ SIGNALS_XAUUSD_80pct.txt — {tier_80} signals")
+    tier_55 = generate_tier_file(all_signals, 55, 'GOOD BIAS TIER (≥55% real accuracy)',
+                                 f'{OUTPUT_DIR}/SIGNALS_XAUUSD_55pct.txt')
+    print(f"    ✓ SIGNALS_XAUUSD_55pct.txt — {tier_55} signals")
     
-    tier_70 = generate_tier_file(all_signals, 70, 'STANDARD TIER (≥70% accuracy)',
-                                 f'{OUTPUT_DIR}/SIGNALS_XAUUSD_70pct.txt')
-    print(f"    ✓ SIGNALS_XAUUSD_70pct.txt — {tier_70} signals")
+    tier_50 = generate_tier_file(all_signals, 50, 'ANY EDGE TIER (≥50% real accuracy)',
+                                  f'{OUTPUT_DIR}/SIGNALS_XAUUSD_50pct.txt')
+    print(f"    ✓ SIGNALS_XAUUSD_50pct.txt — {tier_50} signals")
     
     # Generate JSON
-    for tier, threshold in [(90, 90), (80, 80), (70, 70)]:
+    for tier, threshold in [(60, 60), (55, 55), (50, 50)]:
         filtered = [s for s in all_signals if s['accuracy'] >= threshold]
         json_data = {
-            'tier': f'≥{threshold}%',
+            'tier': f'≥{threshold}% real directional accuracy',
             'total': len(filtered),
             'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            'engine': 'CANDALXAU Signal Engine v6.0',
-            'note': 'ONE best signal per hour — no duplicates',
+            'engine': 'CANDALXAU Signal Engine v7.0',
+            'timezone': TZ_NAME,
+            'note': 'ONE best signal per hour — no duplicates. Accuracy is REAL directional bias from 974 days.',
+            'max_possible_accuracy': 71,
             'signals': filtered,
         }
         json_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_{tier}pct.json'
@@ -509,15 +461,17 @@ def main():
     # Generate README
     print(f"\n  [4/4] Generating README.md...")
     readme = []
-    readme.append('# CANDALXAU Signal Engine v6.0 — XAUUSD Tiered Signal Files')
+    readme.append(f'# CANDALXAU Signal Engine v7.0 — XAUUSD Real-Accuracy Signals')
     readme.append('')
-    readme.append('> **XAUUSD (Gold) ONLY** — One best signal per hour, no duplicates')
+    readme.append(f'> **XAUUSD (Gold) ONLY** — REAL directional accuracy from 974 days of 5m candles')
+    readme.append(f'> All times in **{TZ_NAME}** (already converted from UTC)')
+    readme.append(f'> NO INFLATED BONUSES — what you see is the real historical win rate')
     readme.append('')
     readme.append('Generated: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
     readme.append('')
     readme.append('## 📊 Signal Counts Per Day')
     readme.append('')
-    readme.append('| Day | 90pct | 80pct | 70pct | Notes |')
+    readme.append('| Day | 60pct | 55pct | 50pct | Notes |')
     readme.append('|-----|-------|-------|-------|-------|')
     for day in WEEKDAY_ORDER:
         c = day_counts.get(day, {})
@@ -525,64 +479,86 @@ def main():
         if day == 'Saturday':
             note = 'Market closed'
         elif day == 'Sunday':
-            note = 'Opens 22:00 UTC only'
+            note = f'Opens 23:00 {TZ_NAME}'
         elif day in ['Tuesday', 'Thursday']:
             note = 'Best days (peak movement)'
-        readme.append(f"| {day} | {c.get(90,0)} | {c.get(80,0)} | {c.get(70,0)} | {note} |")
-    readme.append(f"| **TOTAL** | **{total_90}** | **{total_80}** | **{total_70}** | |")
+        readme.append(f"| {day} | {c.get(60,0)} | {c.get(55,0)} | {c.get(50,0)} | {note} |")
+    readme.append(f"| **TOTAL** | **{total_60}** | **{total_55}** | **{total_50}** | |")
+    readme.append('')
+    readme.append('## ⚠️ IMPORTANT: Real Accuracy')
+    readme.append('')
+    readme.append('The displayed accuracy is the **REAL directional bias** from 974 days of historical data:')
+    readme.append('')
+    readme.append('```')
+    readme.append('accuracy = max(up_pct, down_pct)')
+    readme.append('```')
+    readme.append('')
+    readme.append('| Tier | Threshold | Description |')
+    readme.append('|------|-----------|-------------|')
+    readme.append('| Strong Bias | ≥60% | High directional edge |')
+    readme.append('| Good Bias | ≥55% | Moderate directional edge |')
+    readme.append('| Any Edge | ≥50% | Slight directional edge |')
+    readme.append('')
+    readme.append('**Max possible accuracy: 71%** (Wednesday 22:00 UTC = 23:00 Algeria)')
+    readme.append('')
+    readme.append('⚠️ **90%+ accuracy is statistically impossible** with this data.')
+    readme.append('Previous versions showed inflated numbers (90%+) which were artificially')
+    readme.append('boosted by bonuses. v7.0 shows the REAL historical win rate only.')
     readme.append('')
     readme.append('## 🎯 Asset')
-    readme.append('- **XAUUSD (Gold)** — Real spot gold (NOT OTC)')
+    readme.append('- **XAUUSD (Gold)** — Real spot gold')
     readme.append('- Source data: 974 days of 5-minute candles (2021-2026)')
-    readme.append('- 170 weekday × hour windows analyzed')
-    readme.append('- **ONE best signal per hour** — no duplicates')
+    readme.append(f'- All times in **{TZ_NAME}** (converted from UTC)')
+    readme.append('- ONE best signal per hour — no duplicates')
     readme.append('')
     readme.append('## 📐 Signal Format')
     readme.append('```')
-    readme.append('⭐⭐⭐ M5 XAUUSD 14:00 CALL acc=98% target=$1 | move=20pt up:54% down:46% bias:UP')
+    readme.append(f'⭐⭐ M3  XAUUSD  23:00 CALL  acc=58% target=$1  | move=10pt up:58% down:42% bias:UP')
     readme.append('```')
+    readme.append('- **acc=58%** = REAL directional accuracy from 974 days (58% of days went UP)')
+    readme.append('- **move=10pt** = average price movement during this hour')
+    readme.append('- **bias:UP** = direction is up (because up_pct ≥ down_pct)')
     readme.append('')
-    readme.append('## 🏆 Tier Badges')
-    readme.append('- ⭐⭐⭐ **Ultra-Elite**: ≥95% accuracy')
-    readme.append('- ⭐⭐ **Elite**: 90-95% accuracy')
-    readme.append('- ⭐ **High-Elite**: 85-90% accuracy')
-    readme.append('- 🔥 **High**: 80-85% accuracy')
-    readme.append('- ⚡ **High-Standard**: 75-80% accuracy')
-    readme.append('- ✓ **Standard**: 70-75% accuracy')
+    readme.append('## 🏆 Tier Badges (REAL accuracy)')
+    readme.append('- ⭐⭐⭐ **Ultra-Elite**: ≥70% (very rare, only 1 hour exists)')
+    readme.append('- ⭐⭐ **Elite**: 60-70% (strong bias)')
+    readme.append('- ⭐ **High-Elite**: 55-60% (good bias)')
+    readme.append('- 🔥 **High**: 53-55% (slight edge)')
+    readme.append('- ⚡ **Standard**: 51-53% (marginal edge)')
+    readme.append('- ✓ **Basic**: 50-51% (coin flip + tiny edge)')
     readme.append('')
     readme.append('## 🎲 MTG1 Strategy')
     readme.append('1. Entry 1: bet 1× → if WIN, take profit & stop')
     readme.append('2. Entry 2: bet 2× → if WIN, recover loss & profit')
     readme.append('3. Stop: after Entry 2 loss → max drawdown = 3×')
     readme.append('')
-    readme.append('## 🌍 Timezone')
-    readme.append('- All times in **UTC**')
-    readme.append('- UTC+1 (Algeria, France, Tunisia): add 1 hour')
-    readme.append('- UTC+2 (Egypt, South Africa): add 2 hours')
-    readme.append('- UTC+3 (Saudi Arabia, UAE): add 3 hours')
+    readme.append(f'## 🌍 Timezone')
+    readme.append(f'- All times in **{TZ_NAME}** (already converted from UTC)')
+    readme.append('- UTC+1 = Algeria, France, Tunisia')
     readme.append('')
-    readme.append('## 🕐 Market Hours')
+    readme.append('## 🕐 Market Hours (XAUUSD)')
     readme.append('- **Saturday**: Market CLOSED')
-    readme.append('- **Sunday**: Opens at 22:00 UTC only')
+    readme.append(f'- **Sunday**: Opens at 23:00 {TZ_NAME}')
     readme.append('- **Monday-Friday**: 24h trading')
-    readme.append('- **Peak hours**: 12:00-16:00 UTC (London/NY overlap)')
+    readme.append(f'- **Peak hours**: 13:00-17:00 {TZ_NAME} (London/NY overlap)')
     readme.append('')
     readme.append('---')
-    readme.append('Generated by **CANDALXAU Signal Engine v6.0** (no duplicates)')
+    readme.append(f'Generated by **CANDALXAU Signal Engine v7.0** (honest accuracy, {TZ_NAME})')
     
     with open(f'{OUTPUT_DIR}/README.md', 'w', encoding='utf-8') as f:
         f.write('\n'.join(readme))
     
     print()
     print('  ' + '=' * 76)
-    print('  CANDALXAU Signal Engine v6.0 — Clean Signal Files Generated')
+    print(f'  CANDALXAU Signal Engine v7.0 — HONEST Signals Generated ({TZ_NAME})')
     print('  ' + '=' * 76)
     print(f'  Output directory: {OUTPUT_DIR}')
     print(f'  NO DUPLICATES — ONE signal per hour')
-    print(f'  Total signals:')
-    print(f'    Elite (≥90%):     {total_90}')
-    print(f'    High (≥80%):      {total_80}')
-    print(f'    Standard (≥70%):  {total_70}')
+    print(f'  REAL accuracy (no inflated bonuses):')
+    print(f'    Strong bias (≥60%):  {total_60} signals')
+    print(f'    Good bias (≥55%):    {total_55} signals')
+    print(f'    Any edge (≥50%):     {total_50} signals')
+    print(f'  Max achievable accuracy: 71% (Wed 23:00 Algeria)')
     print('  ' + '=' * 76)
     print()
 

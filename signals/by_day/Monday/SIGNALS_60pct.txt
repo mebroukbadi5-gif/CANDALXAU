@@ -1,30 +1,32 @@
 ================================================================================
-  XAUUSD Signals — Sunday — HIGH (≥80% accuracy)
+  XAUUSD Signals — Monday — STRONG BIAS (≥60% directional accuracy)
   ──────────────────────────────────────────────────────────────────────────
-  Asset:     XAUUSD (Gold) ONLY — Real spot gold (not OTC)
-  Day:       Sunday
-  Generated: 2026-10-21 20:55:42
-  Threshold: ≥80% accuracy
+  Asset:     XAUUSD (Gold) — Real spot gold
+  Day:       Monday
+  Generated: 2026-10-21 21:14:52
+  Threshold: ≥60% REAL directional accuracy
   Data:      974 days × 5m candles (2021-2026)
   Total signals: 2
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
-  Timezone: UTC (add +1 hour for UTC+1 / Algeria)
+  Timezone: UTC+1 (Algeria) (times already converted from UTC)
   Note:     ONE signal per hour — no duplicates
+  Accuracy: REAL directional bias from historical data
 ================================================================================
 
-  ⭐⭐⭐ M3  XAUUSD  22:00 CALL  acc=98% target=$1  | move=15pt up:62% down:38% bias:UP
-  ⭐⭐ M5  XAUUSD  23:00 CALL  acc=91% target=$1  | move=16pt up:52% down:48% bias:UP
+  ⭐⭐ M1  XAUUSD  22:00 CALL  acc=60% target=$1  | move=5pt up:60% down:40% bias:UP
+  ⭐⭐ M1  XAUUSD  23:00 CALL  acc=60% target=$1  | move=6pt up:60% down:40% bias:UP
 
   ----------------------------------------------------------------------------
-  📊 Sunday Summary
+  📊 Monday Summary
   ----------------------------------------------------------------------------
     Total: 2 signals (one per hour)
     Direction split: CALL=2, PUT=0
+    Average accuracy: 60.0%
 
   Top 5 highest-accuracy signals:
-    98%  22:00  CALL  M3  target=$1
-    91%  23:00  CALL  M5  target=$1
+    60%  22:00  CALL  M1  target=$1  (move=5pt)
+    60%  23:00  CALL  M1  target=$1  (move=6pt)
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
@@ -32,3 +34,4 @@
     Entry 2: bet 2× → if WIN, recover loss & profit
     Stop:    after Entry 2 loss → max drawdown = 3×
   ────────────────────────────────────────────────
+  ⚠ REAL accuracy = directional bias from 974 days
