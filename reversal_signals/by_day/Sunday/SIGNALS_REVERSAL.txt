@@ -1,0 +1,28 @@
+==============================================================================================================
+  XAUUSD Reversal Signals — Sunday
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Sunday
+  Generated:    2026-10-21 23:13:56
+  Method:       All Sundays grouped together
+  Data source:  1-minute candles (120 days, 172,797 candles)
+  Trigger:      Price drops $25+ from entry (in next 4 hours)
+  Signal:       After $25 drop, BUY (reversal expected)
+  Filters:      ≥3 historical cases, ≥80% reversal rate, ≥$5 avg reversal
+  Total signals: 0
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM SELL→BUY  drop=$25  rev=$X.XX (avg)  rate=ZZ%  max=$Y.YY  cases=N
+  Timezone: UTC+1 (Algeria)
+  Lookahead: 4 hours (240 minutes)
+==============================================================================================================
+
+  ⚠ No reversal signals for this day.
+  📌 Note: XAUUSD market opens at 23:00 UTC+1 (Algeria).
+
+  ────────────────────────────────────────────────
+  How to trade reversal signals:
+    1. At HH:MM (UTC+1 (Algeria)), enter SELL position (primary direction)
+    2. Take profit at $2-5 (small target)
+    3. If price drops $25+, CLOSE SELL and OPEN BUY
+    4. The BUY (reversal) targets the avg_reversal value as profit
+  ────────────────────────────────────────────────

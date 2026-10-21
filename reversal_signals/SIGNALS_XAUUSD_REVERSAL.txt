@@ -1,0 +1,423 @@
+==============================================================================================================
+  CANDALXAU Signal Engine v14.0 — REVERSAL Signals
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Generated:    2026-10-21 23:13:56
+  Method:       After $25+ price drop, look for BUY reversal
+  Data source:  1-minute candles (120 days, 172,797 candles)
+  Filters:      ≥3 historical cases, ≥80% reversal rate, ≥$5 avg reversal
+  Lookahead:    4 hours (240 minutes)
+  Total signals: 185
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM SELL→BUY  drop=$25  rev=$X.XX (avg)  rate=ZZ%  max=$Y.YY  cases=N
+  Timezone: UTC+1 (Algeria)
+==============================================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 MONDAY  (38 reversal signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 00:20 SELL→BUY  drop=$25  rev=$26.19 (avg)  rate=100%  max=$60.92  med=$21.46  cases=6
+  ⭐⭐⭐ 00:55 SELL→BUY  drop=$25  rev=$19.12 (avg)  rate=100%  max=$29.46  med=$20.30  cases=4
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 01:18 SELL→BUY  drop=$25  rev=$23.33 (avg)  rate=100%  max=$36.04  med=$24.23  cases=4
+  ⭐⭐⭐ 01:56 SELL→BUY  drop=$25  rev=$27.87 (avg)  rate=100%  max=$62.22  med=$24.98  cases=6
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 02:00 SELL→BUY  drop=$25  rev=$27.87 (avg)  rate=100%  max=$62.22  med=$24.98  cases=6
+  ⭐⭐⭐ 02:36 SELL→BUY  drop=$25  rev=$20.73 (avg)  rate=100%  max=$37.52  med=$19.15  cases=4
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 03:01 SELL→BUY  drop=$25  rev=$21.48 (avg)  rate=100%  max=$37.52  med=$19.77  cases=4
+  ⭐⭐⭐ 03:56 SELL→BUY  drop=$25  rev=$16.09 (avg)  rate=100%  max=$45.69  med=$12.82  cases=7
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 04:18 SELL→BUY  drop=$25  rev=$20.81 (avg)  rate=100%  max=$47.35  med=$16.67  cases=9
+  ⭐⭐ 04:31 SELL→BUY  drop=$25  rev=$21.72 (avg)  rate=89%  max=$47.35  med=$16.67  cases=9
+
+  ── 05:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 05:11 SELL→BUY  drop=$25  rev=$15.09 (avg)  rate=100%  max=$25.54  med=$14.70  cases=3
+  ⭐⭐⭐ 05:56 SELL→BUY  drop=$25  rev=$16.89 (avg)  rate=100%  max=$29.16  med=$13.39  cases=3
+
+  ── 07:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 07:29 SELL→BUY  drop=$25  rev=$18.34 (avg)  rate=100%  max=$38.73  med=$8.24  cases=3
+  ⭐⭐⭐ 07:31 SELL→BUY  drop=$25  rev=$18.74 (avg)  rate=100%  max=$38.73  med=$9.25  cases=3
+
+  ── 08:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 08:19 SELL→BUY  drop=$25  rev=$16.89 (avg)  rate=100%  max=$21.18  med=$16.75  cases=4
+  ⭐⭐⭐ 08:42 SELL→BUY  drop=$25  rev=$16.80 (avg)  rate=100%  max=$18.75  med=$16.65  cases=3
+
+  ── 09:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 09:04 SELL→BUY  drop=$25  rev=$17.78 (avg)  rate=100%  max=$19.59  med=$18.74  cases=3
+  ⭐⭐⭐ 09:56 SELL→BUY  drop=$25  rev=$17.50 (avg)  rate=100%  max=$22.89  med=$18.30  cases=4
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 10:12 SELL→BUY  drop=$25  rev=$20.00 (avg)  rate=100%  max=$27.84  med=$20.14  cases=4
+  ⭐⭐⭐ 10:50 SELL→BUY  drop=$25  rev=$19.87 (avg)  rate=100%  max=$27.84  med=$19.16  cases=4
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 11:21 SELL→BUY  drop=$25  rev=$23.52 (avg)  rate=100%  max=$27.84  med=$22.48  cases=4
+  ⭐⭐⭐ 11:45 SELL→BUY  drop=$25  rev=$22.18 (avg)  rate=100%  max=$26.36  med=$23.07  cases=4
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 12:27 SELL→BUY  drop=$25  rev=$22.65 (avg)  rate=100%  max=$30.95  med=$22.62  cases=8
+  ⭐⭐ 12:34 SELL→BUY  drop=$25  rev=$21.22 (avg)  rate=89%  max=$35.15  med=$20.92  cases=9
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 13:29 SELL→BUY  drop=$25  rev=$23.70 (avg)  rate=100%  max=$50.20  med=$21.16  cases=12
+  ⭐⭐⭐ 13:39 SELL→BUY  drop=$25  rev=$24.60 (avg)  rate=100%  max=$50.20  med=$21.36  cases=13
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 14:29 SELL→BUY  drop=$25  rev=$26.85 (avg)  rate=100%  max=$51.64  med=$22.94  cases=9
+  ⭐⭐⭐ 14:47 SELL→BUY  drop=$25  rev=$30.36 (avg)  rate=100%  max=$59.32  med=$29.90  cases=7
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 15:19 SELL→BUY  drop=$25  rev=$26.13 (avg)  rate=100%  max=$37.48  med=$24.56  cases=7
+  ⭐⭐⭐ 15:35 SELL→BUY  drop=$25  rev=$26.71 (avg)  rate=100%  max=$37.48  med=$31.59  cases=5
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 16:00 SELL→BUY  drop=$25  rev=$24.80 (avg)  rate=100%  max=$37.48  med=$23.45  cases=4
+  ⭐⭐⭐ 16:30 SELL→BUY  drop=$25  rev=$23.32 (avg)  rate=100%  max=$37.48  med=$17.16  cases=3
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 17:27 SELL→BUY  drop=$25  rev=$19.20 (avg)  rate=100%  max=$19.86  med=$19.27  cases=3
+  ⭐⭐⭐ 17:50 SELL→BUY  drop=$25  rev=$24.10 (avg)  rate=100%  max=$30.95  med=$22.89  cases=3
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 18:06 SELL→BUY  drop=$25  rev=$24.56 (avg)  rate=100%  max=$30.95  med=$23.12  cases=3
+  ⭐⭐⭐ 18:47 SELL→BUY  drop=$25  rev=$23.75 (avg)  rate=100%  max=$30.95  med=$23.12  cases=3
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 19:08 SELL→BUY  drop=$25  rev=$20.82 (avg)  rate=100%  max=$30.95  med=$17.24  cases=3
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 23:36 SELL→BUY  drop=$25  rev=$16.81 (avg)  rate=100%  max=$37.09  med=$11.68  cases=4
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 TUESDAY  (43 reversal signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 00:29 SELL→BUY  drop=$25  rev=$20.58 (avg)  rate=100%  max=$37.09  med=$20.36  cases=5
+  ⭐⭐⭐ 00:30 SELL→BUY  drop=$25  rev=$20.59 (avg)  rate=100%  max=$37.09  med=$20.36  cases=5
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 01:15 SELL→BUY  drop=$25  rev=$20.84 (avg)  rate=100%  max=$37.09  med=$20.37  cases=6
+  ⭐⭐⭐ 01:37 SELL→BUY  drop=$25  rev=$21.02 (avg)  rate=100%  max=$37.09  med=$20.36  cases=7
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐⭐ 02:29 SELL→BUY  drop=$25  rev=$21.65 (avg)  rate=86%  max=$39.82  med=$16.86  cases=7
+  ⭐⭐ 02:35 SELL→BUY  drop=$25  rev=$23.75 (avg)  rate=86%  max=$54.38  med=$16.86  cases=7
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 03:05 SELL→BUY  drop=$25  rev=$28.36 (avg)  rate=100%  max=$54.38  med=$23.50  cases=5
+  ⭐⭐⭐ 03:58 SELL→BUY  drop=$25  rev=$22.31 (avg)  rate=100%  max=$35.00  med=$22.36  cases=5
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 04:03 SELL→BUY  drop=$25  rev=$23.38 (avg)  rate=100%  max=$35.00  med=$22.36  cases=5
+  ⭐⭐⭐ 04:36 SELL→BUY  drop=$25  rev=$15.14 (avg)  rate=100%  max=$35.56  med=$12.98  cases=5
+
+  ── 05:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 05:14 SELL→BUY  drop=$25  rev=$12.01 (avg)  rate=100%  max=$18.16  med=$11.34  cases=5
+  ⭐⭐ 05:32 SELL→BUY  drop=$25  rev=$11.11 (avg)  rate=83%  max=$18.16  med=$10.47  cases=6
+
+  ── 06:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 06:22 SELL→BUY  drop=$25  rev=$10.69 (avg)  rate=100%  max=$17.21  med=$10.19  cases=7
+  ⭐⭐⭐ 06:53 SELL→BUY  drop=$25  rev=$18.94 (avg)  rate=100%  max=$42.55  med=$15.82  cases=6
+
+  ── 07:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 07:28 SELL→BUY  drop=$25  rev=$20.98 (avg)  rate=100%  max=$43.99  med=$20.00  cases=7
+  ⭐⭐⭐ 07:57 SELL→BUY  drop=$25  rev=$22.06 (avg)  rate=100%  max=$44.19  med=$17.78  cases=5
+
+  ── 08:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 08:18 SELL→BUY  drop=$25  rev=$29.90 (avg)  rate=100%  max=$46.51  med=$25.29  cases=5
+  ⭐⭐⭐ 08:57 SELL→BUY  drop=$25  rev=$28.91 (avg)  rate=100%  max=$46.51  med=$22.44  cases=5
+
+  ── 09:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 09:19 SELL→BUY  drop=$25  rev=$30.05 (avg)  rate=100%  max=$46.51  med=$24.24  cases=5
+  ⭐⭐⭐ 09:30 SELL→BUY  drop=$25  rev=$25.93 (avg)  rate=100%  max=$42.42  med=$22.96  cases=4
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 10:03 SELL→BUY  drop=$25  rev=$25.67 (avg)  rate=100%  max=$38.66  med=$22.97  cases=3
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 11:59 SELL→BUY  drop=$25  rev=$29.67 (avg)  rate=100%  max=$41.28  med=$35.10  cases=3
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 12:27 SELL→BUY  drop=$25  rev=$37.34 (avg)  rate=100%  max=$49.45  med=$39.59  cases=3
+  ⭐⭐⭐ 12:34 SELL→BUY  drop=$25  rev=$38.42 (avg)  rate=100%  max=$49.45  med=$39.59  cases=3
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 13:22 SELL→BUY  drop=$25  rev=$33.40 (avg)  rate=100%  max=$49.45  med=$39.52  cases=4
+  ⭐⭐⭐ 13:30 SELL→BUY  drop=$25  rev=$32.70 (avg)  rate=100%  max=$49.45  med=$39.44  cases=3
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 14:29 SELL→BUY  drop=$25  rev=$27.90 (avg)  rate=100%  max=$54.24  med=$23.43  cases=6
+  ⭐⭐⭐ 14:54 SELL→BUY  drop=$25  rev=$32.37 (avg)  rate=100%  max=$54.24  med=$26.86  cases=5
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 15:06 SELL→BUY  drop=$25  rev=$25.83 (avg)  rate=100%  max=$54.24  med=$19.99  cases=5
+  ⭐⭐⭐ 15:43 SELL→BUY  drop=$25  rev=$15.71 (avg)  rate=100%  max=$27.03  med=$14.49  cases=6
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 16:18 SELL→BUY  drop=$25  rev=$16.70 (avg)  rate=100%  max=$27.86  med=$16.53  cases=4
+  ⭐⭐⭐ 16:59 SELL→BUY  drop=$25  rev=$14.77 (avg)  rate=100%  max=$33.58  med=$12.15  cases=6
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 17:01 SELL→BUY  drop=$25  rev=$14.77 (avg)  rate=100%  max=$33.58  med=$12.28  cases=6
+  ⭐⭐⭐ 17:55 SELL→BUY  drop=$25  rev=$17.68 (avg)  rate=100%  max=$25.37  med=$19.81  cases=3
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐ 18:05 SELL→BUY  drop=$25  rev=$10.69 (avg)  rate=80%  max=$25.37  med=$7.98  cases=5
+  ⭐⭐⭐ 18:58 SELL→BUY  drop=$25  rev=$12.64 (avg)  rate=100%  max=$25.37  med=$9.44  cases=4
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 19:03 SELL→BUY  drop=$25  rev=$14.14 (avg)  rate=100%  max=$25.37  med=$10.78  cases=3
+  ⭐⭐⭐ 19:34 SELL→BUY  drop=$25  rev=$14.14 (avg)  rate=100%  max=$25.37  med=$10.78  cases=3
+
+  ── 20:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 20:16 SELL→BUY  drop=$25  rev=$17.62 (avg)  rate=100%  max=$25.37  med=$14.00  cases=3
+  ⭐⭐⭐ 20:30 SELL→BUY  drop=$25  rev=$17.62 (avg)  rate=100%  max=$25.37  med=$14.00  cases=3
+
+  ── 21:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 21:00 SELL→BUY  drop=$25  rev=$17.62 (avg)  rate=100%  max=$25.37  med=$14.00  cases=3
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 23:29 SELL→BUY  drop=$25  rev=$21.14 (avg)  rate=100%  max=$32.32  med=$20.78  cases=3
+  ⭐⭐⭐ 23:30 SELL→BUY  drop=$25  rev=$22.46 (avg)  rate=100%  max=$33.66  med=$20.78  cases=3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 WEDNESDAY  (38 reversal signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 00:03 SELL→BUY  drop=$25  rev=$19.96 (avg)  rate=100%  max=$33.66  med=$20.17  cases=4
+  ⭐⭐⭐ 00:36 SELL→BUY  drop=$25  rev=$17.62 (avg)  rate=100%  max=$36.10  med=$15.83  cases=5
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 01:27 SELL→BUY  drop=$25  rev=$17.45 (avg)  rate=100%  max=$41.10  med=$11.90  cases=6
+  ⭐⭐⭐ 01:59 SELL→BUY  drop=$25  rev=$20.29 (avg)  rate=100%  max=$41.10  med=$18.43  cases=6
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 02:02 SELL→BUY  drop=$25  rev=$20.33 (avg)  rate=100%  max=$41.10  med=$18.43  cases=6
+  ⭐⭐⭐ 02:39 SELL→BUY  drop=$25  rev=$20.92 (avg)  rate=100%  max=$34.69  med=$20.17  cases=5
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 03:02 SELL→BUY  drop=$25  rev=$17.96 (avg)  rate=100%  max=$25.75  med=$20.17  cases=3
+  ⭐⭐⭐ 03:36 SELL→BUY  drop=$25  rev=$28.44 (avg)  rate=100%  max=$42.43  med=$35.77  cases=3
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 04:52 SELL→BUY  drop=$25  rev=$26.09 (avg)  rate=100%  max=$46.79  med=$19.18  cases=3
+
+  ── 08:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 08:04 SELL→BUY  drop=$25  rev=$10.11 (avg)  rate=100%  max=$13.07  med=$10.51  cases=3
+  ⭐⭐⭐ 08:58 SELL→BUY  drop=$25  rev=$13.60 (avg)  rate=100%  max=$17.70  med=$11.86  cases=3
+
+  ── 09:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 09:26 SELL→BUY  drop=$25  rev=$16.62 (avg)  rate=100%  max=$22.86  med=$17.70  cases=3
+  ⭐⭐⭐ 09:52 SELL→BUY  drop=$25  rev=$23.78 (avg)  rate=100%  max=$31.96  med=$23.87  cases=4
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 10:25 SELL→BUY  drop=$25  rev=$28.89 (avg)  rate=100%  max=$36.98  med=$25.16  cases=3
+  ⭐⭐⭐ 10:33 SELL→BUY  drop=$25  rev=$22.53 (avg)  rate=100%  max=$37.90  med=$15.81  cases=5
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 11:29 SELL→BUY  drop=$25  rev=$28.59 (avg)  rate=100%  max=$59.68  med=$21.79  cases=4
+  ⭐⭐⭐ 11:41 SELL→BUY  drop=$25  rev=$40.88 (avg)  rate=100%  max=$59.68  med=$38.09  cases=4
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 12:25 SELL→BUY  drop=$25  rev=$37.20 (avg)  rate=100%  max=$77.47  med=$32.48  cases=6
+  ⭐⭐⭐ 12:54 SELL→BUY  drop=$25  rev=$40.36 (avg)  rate=100%  max=$77.47  med=$34.98  cases=6
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 13:01 SELL→BUY  drop=$25  rev=$39.40 (avg)  rate=100%  max=$77.47  med=$33.68  cases=7
+  ⭐⭐⭐ 13:40 SELL→BUY  drop=$25  rev=$36.68 (avg)  rate=100%  max=$77.47  med=$29.83  cases=8
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 14:26 SELL→BUY  drop=$25  rev=$38.04 (avg)  rate=100%  max=$81.89  med=$26.30  cases=9
+  ⭐⭐⭐ 14:52 SELL→BUY  drop=$25  rev=$32.62 (avg)  rate=100%  max=$77.47  med=$26.85  cases=6
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 15:26 SELL→BUY  drop=$25  rev=$30.91 (avg)  rate=100%  max=$54.62  med=$37.54  cases=7
+  ⭐⭐⭐ 15:35 SELL→BUY  drop=$25  rev=$31.34 (avg)  rate=100%  max=$54.58  med=$31.57  cases=7
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐⭐ 16:29 SELL→BUY  drop=$25  rev=$30.55 (avg)  rate=88%  max=$54.58  med=$29.73  cases=8
+  ⭐⭐ 16:41 SELL→BUY  drop=$25  rev=$34.61 (avg)  rate=88%  max=$56.06  med=$33.23  cases=8
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 17:03 SELL→BUY  drop=$25  rev=$36.26 (avg)  rate=100%  max=$54.29  med=$39.09  cases=6
+  ⭐⭐ 17:32 SELL→BUY  drop=$25  rev=$26.06 (avg)  rate=80%  max=$43.20  med=$26.86  cases=5
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 18:16 SELL→BUY  drop=$25  rev=$31.03 (avg)  rate=100%  max=$43.56  med=$40.07  cases=5
+  ⭐⭐⭐ 18:52 SELL→BUY  drop=$25  rev=$36.80 (avg)  rate=100%  max=$51.50  med=$42.55  cases=4
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 19:01 SELL→BUY  drop=$25  rev=$36.97 (avg)  rate=100%  max=$52.16  med=$42.55  cases=4
+  ⭐⭐⭐ 19:30 SELL→BUY  drop=$25  rev=$31.90 (avg)  rate=100%  max=$43.56  med=$41.53  cases=3
+
+  ── 20:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 20:08 SELL→BUY  drop=$25  rev=$30.59 (avg)  rate=100%  max=$41.53  med=$34.06  cases=4
+  ⭐⭐⭐ 20:59 SELL→BUY  drop=$25  rev=$35.18 (avg)  rate=100%  max=$47.70  med=$38.23  cases=4
+
+  ── 21:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 21:04 SELL→BUY  drop=$25  rev=$36.43 (avg)  rate=100%  max=$52.67  med=$38.23  cases=4
+  ⭐⭐⭐ 21:30 SELL→BUY  drop=$25  rev=$36.33 (avg)  rate=100%  max=$57.49  med=$34.93  cases=3
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 23:41 SELL→BUY  drop=$25  rev=$20.71 (avg)  rate=100%  max=$38.11  med=$12.11  cases=3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 THURSDAY  (39 reversal signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 00:29 SELL→BUY  drop=$25  rev=$16.59 (avg)  rate=100%  max=$28.52  med=$15.22  cases=3
+  ⭐⭐⭐ 00:58 SELL→BUY  drop=$25  rev=$17.41 (avg)  rate=100%  max=$28.52  med=$15.22  cases=3
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 01:10 SELL→BUY  drop=$25  rev=$15.07 (avg)  rate=100%  max=$28.52  med=$12.14  cases=4
+  ⭐⭐⭐ 01:57 SELL→BUY  drop=$25  rev=$19.29 (avg)  rate=100%  max=$38.58  med=$14.77  cases=4
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 02:27 SELL→BUY  drop=$25  rev=$19.99 (avg)  rate=100%  max=$38.58  med=$13.86  cases=3
+  ⭐⭐⭐ 02:31 SELL→BUY  drop=$25  rev=$19.24 (avg)  rate=100%  max=$38.58  med=$15.27  cases=4
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 03:28 SELL→BUY  drop=$25  rev=$22.23 (avg)  rate=100%  max=$38.58  med=$22.17  cases=6
+  ⭐⭐⭐ 03:31 SELL→BUY  drop=$25  rev=$20.51 (avg)  rate=100%  max=$38.58  med=$19.48  cases=6
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐⭐ 04:29 SELL→BUY  drop=$25  rev=$19.37 (avg)  rate=80%  max=$48.91  med=$10.99  cases=5
+  ⭐⭐⭐ 04:54 SELL→BUY  drop=$25  rev=$14.30 (avg)  rate=100%  max=$21.43  med=$12.13  cases=4
+
+  ── 05:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 05:06 SELL→BUY  drop=$25  rev=$15.41 (avg)  rate=100%  max=$21.43  med=$16.19  cases=4
+  ⭐⭐⭐ 05:58 SELL→BUY  drop=$25  rev=$13.80 (avg)  rate=100%  max=$22.93  med=$12.89  cases=5
+
+  ── 06:00 UTC+1 (Algeria) ──
+  ⭐⭐ 06:28 SELL→BUY  drop=$25  rev=$19.07 (avg)  rate=80%  max=$40.05  med=$13.31  cases=5
+  ⭐⭐⭐ 06:35 SELL→BUY  drop=$25  rev=$10.37 (avg)  rate=100%  max=$13.31  med=$11.52  cases=4
+
+  ── 07:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 07:08 SELL→BUY  drop=$25  rev=$14.76 (avg)  rate=100%  max=$30.57  med=$12.82  cases=6
+  ⭐⭐⭐ 07:51 SELL→BUY  drop=$25  rev=$10.42 (avg)  rate=100%  max=$14.59  med=$12.28  cases=5
+
+  ── 08:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 08:17 SELL→BUY  drop=$25  rev=$12.18 (avg)  rate=100%  max=$14.59  med=$13.40  cases=4
+  ⭐⭐⭐ 08:58 SELL→BUY  drop=$25  rev=$18.60 (avg)  rate=100%  max=$29.83  med=$19.99  cases=5
+
+  ── 09:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 09:09 SELL→BUY  drop=$25  rev=$21.15 (avg)  rate=100%  max=$29.83  med=$21.04  cases=4
+  ⭐⭐⭐ 09:53 SELL→BUY  drop=$25  rev=$26.25 (avg)  rate=100%  max=$35.29  med=$27.08  cases=4
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 10:20 SELL→BUY  drop=$25  rev=$20.98 (avg)  rate=100%  max=$32.00  med=$22.25  cases=4
+  ⭐⭐⭐ 10:31 SELL→BUY  drop=$25  rev=$22.09 (avg)  rate=100%  max=$32.00  med=$24.68  cases=5
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 11:29 SELL→BUY  drop=$25  rev=$29.52 (avg)  rate=100%  max=$38.44  med=$32.51  cases=7
+  ⭐⭐⭐ 11:49 SELL→BUY  drop=$25  rev=$39.01 (avg)  rate=100%  max=$51.74  med=$38.53  cases=6
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 12:02 SELL→BUY  drop=$25  rev=$39.24 (avg)  rate=100%  max=$51.74  med=$39.22  cases=6
+  ⭐⭐⭐ 12:57 SELL→BUY  drop=$25  rev=$41.30 (avg)  rate=100%  max=$65.14  med=$39.70  cases=6
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 13:25 SELL→BUY  drop=$25  rev=$44.14 (avg)  rate=100%  max=$90.26  med=$40.85  cases=8
+  ⭐⭐⭐ 13:36 SELL→BUY  drop=$25  rev=$44.28 (avg)  rate=100%  max=$90.26  med=$40.85  cases=8
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 14:08 SELL→BUY  drop=$25  rev=$33.52 (avg)  rate=100%  max=$52.21  med=$29.49  cases=7
+  ⭐⭐⭐ 14:52 SELL→BUY  drop=$25  rev=$33.13 (avg)  rate=100%  max=$54.15  med=$34.92  cases=6
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 15:13 SELL→BUY  drop=$25  rev=$41.33 (avg)  rate=100%  max=$54.15  med=$44.51  cases=4
+  ⭐⭐⭐ 15:30 SELL→BUY  drop=$25  rev=$36.80 (avg)  rate=100%  max=$51.73  med=$43.97  cases=5
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 16:13 SELL→BUY  drop=$25  rev=$30.98 (avg)  rate=100%  max=$43.97  med=$25.65  cases=3
+  ⭐⭐⭐ 16:44 SELL→BUY  drop=$25  rev=$22.87 (avg)  rate=100%  max=$36.04  med=$24.20  cases=4
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 17:13 SELL→BUY  drop=$25  rev=$22.63 (avg)  rate=100%  max=$27.84  med=$25.87  cases=4
+  ⭐⭐⭐ 17:44 SELL→BUY  drop=$25  rev=$19.96 (avg)  rate=100%  max=$27.84  med=$21.91  cases=4
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 18:00 SELL→BUY  drop=$25  rev=$15.90 (avg)  rate=100%  max=$26.63  med=$15.16  cases=4
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 23:29 SELL→BUY  drop=$25  rev=$24.45 (avg)  rate=100%  max=$49.80  med=$16.56  cases=3
+  ⭐⭐⭐ 23:45 SELL→BUY  drop=$25  rev=$26.14 (avg)  rate=100%  max=$49.80  med=$18.21  cases=3
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 FRIDAY  (27 reversal signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 00:11 SELL→BUY  drop=$25  rev=$13.72 (avg)  rate=100%  max=$23.72  med=$10.70  cases=3
+  ⭐⭐ 00:57 SELL→BUY  drop=$25  rev=$13.24 (avg)  rate=80%  max=$30.39  med=$11.61  cases=5
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ⭐⭐ 01:29 SELL→BUY  drop=$25  rev=$17.27 (avg)  rate=83%  max=$41.89  med=$15.09  cases=6
+  ⭐⭐⭐ 01:59 SELL→BUY  drop=$25  rev=$23.36 (avg)  rate=100%  max=$45.32  med=$20.38  cases=4
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 02:28 SELL→BUY  drop=$25  rev=$33.76 (avg)  rate=100%  max=$55.09  med=$28.94  cases=3
+  ⭐⭐⭐ 02:32 SELL→BUY  drop=$25  rev=$34.48 (avg)  rate=100%  max=$57.25  med=$28.94  cases=3
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 03:01 SELL→BUY  drop=$25  rev=$33.24 (avg)  rate=100%  max=$34.62  med=$32.99  cases=3
+  ⭐⭐⭐ 03:56 SELL→BUY  drop=$25  rev=$36.39 (avg)  rate=100%  max=$51.24  med=$38.54  cases=3
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 04:22 SELL→BUY  drop=$25  rev=$42.37 (avg)  rate=100%  max=$60.06  med=$41.91  cases=3
+  ⭐⭐⭐ 04:31 SELL→BUY  drop=$25  rev=$28.03 (avg)  rate=100%  max=$41.91  med=$25.15  cases=3
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 10:31 SELL→BUY  drop=$25  rev=$49.62 (avg)  rate=100%  max=$81.86  med=$56.11  cases=3
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 11:05 SELL→BUY  drop=$25  rev=$40.14 (avg)  rate=100%  max=$102.32  med=$21.00  cases=4
+  ⭐⭐⭐ 11:52 SELL→BUY  drop=$25  rev=$52.36 (avg)  rate=100%  max=$108.47  med=$44.04  cases=5
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 12:23 SELL→BUY  drop=$25  rev=$41.85 (avg)  rate=100%  max=$110.46  med=$33.21  cases=8
+  ⭐⭐⭐ 12:53 SELL→BUY  drop=$25  rev=$47.39 (avg)  rate=100%  max=$110.46  med=$40.16  cases=9
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 13:06 SELL→BUY  drop=$25  rev=$45.41 (avg)  rate=100%  max=$110.46  med=$37.56  cases=10
+  ⭐⭐⭐ 13:50 SELL→BUY  drop=$25  rev=$47.44 (avg)  rate=100%  max=$110.46  med=$42.82  cases=12
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 14:29 SELL→BUY  drop=$25  rev=$51.37 (avg)  rate=100%  max=$110.46  med=$44.02  cases=8
+  ⭐⭐⭐ 14:31 SELL→BUY  drop=$25  rev=$42.18 (avg)  rate=100%  max=$83.43  med=$37.16  cases=8
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 15:20 SELL→BUY  drop=$25  rev=$32.32 (avg)  rate=100%  max=$46.47  med=$33.11  cases=6
+  ⭐⭐⭐ 15:40 SELL→BUY  drop=$25  rev=$29.89 (avg)  rate=100%  max=$45.73  med=$27.07  cases=6
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 16:00 SELL→BUY  drop=$25  rev=$21.25 (avg)  rate=100%  max=$42.87  med=$18.10  cases=5
+  ⭐⭐⭐ 16:30 SELL→BUY  drop=$25  rev=$18.29 (avg)  rate=100%  max=$42.87  med=$11.24  cases=5
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 17:26 SELL→BUY  drop=$25  rev=$20.08 (avg)  rate=100%  max=$22.72  med=$20.22  cases=3
+  ⭐⭐⭐ 17:53 SELL→BUY  drop=$25  rev=$18.98 (avg)  rate=100%  max=$26.47  med=$21.77  cases=3
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 18:16 SELL→BUY  drop=$25  rev=$19.45 (avg)  rate=100%  max=$26.47  med=$21.77  cases=3
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 19:19 SELL→BUY  drop=$25  rev=$19.01 (avg)  rate=100%  max=$26.47  med=$21.77  cases=3
+
+  ────────────────────────────────────────────────
+  How to trade reversal signals:
+    1. At HH:MM (UTC+1 Algeria), enter SELL position
+    2. Take small profit ($2-5) when possible
+    3. If price drops $25+, CLOSE SELL and OPEN BUY (reversal)
+    4. Reversal BUY targets avg_reversal dollars profit
+  ────────────────────────────────────────────────

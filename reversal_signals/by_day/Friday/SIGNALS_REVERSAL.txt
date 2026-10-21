@@ -1,0 +1,124 @@
+==============================================================================================================
+  XAUUSD Reversal Signals — Friday
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Friday
+  Generated:    2026-10-21 23:13:56
+  Method:       All Fridays grouped together
+  Data source:  1-minute candles (120 days, 172,797 candles)
+  Trigger:      Price drops $25+ from entry (in next 4 hours)
+  Signal:       After $25 drop, BUY (reversal expected)
+  Filters:      ≥3 historical cases, ≥80% reversal rate, ≥$5 avg reversal
+  Total signals: 27
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM SELL→BUY  drop=$25  rev=$X.XX (avg)  rate=ZZ%  max=$Y.YY  cases=N
+  Timezone: UTC+1 (Algeria)
+  Lookahead: 4 hours (240 minutes)
+==============================================================================================================
+
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 00:11 SELL→BUY  drop=$25  rev=$13.72 (avg)  rate=100%  max=$23.72  med=$10.70  cases=3
+      Historical dates: 2026-08-13, 2026-08-27, 2026-10-01
+  ⭐⭐ 00:57 SELL→BUY  drop=$25  rev=$13.24 (avg)  rate=80%  max=$30.39  med=$11.61  cases=5
+      Historical dates: 2026-06-25, 2026-07-30, 2026-08-13, +2 more
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ⭐⭐ 01:29 SELL→BUY  drop=$25  rev=$17.27 (avg)  rate=83%  max=$41.89  med=$15.09  cases=6
+      Historical dates: 2026-06-26, 2026-07-24, 2026-07-31, +3 more
+  ⭐⭐⭐ 01:59 SELL→BUY  drop=$25  rev=$23.36 (avg)  rate=100%  max=$45.32  med=$20.38  cases=4
+      Historical dates: 2026-06-26, 2026-07-31, 2026-08-14, +1 more
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 02:28 SELL→BUY  drop=$25  rev=$33.76 (avg)  rate=100%  max=$55.09  med=$28.94  cases=3
+      Historical dates: 2026-06-26, 2026-08-14, 2026-10-02
+  ⭐⭐⭐ 02:32 SELL→BUY  drop=$25  rev=$34.48 (avg)  rate=100%  max=$57.25  med=$28.94  cases=3
+      Historical dates: 2026-06-26, 2026-08-14, 2026-10-02
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 03:01 SELL→BUY  drop=$25  rev=$33.24 (avg)  rate=100%  max=$34.62  med=$32.99  cases=3
+      Historical dates: 2026-06-26, 2026-09-11, 2026-09-18
+  ⭐⭐⭐ 03:56 SELL→BUY  drop=$25  rev=$36.39 (avg)  rate=100%  max=$51.24  med=$38.54  cases=3
+      Historical dates: 2026-06-26, 2026-09-11, 2026-09-25
+
+  ── 04:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 04:22 SELL→BUY  drop=$25  rev=$42.37 (avg)  rate=100%  max=$60.06  med=$41.91  cases=3
+      Historical dates: 2026-06-26, 2026-09-11, 2026-09-25
+  ⭐⭐⭐ 04:31 SELL→BUY  drop=$25  rev=$28.03 (avg)  rate=100%  max=$41.91  med=$25.15  cases=3
+      Historical dates: 2026-06-26, 2026-07-24, 2026-09-25
+
+  ── 10:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 10:31 SELL→BUY  drop=$25  rev=$49.62 (avg)  rate=100%  max=$81.86  med=$56.11  cases=3
+      Historical dates: 2026-09-04, 2026-09-11, 2026-09-18
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 11:05 SELL→BUY  drop=$25  rev=$40.14 (avg)  rate=100%  max=$102.32  med=$21.00  cases=4
+      Historical dates: 2026-07-17, 2026-09-04, 2026-09-11, +1 more
+  ⭐⭐⭐ 11:52 SELL→BUY  drop=$25  rev=$52.36 (avg)  rate=100%  max=$108.47  med=$44.04  cases=5
+      Historical dates: 2026-07-17, 2026-07-31, 2026-09-04, +2 more
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 12:23 SELL→BUY  drop=$25  rev=$41.85 (avg)  rate=100%  max=$110.46  med=$33.21  cases=8
+      Historical dates: 2026-07-17, 2026-07-31, 2026-08-28, +5 more
+  ⭐⭐⭐ 12:53 SELL→BUY  drop=$25  rev=$47.39 (avg)  rate=100%  max=$110.46  med=$40.16  cases=9
+      Historical dates: 2026-07-10, 2026-07-17, 2026-07-31, +6 more
+
+  ── 13:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 13:06 SELL→BUY  drop=$25  rev=$45.41 (avg)  rate=100%  max=$110.46  med=$37.56  cases=10
+      Historical dates: 2026-07-10, 2026-07-17, 2026-07-31, +7 more
+  ⭐⭐⭐ 13:50 SELL→BUY  drop=$25  rev=$47.44 (avg)  rate=100%  max=$110.46  med=$42.82  cases=12
+      Historical dates: 2026-07-03, 2026-07-10, 2026-07-17, +9 more
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 14:29 SELL→BUY  drop=$25  rev=$51.37 (avg)  rate=100%  max=$110.46  med=$44.02  cases=8
+      Historical dates: 2026-07-10, 2026-07-17, 2026-07-31, +5 more
+  ⭐⭐⭐ 14:31 SELL→BUY  drop=$25  rev=$42.18 (avg)  rate=100%  max=$83.43  med=$37.16  cases=8
+      Historical dates: 2026-07-10, 2026-07-17, 2026-07-31, +5 more
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 15:20 SELL→BUY  drop=$25  rev=$32.32 (avg)  rate=100%  max=$46.47  med=$33.11  cases=6
+      Historical dates: 2026-07-10, 2026-08-28, 2026-09-11, +3 more
+  ⭐⭐⭐ 15:40 SELL→BUY  drop=$25  rev=$29.89 (avg)  rate=100%  max=$45.73  med=$27.07  cases=6
+      Historical dates: 2026-07-10, 2026-08-07, 2026-08-28, +3 more
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 16:00 SELL→BUY  drop=$25  rev=$21.25 (avg)  rate=100%  max=$42.87  med=$18.10  cases=5
+      Historical dates: 2026-07-10, 2026-08-28, 2026-09-11, +2 more
+  ⭐⭐⭐ 16:30 SELL→BUY  drop=$25  rev=$18.29 (avg)  rate=100%  max=$42.87  med=$11.24  cases=5
+      Historical dates: 2026-07-10, 2026-08-28, 2026-09-11, +2 more
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 17:26 SELL→BUY  drop=$25  rev=$20.08 (avg)  rate=100%  max=$22.72  med=$20.22  cases=3
+      Historical dates: 2026-08-07, 2026-08-28, 2026-09-04
+  ⭐⭐⭐ 17:53 SELL→BUY  drop=$25  rev=$18.98 (avg)  rate=100%  max=$26.47  med=$21.77  cases=3
+      Historical dates: 2026-07-24, 2026-08-28, 2026-09-04
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 18:16 SELL→BUY  drop=$25  rev=$19.45 (avg)  rate=100%  max=$26.47  med=$21.77  cases=3
+      Historical dates: 2026-06-26, 2026-08-28, 2026-09-04
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ⭐⭐⭐ 19:19 SELL→BUY  drop=$25  rev=$19.01 (avg)  rate=100%  max=$26.47  med=$21.77  cases=3
+      Historical dates: 2026-08-28, 2026-09-04, 2026-09-11
+
+  ----------------------------------------------------------------------------------------------------------
+  📊 Friday Summary
+  ----------------------------------------------------------------------------------------------------------
+    Total: 27 reversal signals
+    Average reversal: $32.33
+    Average reversal rate: 98.6%
+
+  Top 5 highest reversal rates:
+    100%  00:11  rev=$13.72  max=$23.72
+    100%  01:59  rev=$23.36  max=$45.32
+    100%  02:28  rev=$33.76  max=$55.09
+    100%  02:32  rev=$34.48  max=$57.25
+    100%  03:01  rev=$33.24  max=$34.62
+
+  ────────────────────────────────────────────────
+  How to trade reversal signals:
+    1. At HH:MM (UTC+1 (Algeria)), enter SELL position (primary direction)
+    2. Take profit at $2-5 (small target)
+    3. If price drops $25+, CLOSE SELL and OPEN BUY
+    4. The BUY (reversal) targets the avg_reversal value as profit
+  ────────────────────────────────────────────────
