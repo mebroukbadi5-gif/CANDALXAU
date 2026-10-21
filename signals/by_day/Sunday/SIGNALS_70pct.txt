@@ -1,0 +1,83 @@
+================================================================================
+  XAUUSD Signals — Sunday — STANDARD (≥70% accuracy)
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:     XAUUSD (Gold) ONLY
+  Day:       Sunday
+  Generated: 2026-10-21 20:33:26
+  Threshold: ≥70% accuracy
+  Data:      974 days × 5m candles (2021-2026)
+  Total signals: 44
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ M<expiry> XAUUSD-OTC HH:MM <CALL|PUT> acc=XX% target=$X
+  Timezone: UTC (add +1 hour for UTC+1 / Algeria)
+================================================================================
+
+
+  ── 22:00 UTC | avg move: 15pt | up:62% down:38% | bias: UP ──
+  ⭐⭐⭐ M1  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  22:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  22:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  22:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  22:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  22:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  22:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  22:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  22:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  22:45 CALL  acc=98% target=$1
+
+  ── 23:00 UTC | avg move: 16pt | up:52% down:48% | bias: UP ──
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:00 CALL  acc=98% target=$2
+  ⭐⭐⭐ M3  XAUUSD-OTC  23:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  23:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M10 XAUUSD-OTC  23:00 CALL  acc=96% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  23:00 CALL  acc=95% target=$2
+  ⭐⭐ M5  XAUUSD-OTC  23:00 CALL  acc=92% target=$2
+  ⭐ M10 XAUUSD-OTC  23:00 CALL  acc=88% target=$2
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  23:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  23:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:15 CALL  acc=97% target=$2
+  ⭐⭐⭐ M10 XAUUSD-OTC  23:15 CALL  acc=95% target=$1
+  ⭐⭐ M3  XAUUSD-OTC  23:15 CALL  acc=94% target=$2
+  ⭐⭐ M5  XAUUSD-OTC  23:15 CALL  acc=91% target=$2
+  ⭐ M10 XAUUSD-OTC  23:15 CALL  acc=87% target=$2
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  23:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  23:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:30 CALL  acc=96% target=$2
+  ⭐⭐ M10 XAUUSD-OTC  23:30 CALL  acc=94% target=$1
+  ⭐⭐ M3  XAUUSD-OTC  23:30 CALL  acc=93% target=$2
+  ⭐⭐ M5  XAUUSD-OTC  23:30 CALL  acc=90% target=$2
+  ⭐ M10 XAUUSD-OTC  23:30 CALL  acc=86% target=$2
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD-OTC  23:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD-OTC  23:45 CALL  acc=97% target=$1
+  ⭐⭐⭐ M1  XAUUSD-OTC  23:45 CALL  acc=95% target=$2
+  ⭐⭐ M10 XAUUSD-OTC  23:45 CALL  acc=93% target=$1
+  ⭐⭐ M3  XAUUSD-OTC  23:45 CALL  acc=92% target=$2
+  ⭐ M5  XAUUSD-OTC  23:45 CALL  acc=89% target=$2
+  ⭐ M10 XAUUSD-OTC  23:45 CALL  acc=85% target=$2
+
+  ----------------------------------------------------------------------------
+  📊 Sunday Summary
+  ----------------------------------------------------------------------------
+    22:00 →  12 signals  ███
+    23:00 →  32 signals  ███████
+    Total:  44 signals
+
+  Top 5 highest-accuracy signals:
+    98%  22:00  CALL  M1  target=$1
+    98%  22:00  CALL  M3  target=$1
+    98%  22:00  CALL  M5  target=$1
+    98%  22:15  CALL  M1  target=$1
+    98%  22:15  CALL  M3  target=$1
+
+  ────────────────────────────────────────────────
+  MTG1 Strategy:
+    Entry 1: bet 1× → if WIN, take profit & stop
+    Entry 2: bet 2× → if WIN, recover loss & profit
+    Stop:    after Entry 2 loss → max drawdown = 3×
+  ────────────────────────────────────────────────

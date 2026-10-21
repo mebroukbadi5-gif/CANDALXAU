@@ -2,7 +2,7 @@
   FutureQuantVexa v5.3 — HIGH TIER (≥80% accuracy)
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) ONLY
-  Generated: 2026-10-21 20:21:37
+  Generated: 2026-10-21 20:33:26
   Threshold: ≥80% accuracy (directional + movement combined)
   Coverage:  7 weekdays × 24h UTC × 4 minute-offsets (00/15/30/45)
   Data:      974 days × 5m candles (2021-2026)
