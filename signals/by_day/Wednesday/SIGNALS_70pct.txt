@@ -1,13 +1,13 @@
 ====================================================================================================
-  XAUUSD Signals — Wednesday — HIGH (≥70% recurring + ≥$0.50 movement)
+  XAUUSD Signals — Wednesday — ELITE (≥70% recurring + ≥$1 movement)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Wednesday
-  Generated:    2026-10-21 21:34:03
+  Generated:    2026-10-21 21:43:43
   Threshold:    ≥70% recurring direction + ≥$0.50 avg movement
   Window:       30 minutes from signal time
   Data:         974 days × 5m candles (2024-2026)
-  Total signals: 13
+  Total signals: 6
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
   Timezone: UTC+1 (Algeria) (already converted from UTC)
@@ -19,16 +19,7 @@
   ── 00:00 UTC+1 (Algeria) ──
   ⭐ 00:15 CALL  rate=71%  move=$2.37 (avg)  max=$49.16  med=$0.90  samples=139
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=84%  move=$0.87 (avg)  max=$21.55  med=$0.00  samples=139
-
   ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=84%  move=$0.77 (avg)  max=$19.49  med=$0.00  samples=139
-  ⭐⭐ 23:05 CALL  rate=85%  move=$0.80 (avg)  max=$23.63  med=$0.00  samples=139
-  ⭐⭐ 23:10 CALL  rate=84%  move=$0.74 (avg)  max=$16.71  med=$0.00  samples=139
-  ⭐⭐ 23:15 CALL  rate=86%  move=$0.83 (avg)  max=$16.24  med=$0.00  samples=139
-  ⭐⭐ 23:20 CALL  rate=86%  move=$0.80 (avg)  max=$24.77  med=$0.00  samples=139
-  ⭐⭐ 23:25 CALL  rate=90%  move=$0.94 (avg)  max=$34.80  med=$0.00  samples=139
   ⭐ 23:30 CALL  rate=75%  move=$4.77 (avg)  max=$33.08  med=$3.08  samples=139
   ⭐ 23:35 CALL  rate=73%  move=$4.91 (avg)  max=$35.43  med=$3.20  samples=139
   ⭐ 23:40 CALL  rate=73%  move=$5.16 (avg)  max=$32.74  med=$3.67  samples=139
@@ -38,8 +29,8 @@
   ------------------------------------------------------------------------------------------------
   📊 Wednesday Summary
   ------------------------------------------------------------------------------------------------
-    Total: 13 signals (top patterns)
-    Direction split: CALL=13, PUT=0
+    Total: 6 signals (top patterns)
+    Direction split: CALL=6, PUT=0
 
   Top 5 largest avg movements:
     $5.58  23:50  CALL  (rate=71%, max=$36.76)
@@ -49,11 +40,11 @@
     $4.57  23:55  CALL  (rate=82%, max=$36.76)
 
   Top 5 highest recurring rates:
-    90%  23:25  CALL  (move=$0.94, max=$34.80)
-    86%  23:15  CALL  (move=$0.83, max=$16.24)
-    86%  23:20  CALL  (move=$0.80, max=$24.77)
-    85%  23:05  CALL  (move=$0.80, max=$23.63)
-    84%  22:55  CALL  (move=$0.87, max=$21.55)
+    82%  23:55  CALL  (move=$4.57, max=$36.76)
+    75%  23:30  CALL  (move=$4.77, max=$33.08)
+    73%  23:35  CALL  (move=$4.91, max=$35.43)
+    73%  23:40  CALL  (move=$5.16, max=$32.74)
+    71%  00:15  CALL  (move=$2.37, max=$49.16)
 
   ────────────────────────────────────────────────
   How to read:

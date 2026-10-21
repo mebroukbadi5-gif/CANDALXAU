@@ -1,12 +1,12 @@
 ====================================================================================================
-  CANDALXAU Signal Engine v9.0 — HIGH TIER (≥70% recurring)
+  CANDALXAU Signal Engine v9.0 — ELITE TIER (≥70% recurring)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
-  Generated:    2026-10-21 21:34:03
+  Generated:    2026-10-21 21:43:43
   Threshold:    ≥70% recurring direction + ≥$0.50 avg movement
   Window:       30 minutes from signal time
   Data:         974 days × 5m candles (2024-2026)
-  Total signals: 38
+  Total signals: 15
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
   Timezone: UTC+1 (Algeria)
@@ -14,44 +14,27 @@
 ====================================================================================================
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 MONDAY  (3 signals)  — Times in UTC+1 (Algeria)
+  📅 MONDAY  (1 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=89%  move=$0.75 (avg)  max=$34.60  med=$0.00  samples=139
-
   ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=88%  move=$0.66 (avg)  max=$30.83  med=$0.00  samples=139
   ⭐ 23:55 CALL  rate=73%  move=$3.81 (avg)  max=$19.27  med=$2.20  samples=139
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 TUESDAY  (3 signals)  — Times in UTC+1 (Algeria)
+  📅 TUESDAY  (1 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=86%  move=$0.73 (avg)  max=$19.76  med=$0.00  samples=140
-
   ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 23:15 CALL  rate=90%  move=$0.57 (avg)  max=$13.35  med=$0.00  samples=140
   ⭐ 23:55 CALL  rate=72%  move=$3.75 (avg)  max=$42.35  med=$1.89  samples=139
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 WEDNESDAY  (13 signals)  — Times in UTC+1 (Algeria)
+  📅 WEDNESDAY  (6 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ── 00:00 UTC+1 (Algeria) ──
   ⭐ 00:15 CALL  rate=71%  move=$2.37 (avg)  max=$49.16  med=$0.90  samples=139
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=84%  move=$0.87 (avg)  max=$21.55  med=$0.00  samples=139
-
   ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=84%  move=$0.77 (avg)  max=$19.49  med=$0.00  samples=139
-  ⭐⭐ 23:05 CALL  rate=85%  move=$0.80 (avg)  max=$23.63  med=$0.00  samples=139
-  ⭐⭐ 23:10 CALL  rate=84%  move=$0.74 (avg)  max=$16.71  med=$0.00  samples=139
-  ⭐⭐ 23:15 CALL  rate=86%  move=$0.83 (avg)  max=$16.24  med=$0.00  samples=139
-  ⭐⭐ 23:20 CALL  rate=86%  move=$0.80 (avg)  max=$24.77  med=$0.00  samples=139
-  ⭐⭐ 23:25 CALL  rate=90%  move=$0.94 (avg)  max=$34.80  med=$0.00  samples=139
   ⭐ 23:30 CALL  rate=75%  move=$4.77 (avg)  max=$33.08  med=$3.08  samples=139
   ⭐ 23:35 CALL  rate=73%  move=$4.91 (avg)  max=$35.43  med=$3.20  samples=139
   ⭐ 23:40 CALL  rate=73%  move=$5.16 (avg)  max=$32.74  med=$3.67  samples=139
@@ -59,43 +42,25 @@
   ⭐⭐ 23:55 CALL  rate=82%  move=$4.57 (avg)  max=$36.76  med=$2.32  samples=139
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 THURSDAY  (7 signals)  — Times in UTC+1 (Algeria)
+  📅 THURSDAY  (1 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ── 00:00 UTC+1 (Algeria) ──
   ⭐ 00:15 CALL  rate=74%  move=$3.18 (avg)  max=$26.39  med=$1.37  samples=139
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=86%  move=$0.89 (avg)  max=$31.36  med=$0.00  samples=139
-
-  ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=84%  move=$0.80 (avg)  max=$26.45  med=$0.00  samples=139
-  ⭐⭐ 23:05 CALL  rate=84%  move=$0.80 (avg)  max=$37.63  med=$0.00  samples=139
-  ⭐⭐ 23:10 CALL  rate=88%  move=$0.76 (avg)  max=$27.15  med=$0.00  samples=139
-  ⭐⭐ 23:15 CALL  rate=90%  move=$0.68 (avg)  max=$30.76  med=$0.00  samples=139
-  ⭐⭐ 23:25 CALL  rate=89%  move=$0.53 (avg)  max=$15.53  med=$0.00  samples=139
-
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 FRIDAY  (12 signals)  — Times in UTC+1 (Algeria)
+  📅 FRIDAY  (6 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
   ── 00:00 UTC+1 (Algeria) ──
   ⭐ 00:15 CALL  rate=71%  move=$2.50 (avg)  max=$27.82  med=$1.03  samples=139
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=86%  move=$0.97 (avg)  max=$42.45  med=$0.00  samples=139
-
   ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=86%  move=$0.93 (avg)  max=$30.77  med=$0.00  samples=139
   ⭐⭐ 23:05 CALL  rate=86%  move=$1.23 (avg)  max=$45.18  med=$0.00  samples=139
   ⭐⭐ 23:10 CALL  rate=88%  move=$1.31 (avg)  max=$50.21  med=$0.00  samples=139
   ⭐⭐ 23:15 CALL  rate=88%  move=$1.13 (avg)  max=$31.20  med=$0.00  samples=139
-  ⭐⭐⭐ 23:20 CALL  rate=91%  move=$0.90 (avg)  max=$19.81  med=$0.00  samples=139
   ⭐⭐ 23:25 CALL  rate=90%  move=$1.00 (avg)  max=$19.03  med=$0.00  samples=139
-  ⭐⭐⭐ 23:30 CALL  rate=91%  move=$0.94 (avg)  max=$19.20  med=$0.00  samples=139
   ⭐⭐⭐ 23:35 CALL  rate=94%  move=$1.15 (avg)  max=$41.52  med=$0.00  samples=139
-  ⭐⭐⭐ 23:40 CALL  rate=94%  move=$0.98 (avg)  max=$35.81  med=$0.00  samples=139
-  ⭐⭐ 23:45 CALL  rate=90%  move=$0.75 (avg)  max=$31.32  med=$0.00  samples=139
 
   ────────────────────────────────────────────────
   How to read:

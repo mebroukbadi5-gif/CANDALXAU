@@ -5,7 +5,7 @@
 > **Movement measured in DOLLARS** (not points)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
-Generated: 2026-10-21 21:34:03
+Generated: 2026-10-21 21:43:43
 
 ## 🎯 What v9.0 Does
 
@@ -33,13 +33,13 @@ After 974 days, compute:
 | Day | 90pct | 80pct | 70pct | Notes |
 |-----|-------|-------|-------|-------|
 | Sunday | 0 | 0 | 0 | Opens 23:00 UTC+1 (Algeria) |
-| Monday | 0 | 2 | 3 |  |
-| Tuesday | 1 | 2 | 3 |  |
-| Wednesday | 0 | 8 | 13 |  |
-| Thursday | 0 | 6 | 7 |  |
-| Friday | 4 | 11 | 12 |  |
+| Monday | 0 | 1 | 18 |  |
+| Tuesday | 0 | 1 | 12 |  |
+| Wednesday | 1 | 6 | 19 |  |
+| Thursday | 0 | 1 | 20 |  |
+| Friday | 5 | 6 | 20 |  |
 | Saturday | 0 | 0 | 0 | Market closed |
-| **TOTAL** | **5** | **29** | **38** | |
+| **TOTAL** | **6** | **15** | **89** | |
 
 ## 📐 Signal Format
 
@@ -53,9 +53,9 @@ After 974 days, compute:
 - **samples=1668**: number of historical days analyzed
 
 ## 🏆 Tier Badges
-- ⭐⭐⭐ **Ultra-Elite**: ≥90% recurring direction
-- ⭐⭐ **Elite**: 80-90% recurring direction
-- ⭐ **High**: 70-80% recurring direction
+- ⭐⭐ **Ultra-Elite**: ≥80% recurring direction
+- ⭐ **Elite**: 70-80% recurring direction
+- ✓ **High**: 60-70% recurring direction
 
 ## 🎲 MTG1 Strategy
 1. Entry 1: bet 1× → if WIN, take profit & stop

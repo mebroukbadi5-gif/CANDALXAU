@@ -1,13 +1,13 @@
 ====================================================================================================
-  XAUUSD Signals — Thursday — ELITE (≥80% recurring + ≥$0.50 movement)
+  XAUUSD Signals — Thursday — ULTRA-ELITE (≥80% recurring + ≥$1 movement)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Thursday
-  Generated:    2026-10-21 21:34:03
+  Generated:    2026-10-21 21:43:43
   Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
   Window:       30 minutes from signal time
   Data:         974 days × 5m candles (2024-2026)
-  Total signals: 6
+  Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
   Timezone: UTC+1 (Algeria) (already converted from UTC)
@@ -15,36 +15,8 @@
   Window:   30 minutes after signal time
 ====================================================================================================
 
+  ⚠ No signals for this day at this threshold.
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=86%  move=$0.89 (avg)  max=$31.36  med=$0.00  samples=139
-
-  ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=84%  move=$0.80 (avg)  max=$26.45  med=$0.00  samples=139
-  ⭐⭐ 23:05 CALL  rate=84%  move=$0.80 (avg)  max=$37.63  med=$0.00  samples=139
-  ⭐⭐ 23:10 CALL  rate=88%  move=$0.76 (avg)  max=$27.15  med=$0.00  samples=139
-  ⭐⭐ 23:15 CALL  rate=90%  move=$0.68 (avg)  max=$30.76  med=$0.00  samples=139
-  ⭐⭐ 23:25 CALL  rate=89%  move=$0.53 (avg)  max=$15.53  med=$0.00  samples=139
-
-  ------------------------------------------------------------------------------------------------
-  📊 Thursday Summary
-  ------------------------------------------------------------------------------------------------
-    Total: 6 signals (top patterns)
-    Direction split: CALL=6, PUT=0
-
-  Top 5 largest avg movements:
-    $0.89  22:55  CALL  (rate=86%, max=$31.36)
-    $0.80  23:05  CALL  (rate=84%, max=$37.63)
-    $0.80  23:00  CALL  (rate=84%, max=$26.45)
-    $0.76  23:10  CALL  (rate=88%, max=$27.15)
-    $0.68  23:15  CALL  (rate=90%, max=$30.76)
-
-  Top 5 highest recurring rates:
-    90%  23:15  CALL  (move=$0.68, max=$30.76)
-    89%  23:25  CALL  (move=$0.53, max=$15.53)
-    88%  23:10  CALL  (move=$0.76, max=$27.15)
-    86%  22:55  CALL  (move=$0.89, max=$31.36)
-    84%  23:00  CALL  (move=$0.80, max=$26.45)
 
   ────────────────────────────────────────────────
   How to read:

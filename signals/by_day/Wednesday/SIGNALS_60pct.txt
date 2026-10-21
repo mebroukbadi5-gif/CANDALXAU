@@ -1,0 +1,82 @@
+====================================================================================================
+  XAUUSD Signals — Wednesday — HIGH (≥60% recurring + ≥$1 movement)
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Wednesday
+  Generated:    2026-10-21 21:43:43
+  Threshold:    ≥60% recurring direction + ≥$0.50 avg movement
+  Window:       30 minutes from signal time
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 19
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
+  Movement: in DOLLARS (not points) — avg $ moved in predicted direction
+  Window:   30 minutes after signal time
+====================================================================================================
+
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐ 00:05 CALL  rate=65%  move=$2.68 (avg)  max=$35.70  med=$0.85  samples=139
+  ⭐ 00:10 CALL  rate=66%  move=$2.55 (avg)  max=$48.03  med=$0.89  samples=139
+  ⭐ 00:15 CALL  rate=71%  move=$2.37 (avg)  max=$49.16  med=$0.90  samples=139
+  ⭐ 00:20 CALL  rate=61%  move=$2.53 (avg)  max=$73.47  med=$0.68  samples=139
+  ⭐ 00:25 CALL  rate=62%  move=$3.51 (avg)  max=$84.17  med=$0.71  samples=139
+  ⭐ 00:50 CALL  rate=61%  move=$5.99 (avg)  max=$40.21  med=$2.96  samples=139
+
+  ── 06:00 UTC+1 (Algeria) ──
+  ⭐ 06:35 CALL  rate=60%  move=$4.58 (avg)  max=$15.98  med=$3.74  samples=139
+
+  ── 07:00 UTC+1 (Algeria) ──
+  ⭐ 07:00 CALL  rate=60%  move=$6.33 (avg)  max=$24.24  med=$4.32  samples=139
+  ⭐ 07:05 CALL  rate=62%  move=$6.11 (avg)  max=$20.29  med=$4.50  samples=139
+  ⭐ 07:10 CALL  rate=63%  move=$6.27 (avg)  max=$22.15  med=$4.52  samples=139
+
+  ── 11:00 UTC+1 (Algeria) ──
+  ⭐ 11:15 PUT   rate=61%  move=$6.22 (avg)  max=$36.00  med=$4.17  samples=139
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ⭐ 12:35 PUT   rate=62%  move=$6.26 (avg)  max=$51.17  med=$4.80  samples=139
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ⭐ 15:45 CALL  rate=61%  move=$10.03 (avg)  max=$45.42  med=$7.53  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐ 23:30 CALL  rate=75%  move=$4.77 (avg)  max=$33.08  med=$3.08  samples=139
+  ⭐ 23:35 CALL  rate=73%  move=$4.91 (avg)  max=$35.43  med=$3.20  samples=139
+  ⭐ 23:40 CALL  rate=73%  move=$5.16 (avg)  max=$32.74  med=$3.67  samples=139
+  ⭐ 23:45 CALL  rate=70%  move=$5.75 (avg)  max=$36.76  med=$3.88  samples=139
+  ⭐ 23:50 CALL  rate=71%  move=$5.58 (avg)  max=$36.76  med=$3.36  samples=139
+  ⭐⭐ 23:55 CALL  rate=82%  move=$4.57 (avg)  max=$36.76  med=$2.32  samples=139
+
+  ------------------------------------------------------------------------------------------------
+  📊 Wednesday Summary
+  ------------------------------------------------------------------------------------------------
+    Total: 19 signals (top patterns)
+    Direction split: CALL=17, PUT=2
+
+  Top 5 largest avg movements:
+    $10.03  15:45  CALL  (rate=61%, max=$45.42)
+    $6.33  07:00  CALL  (rate=60%, max=$24.24)
+    $6.27  07:10  CALL  (rate=63%, max=$22.15)
+    $6.26  12:35  PUT   (rate=62%, max=$51.17)
+    $6.22  11:15  PUT   (rate=61%, max=$36.00)
+
+  Top 5 highest recurring rates:
+    82%  23:55  CALL  (move=$4.57, max=$36.76)
+    75%  23:30  CALL  (move=$4.77, max=$33.08)
+    73%  23:35  CALL  (move=$4.91, max=$35.43)
+    73%  23:40  CALL  (move=$5.16, max=$32.74)
+    71%  00:15  CALL  (move=$2.37, max=$49.16)
+
+  ────────────────────────────────────────────────
+  How to read:
+    rate=85% means: in 85% of 974 days, price moved in this direction
+    move=$1.50 means: average dollar movement in predicted direction
+    max=$5.20 means: largest historical movement in this window
+  ────────────────────────────────────────────────
+  MTG1 Strategy:
+    Entry 1: bet 1× → if WIN, take profit & stop
+    Entry 2: bet 2× → if WIN, recover loss & profit
+    Stop:    after Entry 2 loss → max drawdown = 3×
+  ────────────────────────────────────────────────

@@ -1,9 +1,9 @@
 ====================================================================================================
-  XAUUSD Signals — Sunday — ELITE (≥80% recurring + ≥$0.50 movement)
+  XAUUSD Signals — Sunday — ULTRA-ELITE (≥80% recurring + ≥$1 movement)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Sunday
-  Generated:    2026-10-21 21:34:03
+  Generated:    2026-10-21 21:43:43
   Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
   Window:       30 minutes from signal time
   Data:         974 days × 5m candles (2024-2026)

@@ -2,7 +2,7 @@
   CANDALXAU Signal Engine v9.0 — BIG MOVEMENT TIER (≥$5 + ≥55% recurring)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
-  Generated:    2026-10-21 21:34:03
+  Generated:    2026-10-21 21:43:43
   Threshold:    ≥$5 avg movement + ≥55% recurring direction
   Window:       30 minutes from signal time
   Data:         974 days × 5m candles (2024-2026)

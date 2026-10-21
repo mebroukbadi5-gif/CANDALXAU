@@ -1,13 +1,13 @@
 ====================================================================================================
-  XAUUSD Signals — Monday — ELITE (≥80% recurring + ≥$0.50 movement)
+  XAUUSD Signals — Monday — ULTRA-ELITE (≥80% recurring + ≥$1 movement)
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Monday
-  Generated:    2026-10-21 21:34:03
+  Generated:    2026-10-21 21:43:43
   Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
   Window:       30 minutes from signal time
   Data:         974 days × 5m candles (2024-2026)
-  Total signals: 2
+  Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
   Timezone: UTC+1 (Algeria) (already converted from UTC)
@@ -15,26 +15,8 @@
   Window:   30 minutes after signal time
 ====================================================================================================
 
+  ⚠ No signals for this day at this threshold.
 
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐ 22:55 CALL  rate=89%  move=$0.75 (avg)  max=$34.60  med=$0.00  samples=139
-
-  ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐ 23:00 CALL  rate=88%  move=$0.66 (avg)  max=$30.83  med=$0.00  samples=139
-
-  ------------------------------------------------------------------------------------------------
-  📊 Monday Summary
-  ------------------------------------------------------------------------------------------------
-    Total: 2 signals (top patterns)
-    Direction split: CALL=2, PUT=0
-
-  Top 5 largest avg movements:
-    $0.75  22:55  CALL  (rate=89%, max=$34.60)
-    $0.66  23:00  CALL  (rate=88%, max=$30.83)
-
-  Top 5 highest recurring rates:
-    89%  22:55  CALL  (move=$0.75, max=$34.60)
-    88%  23:00  CALL  (move=$0.66, max=$30.83)
 
   ────────────────────────────────────────────────
   How to read:

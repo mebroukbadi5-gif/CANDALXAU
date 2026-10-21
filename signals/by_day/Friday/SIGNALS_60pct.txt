@@ -1,0 +1,87 @@
+====================================================================================================
+  XAUUSD Signals — Friday — HIGH (≥60% recurring + ≥$1 movement)
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Friday
+  Generated:    2026-10-21 21:43:43
+  Threshold:    ≥60% recurring direction + ≥$0.50 avg movement
+  Window:       30 minutes from signal time
+  Data:         974 days × 5m candles (2024-2026)
+  Total signals: 20
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ HH:MM <CALL|PUT> rate=XX% move=$X.XX (avg) max=$Y.YY samples=N
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
+  Movement: in DOLLARS (not points) — avg $ moved in predicted direction
+  Window:   30 minutes after signal time
+====================================================================================================
+
+
+  ── 00:00 UTC+1 (Algeria) ──
+  ⭐ 00:00 CALL  rate=61%  move=$3.14 (avg)  max=$42.35  med=$0.45  samples=139
+  ⭐ 00:05 CALL  rate=66%  move=$2.68 (avg)  max=$27.89  med=$0.72  samples=139
+  ⭐ 00:10 CALL  rate=65%  move=$3.07 (avg)  max=$29.70  med=$0.76  samples=139
+  ⭐ 00:15 CALL  rate=71%  move=$2.50 (avg)  max=$27.82  med=$1.03  samples=139
+  ⭐ 00:20 CALL  rate=66%  move=$2.62 (avg)  max=$29.64  med=$0.65  samples=139
+  ⭐ 00:25 CALL  rate=63%  move=$2.66 (avg)  max=$31.80  med=$0.50  samples=139
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ⭐ 03:50 CALL  rate=60%  move=$6.70 (avg)  max=$42.81  med=$4.99  samples=139
+
+  ── 05:00 UTC+1 (Algeria) ──
+  ⭐ 05:40 CALL  rate=60%  move=$5.35 (avg)  max=$70.37  med=$3.16  samples=139
+
+  ── 06:00 UTC+1 (Algeria) ──
+  ⭐ 06:15 CALL  rate=60%  move=$3.79 (avg)  max=$12.91  med=$3.05  samples=139
+
+  ── 07:00 UTC+1 (Algeria) ──
+  ⭐ 07:05 CALL  rate=60%  move=$6.09 (avg)  max=$37.43  med=$3.98  samples=139
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ⭐ 16:35 CALL  rate=60%  move=$10.71 (avg)  max=$69.91  med=$7.81  samples=139
+  ⭐ 16:40 CALL  rate=60%  move=$11.38 (avg)  max=$69.77  med=$8.60  samples=139
+
+  ── 20:00 UTC+1 (Algeria) ──
+  ⭐ 20:45 PUT   rate=60%  move=$4.88 (avg)  max=$33.80  med=$3.40  samples=139
+
+  ── 22:00 UTC+1 (Algeria) ──
+  ⭐ 22:30 CALL  rate=67%  move=$4.15 (avg)  max=$21.13  med=$2.79  samples=139
+  ⭐ 22:35 CALL  rate=63%  move=$3.79 (avg)  max=$21.63  med=$2.34  samples=139
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ⭐⭐ 23:05 CALL  rate=86%  move=$1.23 (avg)  max=$45.18  med=$0.00  samples=139
+  ⭐⭐ 23:10 CALL  rate=88%  move=$1.31 (avg)  max=$50.21  med=$0.00  samples=139
+  ⭐⭐ 23:15 CALL  rate=88%  move=$1.13 (avg)  max=$31.20  med=$0.00  samples=139
+  ⭐⭐ 23:25 CALL  rate=90%  move=$1.00 (avg)  max=$19.03  med=$0.00  samples=139
+  ⭐⭐⭐ 23:35 CALL  rate=94%  move=$1.15 (avg)  max=$41.52  med=$0.00  samples=139
+
+  ------------------------------------------------------------------------------------------------
+  📊 Friday Summary
+  ------------------------------------------------------------------------------------------------
+    Total: 20 signals (top patterns)
+    Direction split: CALL=19, PUT=1
+
+  Top 5 largest avg movements:
+    $11.38  16:40  CALL  (rate=60%, max=$69.77)
+    $10.71  16:35  CALL  (rate=60%, max=$69.91)
+    $6.70  03:50  CALL  (rate=60%, max=$42.81)
+    $6.09  07:05  CALL  (rate=60%, max=$37.43)
+    $5.35  05:40  CALL  (rate=60%, max=$70.37)
+
+  Top 5 highest recurring rates:
+    94%  23:35  CALL  (move=$1.15, max=$41.52)
+    90%  23:25  CALL  (move=$1.00, max=$19.03)
+    88%  23:15  CALL  (move=$1.13, max=$31.20)
+    88%  23:10  CALL  (move=$1.31, max=$50.21)
+    86%  23:05  CALL  (move=$1.23, max=$45.18)
+
+  ────────────────────────────────────────────────
+  How to read:
+    rate=85% means: in 85% of 974 days, price moved in this direction
+    move=$1.50 means: average dollar movement in predicted direction
+    max=$5.20 means: largest historical movement in this window
+  ────────────────────────────────────────────────
+  MTG1 Strategy:
+    Entry 1: bet 1× → if WIN, take profit & stop
+    Entry 2: bet 2× → if WIN, recover loss & profit
+    Stop:    after Entry 2 loss → max drawdown = 3×
+  ────────────────────────────────────────────────

@@ -243,20 +243,21 @@ def save_results_csv(signals, output_path):
     print(f"  ✓ Saved to: {output_path}")
 
 
-def filter_top_signals(signals, min_recurring=70, min_movement=0.5, min_avg_total=0.10):
-    """Filter to top signals: high recurring rate + meaningful movement.
+def filter_top_signals(signals, min_recurring=60, min_movement=1.0, min_avg_total=0.50):
+    """Filter to TRADABLE signals: meaningful movement + decent recurring rate.
     
-    Filters:
+    Filters (stricter on movement, looser on rate):
       - min_recurring: minimum recurring direction rate (%)
-      - min_movement: minimum average $ moved in predicted direction
-      - min_avg_total: minimum avg total movement (filters out closed-market
-                       hours where price doesn't move at all)
+      - min_movement: minimum average $ moved in predicted direction (≥$1)
+      - min_avg_total: minimum avg total movement (filters closed-market)
+    
+    This avoids the "late-night" trap where rate=90% but movement is only $0.50.
     """
     filtered = [s for s in signals 
                 if s['recurring_rate'] >= min_recurring 
                 and s['avg_movement_dollars'] >= min_movement
                 and s['avg_total_movement'] >= min_avg_total]
-    # Sort by recurring_rate × avg_movement (combined score)
+    # Sort by combined score: rate × movement (balanced)
     filtered.sort(key=lambda s: -(s['recurring_rate'] * s['avg_movement_dollars']))
     return filtered
 
@@ -284,9 +285,9 @@ def generate_signal_files(signals, output_dir):
     
     # Tier definitions: (min_recurring_rate, label)
     tiers = [
-        (90, 'ULTRA-ELITE (≥90% recurring + ≥$0.50 movement)'),
-        (80, 'ELITE (≥80% recurring + ≥$0.50 movement)'),
-        (70, 'HIGH (≥70% recurring + ≥$0.50 movement)'),
+        (80, 'ULTRA-ELITE (≥80% recurring + ≥$1 movement)'),
+        (70, 'ELITE (≥70% recurring + ≥$1 movement)'),
+        (60, 'HIGH (≥60% recurring + ≥$1 movement)'),
     ]
     
     day_counts = {}
@@ -303,7 +304,7 @@ def generate_signal_files(signals, output_dir):
         for threshold, tier_label in tiers:
             tier_sigs = [s for s in day_sigs 
                          if s['recurring_rate'] >= threshold 
-                         and s['avg_movement_dollars'] >= 0.50]
+                         and s['avg_movement_dollars'] >= 1.0]
             day_counts[day][threshold] = len(tier_sigs)
             
             output_path = os.path.join(day_folder, f'SIGNALS_{threshold}pct.txt')
@@ -432,18 +433,26 @@ def main():
     all_signals = compute_signal_stats(results)
     print(f"  Total candidate signals: {len(all_signals)}")
     
-    # Step 4: Filter top signals
-    print(f"\n  [4/5] Filtering top recurring patterns...")
-    top_signals = filter_top_signals(all_signals, min_recurring=70, min_movement=0.50)
-    print(f"  Top signals (≥70% recurring + ≥$0.50 movement): {len(top_signals)}")
+    # Step 4: Filter top signals (TRADABLE: ≥60% rate + ≥$1 movement)
+    print(f"\n  [4/5] Filtering TRADABLE patterns (≥60% recurring + ≥$1 movement)...")
+    top_signals = filter_top_signals(all_signals, min_recurring=60, min_movement=1.0)
+    print(f"  Tradable signals: {len(top_signals)}")
     
-    tier_90 = sum(1 for s in top_signals if s['recurring_rate'] >= 90)
+    # Tier breakdowns
     tier_80 = sum(1 for s in top_signals if s['recurring_rate'] >= 80)
     tier_70 = sum(1 for s in top_signals if s['recurring_rate'] >= 70)
-    print(f"  Distribution:")
-    print(f"    ≥90% recurring: {tier_90} signals")
+    tier_60 = sum(1 for s in top_signals if s['recurring_rate'] >= 60)
+    print(f"  Distribution (tradable, $1+ movement):")
     print(f"    ≥80% recurring: {tier_80} signals")
     print(f"    ≥70% recurring: {tier_70} signals")
+    print(f"    ≥60% recurring: {tier_60} signals")
+    
+    # Movement breakdowns
+    move_5 = sum(1 for s in top_signals if s['avg_movement_dollars'] >= 5)
+    move_10 = sum(1 for s in top_signals if s['avg_movement_dollars'] >= 10)
+    print(f"  By movement size:")
+    print(f"    ≥$5 avg movement:  {move_5} signals")
+    print(f"    ≥$10 avg movement: {move_10} signals")
     
     # Also filter big-movement signals (high volatility patterns)
     print(f"\n  Also filtering BIG MOVEMENT patterns (≥$5 + ≥55% recurring)...")
@@ -463,20 +472,20 @@ def main():
     day_counts = generate_signal_files(top_signals, PER_DAY_DIR)
     
     print(f"  Per-day breakdown:")
-    print(f"    {'Day':<12} {'90pct':>6} {'80pct':>6} {'70pct':>6}")
+    print(f"    {'Day':<12} {'80pct':>6} {'70pct':>6} {'60pct':>6}")
     print(f"    {'-'*12} {'-'*6} {'-'*6} {'-'*6}")
     for day in WEEKDAY_FULL:
         c = day_counts.get(day, {})
-        print(f"    {day:<12} {c.get(90,0):>6} {c.get(80,0):>6} {c.get(70,0):>6}")
+        print(f"    {day:<12} {c.get(80,0):>6} {c.get(70,0):>6} {c.get(60,0):>6}")
     
-    total_90 = sum(day_counts[d].get(90, 0) for d in WEEKDAY_FULL)
     total_80 = sum(day_counts[d].get(80, 0) for d in WEEKDAY_FULL)
     total_70 = sum(day_counts[d].get(70, 0) for d in WEEKDAY_FULL)
+    total_60 = sum(day_counts[d].get(60, 0) for d in WEEKDAY_FULL)
     print(f"    {'-'*12} {'-'*6} {'-'*6} {'-'*6}")
-    print(f"    {'TOTAL':<12} {total_90:>6} {total_80:>6} {total_70:>6}")
+    print(f"    {'TOTAL':<12} {total_80:>6} {total_70:>6} {total_60:>6}")
     
-    # Save combined files
-    for threshold, label in [(90, 'ULTRA-ELITE'), (80, 'ELITE'), (70, 'HIGH')]:
+    # Save combined files (3 tiers: 80, 70, 60)
+    for threshold, label in [(80, 'ULTRA-ELITE'), (70, 'ELITE'), (60, 'HIGH')]:
         tier_sigs = [s for s in top_signals if s['recurring_rate'] >= threshold]
         # Combined file
         combined_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_{threshold}pct.txt'
@@ -731,8 +740,8 @@ def main():
             note = 'Market closed'
         elif day == 'Sunday':
             note = f'Opens 23:00 {TZ_NAME}'
-        readme.append(f"| {day} | {c.get(90,0)} | {c.get(80,0)} | {c.get(70,0)} | {note} |")
-    readme.append(f"| **TOTAL** | **{total_90}** | **{total_80}** | **{total_70}** | |")
+        readme.append(f"| {day} | {c.get(80,0)} | {c.get(70,0)} | {c.get(60,0)} | {note} |")
+    readme.append(f"| **TOTAL** | **{total_80}** | **{total_70}** | **{total_60}** | |")
     readme.append('')
     readme.append('## 📐 Signal Format')
     readme.append('')
@@ -746,9 +755,9 @@ def main():
     readme.append('- **samples=1668**: number of historical days analyzed')
     readme.append('')
     readme.append('## 🏆 Tier Badges')
-    readme.append('- ⭐⭐⭐ **Ultra-Elite**: ≥90% recurring direction')
-    readme.append('- ⭐⭐ **Elite**: 80-90% recurring direction')
-    readme.append('- ⭐ **High**: 70-80% recurring direction')
+    readme.append('- ⭐⭐ **Ultra-Elite**: ≥80% recurring direction')
+    readme.append('- ⭐ **Elite**: 70-80% recurring direction')
+    readme.append('- ✓ **High**: 60-70% recurring direction')
     readme.append('')
     readme.append('## 🎲 MTG1 Strategy')
     readme.append('1. Entry 1: bet 1× → if WIN, take profit & stop')
@@ -777,9 +786,9 @@ def main():
     print(f'  Window: 30 minutes from signal time')
     print(f'  Timezone: {TZ_NAME}')
     print(f'  Total signals:')
-    print(f'    Ultra-Elite (≥90%): {total_90}')
-    print(f'    Elite (≥80%):       {total_80}')
-    print(f'    High (≥70%):        {total_70}')
+    print(f'    Ultra-Elite (≥80% recurring + ≥$1 move): {total_80}')
+    print(f'    Elite (≥70% recurring + ≥$1 move):       {total_70}')
+    print(f'    High (≥60% recurring + ≥$1 move):        {total_60}')
     print('  ' + '=' * 96)
     print()
 
