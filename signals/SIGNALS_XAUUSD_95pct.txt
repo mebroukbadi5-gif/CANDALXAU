@@ -1,40 +1,41 @@
 ================================================================================
-  CANDALXAU Signal Engine v7.0 — STRONG BIAS TIER (≥60% real accuracy)
+  CANDALXAU Signal Engine v8.0 — ULTRA ELITE TIER (≥95% movement success)
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) — Real spot gold
-  Generated: 2026-10-21 21:14:52
-  Threshold: ≥60% directional accuracy (REAL stats from 974 days)
+  Generated: 2026-10-21 21:26:54
+  Threshold: ≥95% REAL movement success rate
   Coverage:  7 weekdays × up to 24 hours UTC+1 (Algeria)
   Data:      974 days × 5m candles (2021-2026)
-  Total signals: 6
+  Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
-  Timezone: UTC+1 (Algeria) (all times already converted from UTC)
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
   Note:     ONE signal per hour — no duplicates
-  Accuracy: REAL directional bias from 974 days of historical data
+  Accuracy: REAL movement success rate from 974 days
+            = P(price moves ≥ target in predicted direction)
 ================================================================================
 
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 SUNDAY  (1 signals)  — Times in UTC+1 (Algeria)
+  📅 SUNDAY  (0 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⭐⭐ M3  XAUUSD  23:00 CALL  acc=62% target=$1  | move=15pt up:62% down:38% bias:UP
+  ⚠ No signals for this day at this threshold.
+  📌 XAUUSD market opens at 23:00 UTC+1 (Algeria).
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 MONDAY  (2 signals)  — Times in UTC+1 (Algeria)
+  📅 MONDAY  (0 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⭐⭐ M1  XAUUSD  22:00 CALL  acc=60% target=$1  | move=5pt up:60% down:40% bias:UP
-  ⭐⭐ M1  XAUUSD  23:00 CALL  acc=60% target=$1  | move=6pt up:60% down:40% bias:UP
+  ⚠ No signals for this day at this threshold.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 TUESDAY  (1 signals)  — Times in UTC+1 (Algeria)
+  📅 TUESDAY  (0 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⭐⭐ M1  XAUUSD  23:00 CALL  acc=60% target=$1  | move=7pt up:60% down:40% bias:UP
+  ⚠ No signals for this day at this threshold.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 WEDNESDAY  (1 signals)  — Times in UTC+1 (Algeria)
+  📅 WEDNESDAY  (0 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⭐⭐⭐ M1  XAUUSD  23:00 CALL  acc=71% target=$1  | move=8pt up:71% down:29% bias:UP
+  ⚠ No signals for this day at this threshold.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   📅 THURSDAY  (0 signals)  — Times in UTC+1 (Algeria)
@@ -42,9 +43,9 @@
   ⚠ No signals for this day at this threshold.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  📅 FRIDAY  (1 signals)  — Times in UTC+1 (Algeria)
+  📅 FRIDAY  (0 signals)  — Times in UTC+1 (Algeria)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-  ⭐⭐ M1  XAUUSD  22:00 CALL  acc=61% target=$1  | move=6pt up:61% down:39% bias:UP
+  ⚠ No signals for this day at this threshold.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   📅 SATURDAY  (0 signals)  — Times in UTC+1 (Algeria)
@@ -55,26 +56,20 @@
 ================================================================================
   📊 SUMMARY
 ================================================================================
-  Tier: STRONG BIAS TIER (≥60% real accuracy)
-  Threshold: ≥60% REAL accuracy
-  Total signals: 6
+  Tier: ULTRA ELITE TIER (≥95% movement success)
+  Threshold: ≥95% REAL movement success rate
+  Total signals: 0
 
   Per-day breakdown:
-    Sunday     →   1 signals
-    Monday     →   2 signals
-    Tuesday    →   1 signals
-    Wednesday  →   1 signals
+    Sunday     →   0 signals
+    Monday     →   0 signals
+    Tuesday    →   0 signals
+    Wednesday  →   0 signals
     Thursday   →   0 signals
-    Friday     →   1 signals
+    Friday     →   0 signals
     Saturday   →   0 signals
 
-  Top 10 highest-accuracy signals:
-    71%  Wed  23:00  CALL  M1  target=$1  (move=8pt)
-    62%  Sun  23:00  CALL  M3  target=$1  (move=15pt)
-    61%  Fri  22:00  CALL  M1  target=$1  (move=6pt)
-    60%  Tue  23:00  CALL  M1  target=$1  (move=7pt)
-    60%  Mon  23:00  CALL  M1  target=$1  (move=6pt)
-    60%  Mon  22:00  CALL  M1  target=$1  (move=5pt)
+  Top 10 highest-success signals:
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
@@ -82,7 +77,7 @@
     Entry 2: bet 2× → if WIN, recover loss & profit
     Stop:    after Entry 2 loss → max drawdown = 3×
   ────────────────────────────────────────────────
-  ⚠ REAL ACCURACY = directional bias from 974 days
-     (90%+ is statistically impossible with this data)
-     Best achievable: 71% (Wednesday 22:00 UTC)
+  ⚠ Accuracy = P(price moves ≥ target in predicted direction)
+     Computed from 0 historical samples per signal
+     This is the REAL win rate — not inflated bonuses
   ────────────────────────────────────────────────

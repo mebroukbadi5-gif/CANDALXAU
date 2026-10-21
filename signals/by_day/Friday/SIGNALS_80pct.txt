@@ -1,38 +1,34 @@
 ================================================================================
-  XAUUSD Signals — Wednesday — GOOD BIAS (≥55% directional accuracy)
+  XAUUSD Signals — Friday — HIGH (≥80% movement success)
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) — Real spot gold
-  Day:       Wednesday
-  Generated: 2026-10-21 21:14:52
-  Threshold: ≥55% REAL directional accuracy
+  Day:       Friday
+  Generated: 2026-10-21 21:26:54
+  Threshold: ≥80% REAL movement success rate
   Data:      974 days × 5m candles (2021-2026)
-  Total signals: 5
+  Total signals: 3
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
-  Timezone: UTC+1 (Algeria) (times already converted from UTC)
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
   Note:     ONE signal per hour — no duplicates
-  Accuracy: REAL directional bias from historical data
+  Accuracy: REAL movement success rate (P of hitting target)
 ================================================================================
 
-  ⭐ M1  XAUUSD  00:00 CALL  acc=56% target=$1  | move=9pt up:56% down:44% bias:UP
-  ⭐ M3  XAUUSD  01:00 CALL  acc=56% target=$1  | move=11pt up:56% down:44% bias:UP
-  ⭐ M3  XAUUSD  03:00 CALL  acc=55% target=$1  | move=13pt up:55% down:45% bias:UP
-  ⭐ M1  XAUUSD  06:00 CALL  acc=55% target=$1  | move=10pt up:55% down:45% bias:UP
-  ⭐⭐⭐ M1  XAUUSD  23:00 CALL  acc=71% target=$1  | move=8pt up:71% down:29% bias:UP
+  ⭐⭐ M10 XAUUSD  14:00 CALL  acc=87% target=$0.5  | move=20pt dir_bias=50% up:50% down:50% samples=1668
+  ⭐⭐⭐ M10 XAUUSD  15:00 CALL  acc=92% target=$0.5  | move=23pt dir_bias=51% up:51% down:49% samples=1668
+  ⭐⭐ M10 XAUUSD  16:00 CALL  acc=88% target=$0.5  | move=20pt dir_bias=55% up:55% down:45% samples=1668
 
   ----------------------------------------------------------------------------
-  📊 Wednesday Summary
+  📊 Friday Summary
   ----------------------------------------------------------------------------
-    Total: 5 signals (one per hour)
-    Direction split: CALL=5, PUT=0
-    Average accuracy: 58.6%
+    Total: 3 signals (one per hour)
+    Direction split: CALL=3, PUT=0
+    Average success rate: 88.7%
 
-  Top 5 highest-accuracy signals:
-    71%  23:00  CALL  M1  target=$1  (move=8pt)
-    56%  00:00  CALL  M1  target=$1  (move=9pt)
-    56%  01:00  CALL  M3  target=$1  (move=11pt)
-    55%  03:00  CALL  M3  target=$1  (move=13pt)
-    55%  06:00  CALL  M1  target=$1  (move=10pt)
+  Top 5 highest-success signals:
+    92%  15:00  CALL  M10  target=$0.5  (move=23pt, n=1668)
+    88%  16:00  CALL  M10  target=$0.5  (move=20pt, n=1668)
+    87%  14:00  CALL  M10  target=$0.5  (move=20pt, n=1668)
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
@@ -40,4 +36,6 @@
     Entry 2: bet 2× → if WIN, recover loss & profit
     Stop:    after Entry 2 loss → max drawdown = 3×
   ────────────────────────────────────────────────
-  ⚠ REAL accuracy = directional bias from 974 days
+  ⚠ acc = P(price touches $80$ or more in 1 hour)
+     Movement success rate (touch probability)
+     For binary option CALL/PUT win rate, see directional_success

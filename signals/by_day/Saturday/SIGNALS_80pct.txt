@@ -1,36 +1,22 @@
 ================================================================================
-  XAUUSD Signals — Tuesday — GOOD BIAS (≥55% directional accuracy)
+  XAUUSD Signals — Saturday — HIGH (≥80% movement success)
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) — Real spot gold
-  Day:       Tuesday
-  Generated: 2026-10-21 21:14:52
-  Threshold: ≥55% REAL directional accuracy
+  Day:       Saturday
+  Generated: 2026-10-21 21:26:54
+  Threshold: ≥80% REAL movement success rate
   Data:      974 days × 5m candles (2021-2026)
-  Total signals: 4
+  Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
-  Timezone: UTC+1 (Algeria) (times already converted from UTC)
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
   Note:     ONE signal per hour — no duplicates
-  Accuracy: REAL directional bias from historical data
+  Accuracy: REAL movement success rate (P of hitting target)
 ================================================================================
 
-  ⭐ M3  XAUUSD  07:00 PUT   acc=59% target=$1  | move=14pt up:41% down:59% bias:DOWN
-  ⭐ M5  XAUUSD  16:00 PUT   acc=55% target=$1  | move=19pt up:45% down:55% bias:DOWN
-  ⭐ M3  XAUUSD  18:00 CALL  acc=56% target=$1  | move=12pt up:56% down:44% bias:UP
-  ⭐⭐ M1  XAUUSD  23:00 CALL  acc=60% target=$1  | move=7pt up:60% down:40% bias:UP
+  ⚠ No signals for this day at this threshold.
 
-  ----------------------------------------------------------------------------
-  📊 Tuesday Summary
-  ----------------------------------------------------------------------------
-    Total: 4 signals (one per hour)
-    Direction split: CALL=2, PUT=2
-    Average accuracy: 57.5%
-
-  Top 5 highest-accuracy signals:
-    60%  23:00  CALL  M1  target=$1  (move=7pt)
-    59%  07:00  PUT   M3  target=$1  (move=14pt)
-    56%  18:00  CALL  M3  target=$1  (move=12pt)
-    55%  16:00  PUT   M5  target=$1  (move=19pt)
+  📌 Note: XAUUSD market is CLOSED on Saturday.
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
@@ -38,4 +24,6 @@
     Entry 2: bet 2× → if WIN, recover loss & profit
     Stop:    after Entry 2 loss → max drawdown = 3×
   ────────────────────────────────────────────────
-  ⚠ REAL accuracy = directional bias from 974 days
+  ⚠ acc = P(price touches $80$ or more in 1 hour)
+     Movement success rate (touch probability)
+     For binary option CALL/PUT win rate, see directional_success

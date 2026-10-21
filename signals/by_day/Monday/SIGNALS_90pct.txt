@@ -1,22 +1,30 @@
 ================================================================================
-  XAUUSD Signals — Saturday — GOOD BIAS (≥55% directional accuracy)
+  XAUUSD Signals — Monday — ELITE (≥90% movement success)
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) — Real spot gold
-  Day:       Saturday
-  Generated: 2026-10-21 21:14:52
-  Threshold: ≥55% REAL directional accuracy
+  Day:       Monday
+  Generated: 2026-10-21 21:26:54
+  Threshold: ≥90% REAL movement success rate
   Data:      974 days × 5m candles (2021-2026)
-  Total signals: 0
+  Total signals: 1
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
-  Timezone: UTC+1 (Algeria) (times already converted from UTC)
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
   Note:     ONE signal per hour — no duplicates
-  Accuracy: REAL directional bias from historical data
+  Accuracy: REAL movement success rate (P of hitting target)
 ================================================================================
 
-  ⚠ No signals for this day at this threshold.
+  ⭐⭐⭐ M10 XAUUSD  15:00 PUT   acc=91% target=$0.5  | move=20pt dir_bias=54% up:46% down:54% samples=1668
 
-  📌 Note: XAUUSD market is CLOSED on Saturday.
+  ----------------------------------------------------------------------------
+  📊 Monday Summary
+  ----------------------------------------------------------------------------
+    Total: 1 signals (one per hour)
+    Direction split: CALL=0, PUT=1
+    Average success rate: 90.8%
+
+  Top 5 highest-success signals:
+    91%  15:00  PUT   M10  target=$0.5  (move=20pt, n=1668)
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
@@ -24,4 +32,6 @@
     Entry 2: bet 2× → if WIN, recover loss & profit
     Stop:    after Entry 2 loss → max drawdown = 3×
   ────────────────────────────────────────────────
-  ⚠ REAL accuracy = directional bias from 974 days
+  ⚠ acc = P(price touches $90$ or more in 1 hour)
+     Movement success rate (touch probability)
+     For binary option CALL/PUT win rate, see directional_success

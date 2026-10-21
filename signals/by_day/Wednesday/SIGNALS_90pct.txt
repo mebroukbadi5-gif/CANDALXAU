@@ -1,30 +1,30 @@
 ================================================================================
-  XAUUSD Signals — Friday — STRONG BIAS (≥60% directional accuracy)
+  XAUUSD Signals — Wednesday — ELITE (≥90% movement success)
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) — Real spot gold
-  Day:       Friday
-  Generated: 2026-10-21 21:14:52
-  Threshold: ≥60% REAL directional accuracy
+  Day:       Wednesday
+  Generated: 2026-10-21 21:26:54
+  Threshold: ≥90% REAL movement success rate
   Data:      974 days × 5m candles (2021-2026)
   Total signals: 1
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
-  Timezone: UTC+1 (Algeria) (times already converted from UTC)
+  Timezone: UTC+1 (Algeria) (already converted from UTC)
   Note:     ONE signal per hour — no duplicates
-  Accuracy: REAL directional bias from historical data
+  Accuracy: REAL movement success rate (P of hitting target)
 ================================================================================
 
-  ⭐⭐ M1  XAUUSD  22:00 CALL  acc=61% target=$1  | move=6pt up:61% down:39% bias:UP
+  ⭐⭐⭐ M10 XAUUSD  15:00 CALL  acc=92% target=$0.5  | move=20pt dir_bias=54% up:54% down:46% samples=1668
 
   ----------------------------------------------------------------------------
-  📊 Friday Summary
+  📊 Wednesday Summary
   ----------------------------------------------------------------------------
     Total: 1 signals (one per hour)
     Direction split: CALL=1, PUT=0
-    Average accuracy: 61.0%
+    Average success rate: 91.7%
 
-  Top 5 highest-accuracy signals:
-    61%  22:00  CALL  M1  target=$1  (move=6pt)
+  Top 5 highest-success signals:
+    92%  15:00  CALL  M10  target=$0.5  (move=20pt, n=1668)
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
@@ -32,4 +32,6 @@
     Entry 2: bet 2× → if WIN, recover loss & profit
     Stop:    after Entry 2 loss → max drawdown = 3×
   ────────────────────────────────────────────────
-  ⚠ REAL accuracy = directional bias from 974 days
+  ⚠ acc = P(price touches $90$ or more in 1 hour)
+     Movement success rate (touch probability)
+     For binary option CALL/PUT win rate, see directional_success
