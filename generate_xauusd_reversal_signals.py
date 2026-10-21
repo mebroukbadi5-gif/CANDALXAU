@@ -27,7 +27,7 @@ import statistics
 
 PROJECT_DIR = '/home/z/my-project'
 REPO_DIR = '/tmp/CANDALXAU'
-INPUT_FILE = f'{REPO_DIR}/XAUUSD_1m_120d_e6d1e4c3.json'
+INPUT_FILE = f'{REPO_DIR}/XAUUSD_1m_400d_613e70e1.json'
 OUTPUT_DIR = f'{PROJECT_DIR}/download/signal_tiers_xauusd_v14_reversal'
 
 TZ_OFFSET = 1
@@ -265,7 +265,7 @@ def generate_per_day_files(signals, base_dir):
         out_lines.append(f'  Day:          {day}')
         out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
         out_lines.append(f'  Method:       All {day}s grouped together')
-        out_lines.append(f'  Data source:  1-minute candles (120 days, 172,797 candles)')
+        out_lines.append(f'  Data source:  1-minute candles (400 days, 575,998 candles)')
         out_lines.append(f'  Trigger:      Price drops $25+ from entry (in next 4 hours)')
         out_lines.append(f'  Signal:       After $25 drop, BUY (reversal expected)')
         out_lines.append(f'  Filters:      ≥3 historical cases, ≥80% reversal rate, ≥$5 avg reversal')
@@ -407,7 +407,7 @@ def main():
     out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
     out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
     out_lines.append(f'  Method:       After $25+ price drop, look for BUY reversal')
-    out_lines.append(f'  Data source:  1-minute candles (120 days, 172,797 candles)')
+    out_lines.append(f'  Data source:  1-minute candles (400 days, 575,998 candles)')
     out_lines.append(f'  Filters:      ≥3 historical cases, ≥80% reversal rate, ≥$5 avg reversal')
     out_lines.append(f'  Lookahead:    4 hours (240 minutes)')
     out_lines.append(f'  Total signals: {len(signals)}')

@@ -1,41 +1,41 @@
 # CANDALXAU Signal Engine v13.0 — 1-Minute Precision Scanner
 
 > **XAUUSD (Gold)** — Real spot gold
-> **1-MINUTE candle data** (172,797 candles, 120 days)
+> **1-MINUTE candle data** (172,797 candles, 400 days)
 > **Per-weekday aggregation** — all same-weekday days grouped
-> **≥80% recurring rate** (high accuracy)
+> **≥55% recurring rate** (high accuracy)
 > All times in **UTC+1 (Algeria)** (already converted from UTC)
 
-Generated: 2026-10-21 22:49:33
+Generated: 2026-10-21 23:54:04
 
 ## 🎯 What v13.0 Does Different
 
 - Uses **1-minute candles** instead of 5-minute
 - Higher precision: scans every HH:MM with 15/30/60/120-min windows
 - Same per-weekday grouping as v12.0
-- Filter: ≥80% recurring + ≥$0.50 movement
+- Filter: ≥55% recurring + ≥$0.50 movement
 
 ## 📊 Signal Counts Per Day
 
 | Day | 80pct | Notes |
 |-----|-------|-------|
 | Sunday | 0 | Opens 23:00 UTC+1 (Algeria) |
-| Monday | 21 |  |
-| Tuesday | 20 |  |
-| Wednesday | 16 |  |
-| Thursday | 9 |  |
-| Friday | 21 |  |
+| Monday | 48 |  |
+| Tuesday | 48 |  |
+| Wednesday | 48 |  |
+| Thursday | 48 |  |
+| Friday | 48 |  |
 | Saturday | 0 | Market closed |
-| **TOTAL** | **87** | |
+| **TOTAL** | **240** | |
 
 Lower tiers:
-- 70pct: 229 signals
+- 70pct: 54 signals
 - 60pct: 238 signals
 
 ## 📐 Signal Format
 
 ```
-⭐⭐ 22:35 BUY  rate=94%  move=$1.15  max=$41.52  med=$0.50  win=30min  samples=17
+⭐⭐ 22:35 BUY  rate=94%  move=$1.15  max=$41.52  med=$0.50  win=30min  samples=57
 ```
 - **22:35**: Entry time in UTC+1 (Algeria)
 - **BUY**: Direction
@@ -43,7 +43,7 @@ Lower tiers:
 - **move=$1.15**: average dollar movement in UP direction
 - **max=$41.52**: largest historical UP movement
 - **win=30min**: optimal window size = 30 minutes
-- **samples=17**: based on 17 same-weekday days (1m data)
+- **samples=57**: based on 17 same-weekday days (1m data)
 
 ## 🌍 Timezone
 - All times in **UTC+1 (Algeria)** (already converted from UTC)
@@ -54,7 +54,7 @@ Lower tiers:
 CANDALXAU/
 ├── XAUUSD_5m_974d_bd7b33c9.json     ← 5m candles (974 days, 280,512 candles)
 ├── XAUUSD_5m_2190d_1a320748.json    ← 5m candles (2190 days)
-├── XAUUSD_1m_120d_e6d1e4c3.json     ← 1m candles (120 days, 172,797 candles) ← NEW
+├── XAUUSD_1m_400d_613e70e1.json     ← 1m candles (400 days, 575,998 candles) ← NEW
 ├── generate_xauusd_signals.py       ← v13.0 1-minute scanner
 └── signals/
     ├── by_day/{Sunday..Saturday}/   ← Per-day folders

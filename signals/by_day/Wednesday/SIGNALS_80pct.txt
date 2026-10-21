@@ -1,14 +1,14 @@
 ==============================================================================================================
-  XAUUSD Signals — Wednesday — ≥80% recurring + ≥$0.50 movement
+  XAUUSD Signals — Wednesday — ≥55% recurring + ≥$0.50 movement
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Wednesday
-  Generated:    2026-10-21 22:49:33
-  Method:       All Wednesdays grouped together (17 days)
-  Data source:  1-minute candles (120 days, 172,797 candles)
-  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement
+  Generated:    2026-10-21 23:54:04
+  Method:       All Wednesdays grouped together (57 days)
+  Data source:  1-minute candles (400 days, 575,998 candles)
+  Threshold:    ≥55% recurring direction + ≥$0.50 avg movement
   Windows:      15/30/60/120 minutes (best picked per HH:MM)
-  Total signals: 16
+  Total signals: 48
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ HH:MM <BUY|SELL> rate=XX% move=$X.XX max=$Y.YY win=Mmin samples=N
   Timezone: UTC+1 (Algeria)
@@ -17,71 +17,126 @@
 
 
   ── 00:00 UTC+1 (Algeria) ──
-  ⭐ 00:14 SELL  rate=82%  move=$11.76  max=$33.04  med=$11.47  win=120min  samples=17
+  ✓ 00:29 BUY   rate=65%  move=$23.45  max=$122.13  med=$14.53  win=120min  samples=57
+  ✓ 00:52 BUY   rate=68%  move=$24.19  max=$98.47  med=$13.11  win=120min  samples=57
+
+  ── 01:00 UTC+1 (Algeria) ──
+  ✓ 01:25 BUY   rate=67%  move=$28.28  max=$116.07  med=$21.99  win=120min  samples=58
+  ⭐ 01:36 BUY   rate=71%  move=$27.49  max=$120.52  med=$21.39  win=120min  samples=58
+
+  ── 02:00 UTC+1 (Algeria) ──
+  ✓ 02:10 BUY   rate=64%  move=$30.65  max=$106.69  med=$22.38  win=120min  samples=58
+  ✓ 02:33 BUY   rate=57%  move=$30.78  max=$87.70  med=$26.65  win=120min  samples=58
+
+  ── 03:00 UTC+1 (Algeria) ──
+  ✓ 03:05 BUY   rate=62%  move=$27.06  max=$56.30  med=$25.68  win=120min  samples=58
+  ✓ 03:39 BUY   rate=59%  move=$23.54  max=$54.87  med=$20.85  win=120min  samples=58
 
   ── 04:00 UTC+1 (Algeria) ──
-  ⭐ 04:09 BUY   rate=82%  move=$17.39  max=$51.94  med=$13.45  win=120min  samples=17
+  ✓ 04:00 BUY   rate=55%  move=$20.10  max=$57.47  med=$17.20  win=120min  samples=58
+  ✓ 04:39 BUY   rate=57%  move=$16.56  max=$37.88  med=$14.09  win=120min  samples=58
 
   ── 05:00 UTC+1 (Algeria) ──
-  ⭐ 05:11 SELL  rate=82%  move=$11.14  max=$18.82  med=$9.67  win=120min  samples=17
+  ✓ 05:11 SELL  rate=59%  move=$12.50  max=$26.92  med=$11.03  win=120min  samples=58
+  ✓ 05:56 BUY   rate=57%  move=$19.16  max=$44.22  med=$17.22  win=120min  samples=58
 
   ── 06:00 UTC+1 (Algeria) ──
-  ⭐⭐ 06:17 BUY   rate=88%  move=$4.22  max=$10.56  med=$3.12  win=15min  samples=17
-  ⭐⭐ 06:34 SELL  rate=88%  move=$3.37  max=$5.34  med=$3.04  win=15min  samples=17
+  ✓ 06:29 BUY   rate=59%  move=$21.04  max=$47.60  med=$18.30  win=120min  samples=58
+  ✓ 06:57 BUY   rate=55%  move=$22.17  max=$55.15  med=$18.69  win=120min  samples=58
 
   ── 07:00 UTC+1 (Algeria) ──
-  ⭐ 07:21 BUY   rate=82%  move=$11.63  max=$32.42  med=$9.35  win=30min  samples=17
+  ✓ 07:15 BUY   rate=57%  move=$19.93  max=$48.50  med=$17.94  win=120min  samples=58
+  ✓ 07:40 SELL  rate=64%  move=$17.07  max=$52.32  med=$15.02  win=120min  samples=58
 
   ── 08:00 UTC+1 (Algeria) ──
-  ⭐ 08:28 BUY   rate=82%  move=$8.66  max=$16.72  med=$7.80  win=30min  samples=17
-  ⭐ 08:31 BUY   rate=82%  move=$10.83  max=$21.75  med=$9.32  win=60min  samples=17
+  ✓ 08:08 BUY   rate=59%  move=$20.42  max=$61.47  med=$16.89  win=120min  samples=58
+  ✓ 08:53 SELL  rate=60%  move=$20.36  max=$101.82  med=$14.67  win=120min  samples=58
+
+  ── 09:00 UTC+1 (Algeria) ──
+  ⭐ 09:29 SELL  rate=72%  move=$19.75  max=$85.14  med=$14.36  win=120min  samples=58
+  ⭐ 09:32 SELL  rate=71%  move=$20.29  max=$85.32  med=$15.16  win=120min  samples=58
 
   ── 10:00 UTC+1 (Algeria) ──
-  ⭐ 10:25 SELL  rate=82%  move=$11.22  max=$37.54  med=$9.21  win=60min  samples=17
-  ⭐ 10:31 SELL  rate=82%  move=$11.92  max=$37.66  med=$8.58  win=60min  samples=17
+  ✓ 10:01 SELL  rate=64%  move=$20.63  max=$76.04  med=$15.15  win=120min  samples=58
+  ✓ 10:31 SELL  rate=69%  move=$19.21  max=$51.26  med=$14.36  win=120min  samples=58
 
   ── 11:00 UTC+1 (Algeria) ──
-  ⭐ 11:04 SELL  rate=82%  move=$9.53  max=$15.12  med=$9.61  win=60min  samples=17
+  ✓ 11:07 SELL  rate=64%  move=$20.46  max=$77.93  med=$15.25  win=120min  samples=58
+  ✓ 11:35 SELL  rate=60%  move=$19.55  max=$59.72  med=$13.67  win=120min  samples=58
+
+  ── 12:00 UTC+1 (Algeria) ──
+  ✓ 12:28 SELL  rate=57%  move=$23.49  max=$88.16  med=$16.52  win=120min  samples=58
+  ✓ 12:50 SELL  rate=55%  move=$29.18  max=$102.30  med=$20.60  win=120min  samples=58
 
   ── 13:00 UTC+1 (Algeria) ──
-  ⭐ 13:41 BUY   rate=82%  move=$10.36  max=$28.07  med=$9.69  win=30min  samples=17
+  ✓ 13:20 SELL  rate=55%  move=$31.38  max=$138.76  med=$23.79  win=120min  samples=58
+  ✓ 13:37 BUY   rate=55%  move=$26.39  max=$97.71  med=$21.34  win=120min  samples=58
+
+  ── 14:00 UTC+1 (Algeria) ──
+  ✓ 14:05 SELL  rate=60%  move=$33.03  max=$93.37  med=$26.91  win=120min  samples=58
+  ✓ 14:55 BUY   rate=55%  move=$33.74  max=$90.97  med=$30.28  win=120min  samples=58
+
+  ── 15:00 UTC+1 (Algeria) ──
+  ✓ 15:27 SELL  rate=57%  move=$33.67  max=$100.12  med=$29.63  win=120min  samples=58
+  ✓ 15:58 SELL  rate=55%  move=$36.26  max=$171.08  med=$28.07  win=120min  samples=58
+
+  ── 16:00 UTC+1 (Algeria) ──
+  ✓ 16:11 SELL  rate=69%  move=$32.10  max=$153.59  med=$28.15  win=120min  samples=58
+  ✓ 16:35 SELL  rate=66%  move=$31.47  max=$134.05  med=$28.46  win=120min  samples=58
+
+  ── 17:00 UTC+1 (Algeria) ──
+  ✓ 17:03 SELL  rate=64%  move=$26.40  max=$147.38  med=$21.11  win=120min  samples=58
+  ✓ 17:40 SELL  rate=55%  move=$20.02  max=$72.37  med=$16.20  win=120min  samples=58
+
+  ── 18:00 UTC+1 (Algeria) ──
+  ✓ 18:28 SELL  rate=55%  move=$25.77  max=$88.32  med=$20.62  win=120min  samples=58
+  ✓ 18:59 SELL  rate=64%  move=$26.46  max=$89.62  med=$19.12  win=120min  samples=58
+
+  ── 19:00 UTC+1 (Algeria) ──
+  ✓ 19:28 SELL  rate=59%  move=$31.14  max=$132.43  med=$21.25  win=120min  samples=58
+  ✓ 19:55 SELL  rate=59%  move=$32.18  max=$158.49  med=$23.50  win=120min  samples=58
+
+  ── 20:00 UTC+1 (Algeria) ──
+  ✓ 20:02 SELL  rate=57%  move=$31.16  max=$113.60  med=$21.23  win=120min  samples=58
+  ✓ 20:31 SELL  rate=62%  move=$26.20  max=$87.30  med=$16.90  win=120min  samples=58
 
   ── 21:00 UTC+1 (Algeria) ──
-  ⭐ 21:29 SELL  rate=82%  move=$9.80  max=$39.76  med=$6.22  win=30min  samples=17
-  ⭐ 21:30 SELL  rate=82%  move=$10.47  max=$40.46  med=$7.36  win=30min  samples=17
+  ✓ 21:00 SELL  rate=55%  move=$25.68  max=$92.51  med=$16.75  win=120min  samples=58
+  ✓ 21:41 BUY   rate=59%  move=$16.31  max=$93.56  med=$9.25  win=120min  samples=58
 
   ── 22:00 UTC+1 (Algeria) ──
-  ⭐ 22:21 BUY   rate=82%  move=$11.97  max=$29.40  med=$8.40  win=120min  samples=17
-  ⭐⭐ 22:46 BUY   rate=88%  move=$9.50  max=$21.78  med=$8.80  win=120min  samples=17
+  ✓ 22:06 BUY   rate=57%  move=$14.57  max=$82.34  med=$9.71  win=120min  samples=58
+  ✓ 22:53 BUY   rate=64%  move=$13.18  max=$42.13  med=$10.08  win=120min  samples=58
+
+  ── 23:00 UTC+1 (Algeria) ──
+  ✓ 23:23 BUY   rate=63%  move=$18.63  max=$109.04  med=$12.89  win=120min  samples=57
+  ✓ 23:50 BUY   rate=58%  move=$24.30  max=$203.11  med=$13.86  win=120min  samples=57
 
   ----------------------------------------------------------------------------------------------------------
   📊 Wednesday Summary
   ----------------------------------------------------------------------------------------------------------
-    Total: 16 high-accuracy signals
-    Direction split: BUY=8, SELL=8
+    Total: 48 high-accuracy signals
+    Direction split: BUY=22, SELL=26
     Window distribution:
-      15min: 2 signals
-      30min: 5 signals
-      60min: 4 signals
-      120min: 5 signals
+      120min: 48 signals
 
   Top 5 highest recurring rates:
-    88%  06:17  BUY   move=$4.22  win=15min
-    88%  06:34  SELL  move=$3.37  win=15min
-    88%  22:46  BUY   move=$9.50  win=120min
-    82%  00:14  SELL  move=$11.76  win=120min
-    82%  04:09  BUY   move=$17.39  win=120min
+    72%  09:29  SELL  move=$19.75  win=120min
+    71%  01:36  BUY   move=$27.49  win=120min
+    71%  09:32  SELL  move=$20.29  win=120min
+    69%  10:31  SELL  move=$19.21  win=120min
+    69%  16:11  SELL  move=$32.10  win=120min
 
   Top 5 largest avg movements:
-    $17.39  04:09  BUY   rate=82%  win=120min
-    $11.97  22:21  BUY   rate=82%  win=120min
-    $11.92  10:31  SELL  rate=82%  win=60min
-    $11.76  00:14  SELL  rate=82%  win=120min
-    $11.63  07:21  BUY   rate=82%  win=30min
+    $36.26  15:58  SELL  rate=55%  win=120min
+    $33.74  14:55  BUY   rate=55%  win=120min
+    $33.67  15:27  SELL  rate=57%  win=120min
+    $33.03  14:05  SELL  rate=60%  win=120min
+    $32.18  19:55  SELL  rate=59%  win=120min
 
   ────────────────────────────────────────────────
-  Method: All Wednesdays grouped together (17 historical days)
+  Method: All Wednesdays grouped together (57 historical days)
   Pattern: At Wednesday HH:MM, in 80%+ of historical Wednesdays,
            price moved in the predicted direction
-  Data: 1-minute candles (120 days, 172,797 candles)
+  Data: 1-minute candles (400 days, 575,998 candles)
   ────────────────────────────────────────────────

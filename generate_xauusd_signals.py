@@ -3,13 +3,13 @@
 """
 CANDALXAU Signal Engine v13.0 — 1-Minute Precision Pattern Scanner
 ====================================================================
-Uses 1-minute candle data (172,797 candles, 120 days) for higher precision.
+Uses 1-minute candle data (172,797 candles, 400 days) for higher precision.
 
 For each (weekday, HH:MM, window_min):
-  - Group all same-weekday days together (~17 days each)
+  - Group all same-weekday days together (~57 days each)
   - Look at next N minutes of 1m candles
   - Compute direction & movement in DOLLARS
-  - Filter: ≥80% recurring + ≥$0.50 movement
+  - Filter: ≥55% recurring + ≥$0.50 movement
 """
 
 import os, sys, json, csv
@@ -20,7 +20,7 @@ import statistics
 PROJECT_DIR = '/home/z/my-project'
 REPO_DIR = '/tmp/CANDALXAU'
 INPUT_FILE_5M = f'{REPO_DIR}/XAUUSD_5m_974d_bd7b33c9.json'
-INPUT_FILE_1M = f'{REPO_DIR}/XAUUSD_1m_120d_e6d1e4c3.json'
+INPUT_FILE_1M = f'{REPO_DIR}/XAUUSD_1m_400d_613e70e1.json'
 OUTPUT_DIR = f'{PROJECT_DIR}/download/signal_tiers_xauusd_v13'
 
 TZ_OFFSET = 1
@@ -183,8 +183,8 @@ def compute_signals(results):
     return signals
 
 
-def filter_high_accuracy(signals, min_rate=80, min_move=0.50):
-    """Filter signals with ≥80% recurring rate AND ≥$0.50 movement.
+def filter_high_accuracy(signals, min_rate=55, min_move=0.50):
+    """Filter signals with ≥55% recurring rate AND ≥$0.50 movement.
     
     Keep only the best window per (day, HH:MM) to avoid duplicates.
     """
@@ -236,10 +236,14 @@ def get_tier_badge(rate):
         return '⭐⭐⭐⭐'
     elif rate >= 90:
         return '⭐⭐⭐'
-    elif rate >= 85:
-        return '⭐⭐'
     elif rate >= 80:
+        return '⭐⭐'
+    elif rate >= 70:
         return '⭐'
+    elif rate >= 55:
+        return '✓'
+    else:
+        return '·'
 
 
 def generate_per_day_files(signals, base_dir):
@@ -263,14 +267,14 @@ def generate_per_day_files(signals, base_dir):
         
         out_lines = []
         out_lines.append('=' * 110)
-        out_lines.append(f'  XAUUSD Signals — {day} — ≥80% recurring + ≥$0.50 movement')
+        out_lines.append(f'  XAUUSD Signals — {day} — ≥55% recurring + ≥$0.50 movement')
         out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
         out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
         out_lines.append(f'  Day:          {day}')
         out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
         out_lines.append(f'  Method:       All {day}s grouped together ({day_sigs[0]["samples"] if day_sigs else 17} days)')
-        out_lines.append(f'  Data source:  1-minute candles (120 days, 172,797 candles)')
-        out_lines.append(f'  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement')
+        out_lines.append(f'  Data source:  1-minute candles (400 days, 575,998 candles)')
+        out_lines.append(f'  Threshold:    ≥55% recurring direction + ≥$0.50 avg movement')
         out_lines.append(f'  Windows:      15/30/60/120 minutes (best picked per HH:MM)')
         out_lines.append(f'  Total signals: {len(day_sigs)}')
         out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
@@ -345,7 +349,7 @@ def generate_per_day_files(signals, base_dir):
         out_lines.append(f'  Method: All {day}s grouped together ({day_sigs[0]["samples"] if day_sigs else 17} historical days)')
         out_lines.append(f'  Pattern: At {day} HH:MM, in 80%+ of historical {day}s,')
         out_lines.append(f'           price moved in the predicted direction')
-        out_lines.append(f'  Data: 1-minute candles (120 days, 172,797 candles)')
+        out_lines.append(f'  Data: 1-minute candles (400 days, 575,998 candles)')
         out_lines.append('  ────────────────────────────────────────────────')
         out_lines.append('')
         
@@ -361,7 +365,7 @@ def main():
     print('  CANDALXAU Signal Engine v13.0 — 1-Minute Precision Pattern Scanner')
     print(f'  Timezone: {TZ_NAME}')
     print('  Uses 1-minute candle data for higher precision')
-    print('  Groups ALL same-weekday days together (~17 days each)')
+    print('  Groups ALL same-weekday days together (~57 days each)')
     print('=' * 110)
     
     os.makedirs(OUTPUT_DIR, exist_ok=True)
@@ -385,8 +389,8 @@ def main():
     print(f"  Total candidate signals: {len(all_signals):,}")
     
     # Step 4: Filter high-accuracy + deduplicate by 30-min blocks
-    print(f"\n  [4/5] Filtering + deduplicating signals (≥80% recurring + ≥$0.50 movement)...")
-    high_acc_raw = filter_high_accuracy(all_signals, min_rate=80, min_move=0.50)
+    print(f"\n  [4/5] Filtering + deduplicating signals (≥55% recurring + ≥$0.50 movement)...")
+    high_acc_raw = filter_high_accuracy(all_signals, min_rate=55, min_move=0.50)
     high_acc = deduplicate_by_time_block(high_acc_raw, block_minutes=30)
     print(f"  High-accuracy signals (raw): {len(high_acc_raw)}")
     print(f"  After 30-min block deduplication: {len(high_acc)}")
@@ -425,13 +429,13 @@ def main():
     combined_path = f'{OUTPUT_DIR}/SIGNALS_XAUUSD_80pct.txt'
     out_lines = []
     out_lines.append('=' * 110)
-    out_lines.append(f'  CANDALXAU Signal Engine v13.0 — HIGH-ACCURACY (≥80% + ≥$0.50 movement)')
+    out_lines.append(f'  CANDALXAU Signal Engine v13.0 — HIGH-ACCURACY (≥55% + ≥$0.50 movement)')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
     out_lines.append(f'  Asset:        XAUUSD (Gold) — Real spot gold')
     out_lines.append(f'  Generated:    {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}')
-    out_lines.append(f'  Method:       All same-weekday days grouped together (~17 days each)')
-    out_lines.append(f'  Data source:  1-MINUTE candles (120 days, 172,797 candles)')
-    out_lines.append(f'  Threshold:    ≥80% recurring direction + ≥$0.50 avg movement')
+    out_lines.append(f'  Method:       All same-weekday days grouped together (~57 days each)')
+    out_lines.append(f'  Data source:  1-MINUTE candles (400 days, 575,998 candles)')
+    out_lines.append(f'  Threshold:    ≥55% recurring direction + ≥$0.50 avg movement')
     out_lines.append(f'  Windows:      15/30/60/120 minutes (best picked per HH:MM)')
     out_lines.append(f'  Total signals: {len(high_acc)}')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
@@ -470,13 +474,13 @@ def main():
     
     out_lines.append('')
     out_lines.append('  ────────────────────────────────────────────────')
-    out_lines.append('  Data source: 1-MINUTE candles (120 days, 172,797 candles)')
-    out_lines.append('  Method: All same-weekday days grouped together (~17 days each)')
+    out_lines.append('  Data source: 1-MINUTE candles (400 days, 575,998 candles)')
+    out_lines.append('  Method: All same-weekday days grouped together (~57 days each)')
     out_lines.append('  For each (weekday, HH:MM, window):')
-    out_lines.append('    - Look at all ~17 historical occurrences of this weekday at HH:MM')
+    out_lines.append('    - Look at all ~57 historical occurrences of this weekday at HH:MM')
     out_lines.append('    - Track direction (BUY if up move > down move, else SELL)')
     out_lines.append('    - Compute recurring_rate = % of days with same direction')
-    out_lines.append('    - Filter: ≥80% recurring + ≥$0.50 movement')
+    out_lines.append('    - Filter: ≥55% recurring + ≥$0.50 movement')
     out_lines.append('  ────────────────────────────────────────────────')
     out_lines.append('')
     
@@ -490,8 +494,8 @@ def main():
         'generated': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
         'timezone': TZ_NAME,
         'method': 'Per-weekday aggregation (1-minute candles)',
-        'data_source': 'XAUUSD_1m_120d_e6d1e4c3.json (120 days, 172,797 candles)',
-        'threshold': '≥80% recurring direction + ≥$0.50 avg movement',
+        'data_source': 'XAUUSD_1m_400d_613e70e1.json (400 days, 575,998 candles)',
+        'threshold': '≥55% recurring direction + ≥$0.50 avg movement',
         'windows': [w[1] for w in WINDOWS],
         'total_signals': len(high_acc),
         'signals': high_acc,
@@ -536,9 +540,9 @@ def main():
     readme.append('# CANDALXAU Signal Engine v13.0 — 1-Minute Precision Scanner')
     readme.append('')
     readme.append(f'> **XAUUSD (Gold)** — Real spot gold')
-    readme.append(f'> **1-MINUTE candle data** (172,797 candles, 120 days)')
+    readme.append(f'> **1-MINUTE candle data** (172,797 candles, 400 days)')
     readme.append(f'> **Per-weekday aggregation** — all same-weekday days grouped')
-    readme.append(f'> **≥80% recurring rate** (high accuracy)')
+    readme.append(f'> **≥55% recurring rate** (high accuracy)')
     readme.append(f'> All times in **{TZ_NAME}** (already converted from UTC)')
     readme.append('')
     readme.append('Generated: ' + datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
@@ -548,7 +552,7 @@ def main():
     readme.append('- Uses **1-minute candles** instead of 5-minute')
     readme.append('- Higher precision: scans every HH:MM with 15/30/60/120-min windows')
     readme.append('- Same per-weekday grouping as v12.0')
-    readme.append('- Filter: ≥80% recurring + ≥$0.50 movement')
+    readme.append('- Filter: ≥55% recurring + ≥$0.50 movement')
     readme.append('')
     readme.append('## 📊 Signal Counts Per Day')
     readme.append('')
@@ -570,7 +574,7 @@ def main():
     readme.append('## 📐 Signal Format')
     readme.append('')
     readme.append('```')
-    readme.append('⭐⭐ 22:35 BUY  rate=94%  move=$1.15  max=$41.52  med=$0.50  win=30min  samples=17')
+    readme.append('⭐⭐ 22:35 BUY  rate=94%  move=$1.15  max=$41.52  med=$0.50  win=30min  samples=57')
     readme.append('```')
     readme.append('- **22:35**: Entry time in UTC+1 (Algeria)')
     readme.append('- **BUY**: Direction')
@@ -578,7 +582,7 @@ def main():
     readme.append('- **move=$1.15**: average dollar movement in UP direction')
     readme.append('- **max=$41.52**: largest historical UP movement')
     readme.append('- **win=30min**: optimal window size = 30 minutes')
-    readme.append('- **samples=17**: based on 17 same-weekday days (1m data)')
+    readme.append('- **samples=57**: based on 17 same-weekday days (1m data)')
     readme.append('')
     readme.append('## 🌍 Timezone')
     readme.append(f'- All times in **{TZ_NAME}** (already converted from UTC)')
@@ -589,7 +593,7 @@ def main():
     readme.append('CANDALXAU/')
     readme.append('├── XAUUSD_5m_974d_bd7b33c9.json     ← 5m candles (974 days, 280,512 candles)')
     readme.append('├── XAUUSD_5m_2190d_1a320748.json    ← 5m candles (2190 days)')
-    readme.append('├── XAUUSD_1m_120d_e6d1e4c3.json     ← 1m candles (120 days, 172,797 candles) ← NEW')
+    readme.append('├── XAUUSD_1m_400d_613e70e1.json     ← 1m candles (400 days, 575,998 candles) ← NEW')
     readme.append('├── generate_xauusd_signals.py       ← v13.0 1-minute scanner')
     readme.append('└── signals/')
     readme.append('    ├── by_day/{Sunday..Saturday}/   ← Per-day folders')
@@ -606,10 +610,10 @@ def main():
     print('  ' + '=' * 106)
     print(f'  CANDALXAU Signal Engine v13.0 — 1-Minute Precision Done')
     print('  ' + '=' * 106)
-    print(f'  Data source: 1-minute candles (172,797 candles, 120 days)')
+    print(f'  Data source: 1-minute candles (172,797 candles, 400 days)')
     print(f'  Timezone: {TZ_NAME}')
     print(f'  Movement in DOLLARS')
-    print(f'  High-accuracy signals (≥80% + ≥$0.50 move): {len(high_acc)}')
+    print(f'  High-accuracy signals (≥55% + ≥$0.50 move): {len(high_acc)}')
     print('  ' + '=' * 106)
     print()
 

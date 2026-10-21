@@ -3,9 +3,9 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Saturday
-  Generated:    2026-10-21 23:13:56
+  Generated:    2026-10-21 23:54:26
   Method:       All Saturdays grouped together
-  Data source:  1-minute candles (120 days, 172,797 candles)
+  Data source:  1-minute candles (400 days, 575,998 candles)
   Trigger:      Price drops $25+ from entry (in next 4 hours)
   Signal:       After $25 drop, BUY (reversal expected)
   Filters:      ≥3 historical cases, ≥80% reversal rate, ≥$5 avg reversal

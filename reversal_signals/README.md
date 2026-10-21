@@ -26,13 +26,13 @@ For Thursday 02:12 Algeria, in 4 historical cases where price dropped $25+:
 | Day | Signals |
 |-----|---------|
 | Sunday | 0 |
-| Monday | 38 |
-| Tuesday | 43 |
-| Wednesday | 38 |
-| Thursday | 39 |
-| Friday | 27 |
+| Monday | 48 |
+| Tuesday | 48 |
+| Wednesday | 48 |
+| Thursday | 48 |
+| Friday | 45 |
 | Saturday | 0 |
-| **TOTAL** | **185** |
+| **TOTAL** | **237** |
 
 ## 📐 Signal Format
 
