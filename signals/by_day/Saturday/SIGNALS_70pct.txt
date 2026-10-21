@@ -1,19 +1,19 @@
 ================================================================================
   XAUUSD Signals — Saturday — STANDARD (≥70% accuracy)
   ──────────────────────────────────────────────────────────────────────────
-  Asset:     XAUUSD (Gold) ONLY
+  Asset:     XAUUSD (Gold) ONLY — Real spot gold (not OTC)
   Day:       Saturday
-  Generated: 2026-10-21 20:45:53
+  Generated: 2026-10-21 20:55:42
   Threshold: ≥70% accuracy
   Data:      974 days × 5m candles (2021-2026)
   Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
   Timezone: UTC (add +1 hour for UTC+1 / Algeria)
+  Note:     ONE signal per hour — no duplicates
 ================================================================================
 
   ⚠ No signals for this day at this threshold.
-  (Market may be closed, or accuracy threshold too high)
 
   📌 Note: XAUUSD market is CLOSED on Saturday.
 

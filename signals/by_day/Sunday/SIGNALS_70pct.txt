@@ -1,79 +1,30 @@
 ================================================================================
   XAUUSD Signals — Sunday — STANDARD (≥70% accuracy)
   ──────────────────────────────────────────────────────────────────────────
-  Asset:     XAUUSD (Gold) ONLY
+  Asset:     XAUUSD (Gold) ONLY — Real spot gold (not OTC)
   Day:       Sunday
-  Generated: 2026-10-21 20:45:53
+  Generated: 2026-10-21 20:55:42
   Threshold: ≥70% accuracy
   Data:      974 days × 5m candles (2021-2026)
-  Total signals: 44
+  Total signals: 2
   ──────────────────────────────────────────────────────────────────────────
   Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
   Timezone: UTC (add +1 hour for UTC+1 / Algeria)
+  Note:     ONE signal per hour — no duplicates
 ================================================================================
 
-
-  ── 22:00 UTC | avg move: 15pt | up:62% down:38% | bias: UP ──
-  ⭐⭐⭐ M1  XAUUSD      22:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      22:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      22:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD      22:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      22:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      22:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD      22:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      22:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      22:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD      22:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      22:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      22:45 CALL  acc=98% target=$1
-
-  ── 23:00 UTC | avg move: 16pt | up:52% down:48% | bias: UP ──
-  ⭐⭐⭐ M1  XAUUSD      23:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD      23:00 CALL  acc=98% target=$2
-  ⭐⭐⭐ M3  XAUUSD      23:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      23:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M10 XAUUSD      23:00 CALL  acc=96% target=$1
-  ⭐⭐⭐ M3  XAUUSD      23:00 CALL  acc=95% target=$2
-  ⭐⭐ M5  XAUUSD      23:00 CALL  acc=92% target=$2
-  ⭐ M10 XAUUSD      23:00 CALL  acc=88% target=$2
-  ⭐⭐⭐ M1  XAUUSD      23:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      23:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      23:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD      23:15 CALL  acc=97% target=$2
-  ⭐⭐⭐ M10 XAUUSD      23:15 CALL  acc=95% target=$1
-  ⭐⭐ M3  XAUUSD      23:15 CALL  acc=94% target=$2
-  ⭐⭐ M5  XAUUSD      23:15 CALL  acc=91% target=$2
-  ⭐ M10 XAUUSD      23:15 CALL  acc=87% target=$2
-  ⭐⭐⭐ M1  XAUUSD      23:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      23:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      23:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD      23:30 CALL  acc=96% target=$2
-  ⭐⭐ M10 XAUUSD      23:30 CALL  acc=94% target=$1
-  ⭐⭐ M3  XAUUSD      23:30 CALL  acc=93% target=$2
-  ⭐⭐ M5  XAUUSD      23:30 CALL  acc=90% target=$2
-  ⭐ M10 XAUUSD      23:30 CALL  acc=86% target=$2
-  ⭐⭐⭐ M1  XAUUSD      23:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD      23:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD      23:45 CALL  acc=97% target=$1
-  ⭐⭐⭐ M1  XAUUSD      23:45 CALL  acc=95% target=$2
-  ⭐⭐ M10 XAUUSD      23:45 CALL  acc=93% target=$1
-  ⭐⭐ M3  XAUUSD      23:45 CALL  acc=92% target=$2
-  ⭐ M5  XAUUSD      23:45 CALL  acc=89% target=$2
-  ⭐ M10 XAUUSD      23:45 CALL  acc=85% target=$2
+  ⭐⭐⭐ M3  XAUUSD  22:00 CALL  acc=98% target=$1  | move=15pt up:62% down:38% bias:UP
+  ⭐⭐ M5  XAUUSD  23:00 CALL  acc=91% target=$1  | move=16pt up:52% down:48% bias:UP
 
   ----------------------------------------------------------------------------
   📊 Sunday Summary
   ----------------------------------------------------------------------------
-    22:00 →  12 signals  ███
-    23:00 →  32 signals  ███████
-    Total:  44 signals
+    Total: 2 signals (one per hour)
+    Direction split: CALL=2, PUT=0
 
   Top 5 highest-accuracy signals:
-    98%  22:00  CALL  M1  target=$1
     98%  22:00  CALL  M3  target=$1
-    98%  22:00  CALL  M5  target=$1
-    98%  22:15  CALL  M1  target=$1
-    98%  22:15  CALL  M3  target=$1
+    91%  23:00  CALL  M5  target=$1
 
   ────────────────────────────────────────────────
   MTG1 Strategy:
