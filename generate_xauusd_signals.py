@@ -200,7 +200,7 @@ def generate_signals():
                     pattern = f"{entry['dominant_dir']} bias (move={entry['avg_move']:.0f}pt, samples={entry['samples']})"
                     
                     signals.append({
-                        'pair': 'XAUUSD-OTC',
+                        'pair': 'XAUUSD',
                         'time': f"{entry['hour']:02d}:{minute:02d}",
                         'hour': entry['hour'],
                         'minute': minute,
@@ -240,7 +240,7 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
     out_lines.append(f'  Data:      974 days × 5m candles (2021-2026)')
     out_lines.append(f'  Total signals: {len(filtered)}')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-    out_lines.append(f'  Format: ⭐ M<expiry> XAUUSD-OTC HH:MM <CALL|PUT> acc=XX% target=$X')
+    out_lines.append(f'  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X')
     out_lines.append(f'  Timezone: UTC (add +1 hour for UTC+1 / Algeria)')
     out_lines.append('=' * 80)
     out_lines.append('')
@@ -342,7 +342,7 @@ def generate_tier_file(signals, tier_threshold, tier_label, output_path):
     out_lines.append('    Stop:    after Entry 2 loss → max drawdown = 3×')
     out_lines.append('  ────────────────────────────────────────────────')
     out_lines.append('  Telegram bot integration:')
-    out_lines.append('    Parse: M<expiry> XAUUSD-OTC HH:MM <CALL|PUT>')
+    out_lines.append('    Parse: M<expiry> XAUUSD HH:MM <CALL|PUT>')
     out_lines.append('    Send signal 30 sec before HH:MM (UTC)')
     out_lines.append('  ────────────────────────────────────────────────')
     out_lines.append('')
@@ -413,7 +413,7 @@ def generate_per_day_files(signals, base_dir):
             out_lines.append(f'  Data:      974 days × 5m candles (2021-2026)')
             out_lines.append(f'  Total signals: {len(tier_sigs)}')
             out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-            out_lines.append(f'  Format: ⭐ M<expiry> XAUUSD-OTC HH:MM <CALL|PUT> acc=XX% target=$X')
+            out_lines.append(f'  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X')
             out_lines.append(f'  Timezone: UTC (add +1 hour for UTC+1 / Algeria)')
             out_lines.append('=' * 80)
             out_lines.append('')
@@ -635,13 +635,13 @@ def main():
     readme.append('')
     readme.append('## 📐 Signal Format')
     readme.append('```')
-    readme.append('⭐ M5 XAUUSD-OTC 14:00 CALL acc=92% target=$1')
+    readme.append('⭐ M5 XAUUSD 14:00 CALL acc=92% target=$1')
     readme.append('└┬┘ └┘ └────┬────┘ └──┬┘ └┬─┘ └──┬──┘ └──┬──┘')
     readme.append(' │   │       │        │   │      │       └─ Target ($1-$5)')
     readme.append(' │   │       │        │   │      └─ Accuracy %')
     readme.append(' │   │       │        │   └─ Direction (CALL=up, PUT=down)')
     readme.append(' │   │       │        └─ Time HH:MM UTC')
-    readme.append(' │   │       └─ Pair (always XAUUSD-OTC)')
+    readme.append(' │   │       └─ Pair (always XAUUSD)')
     readme.append(' │   └─ Expiry in minutes (M1/M3/M5/M10/M15/M30)')
     readme.append(' └─ Tier badge (⭐⭐⭐=95%+, ⭐⭐=90%+, ⭐=85%+, 🔥=80%+, ⚡=75%+, ✓=70%+)')
     readme.append('```')

@@ -77,13 +77,13 @@ CANDALXAU/
 ## 📐 Signal Format
 
 ```
-⭐⭐⭐ M1  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
+⭐⭐⭐ M1  XAUUSD  22:00 CALL  acc=98% target=$1
 └──┬─┘ └┘ └────┬────┘ └──┬─┘ └┬─┘ └──┬──┘ └──┬──┘
    │   │       │          │   │      │       └─ Target ($1-$5)
    │   │       │          │   │      └─ Accuracy % (estimated)
    │   │       │          │   └─ Direction (CALL=up, PUT=down)
    │   │       │          └─ Time HH:MM UTC
-   │   │       └─ Pair (always XAUUSD-OTC)
+   │   │       └─ Pair (always XAUUSD)
    │   └─ Expiry in minutes (M1/M3/M5/M10/M15/M30)
    └─ Tier badge:
         ⭐⭐⭐ = ≥95% (Ultra-Elite)

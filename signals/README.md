@@ -2,7 +2,7 @@
 
 > **XAUUSD (Gold) ONLY** — Multi-tier trading signals organized by day
 
-Generated: 2026-10-21 20:41:25
+Generated: 2026-10-21 20:45:53
 
 ## 📂 Folder Structure
 
@@ -56,13 +56,13 @@ signal_tiers_xauusd/
 
 ## 📐 Signal Format
 ```
-⭐ M5 XAUUSD-OTC 14:00 CALL acc=92% target=$1
+⭐ M5 XAUUSD 14:00 CALL acc=92% target=$1
 └┬┘ └┘ └────┬────┘ └──┬┘ └┬─┘ └──┬──┘ └──┬──┘
  │   │       │        │   │      │       └─ Target ($1-$5)
  │   │       │        │   │      └─ Accuracy %
  │   │       │        │   └─ Direction (CALL=up, PUT=down)
  │   │       │        └─ Time HH:MM UTC
- │   │       └─ Pair (always XAUUSD-OTC)
+ │   │       └─ Pair (always XAUUSD)
  │   └─ Expiry in minutes (M1/M3/M5/M10/M15/M30)
  └─ Tier badge (⭐⭐⭐=95%+, ⭐⭐=90%+, ⭐=85%+, 🔥=80%+, ⚡=75%+, ✓=70%+)
 ```

@@ -3,58 +3,58 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) ONLY
   Day:       Sunday
-  Generated: 2026-10-21 20:41:25
+  Generated: 2026-10-21 20:45:53
   Threshold: ≥90% accuracy
   Data:      974 days × 5m candles (2021-2026)
   Total signals: 39
   ──────────────────────────────────────────────────────────────────────────
-  Format: ⭐ M<expiry> XAUUSD-OTC HH:MM <CALL|PUT> acc=XX% target=$X
+  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
   Timezone: UTC (add +1 hour for UTC+1 / Algeria)
 ================================================================================
 
 
   ── 22:00 UTC | avg move: 15pt | up:62% down:38% | bias: UP ──
-  ⭐⭐⭐ M1  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  22:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  22:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  22:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  22:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  22:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  22:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  22:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  22:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  22:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  22:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      22:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      22:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      22:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      22:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      22:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      22:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      22:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      22:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      22:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      22:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      22:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      22:45 CALL  acc=98% target=$1
 
   ── 23:00 UTC | avg move: 16pt | up:52% down:48% | bias: UP ──
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:00 CALL  acc=98% target=$2
-  ⭐⭐⭐ M3  XAUUSD-OTC  23:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  23:00 CALL  acc=98% target=$1
-  ⭐⭐⭐ M10 XAUUSD-OTC  23:00 CALL  acc=96% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  23:00 CALL  acc=95% target=$2
-  ⭐⭐ M5  XAUUSD-OTC  23:00 CALL  acc=92% target=$2
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  23:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  23:15 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:15 CALL  acc=97% target=$2
-  ⭐⭐⭐ M10 XAUUSD-OTC  23:15 CALL  acc=95% target=$1
-  ⭐⭐ M3  XAUUSD-OTC  23:15 CALL  acc=94% target=$2
-  ⭐⭐ M5  XAUUSD-OTC  23:15 CALL  acc=91% target=$2
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  23:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  23:30 CALL  acc=98% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:30 CALL  acc=96% target=$2
-  ⭐⭐ M10 XAUUSD-OTC  23:30 CALL  acc=94% target=$1
-  ⭐⭐ M3  XAUUSD-OTC  23:30 CALL  acc=93% target=$2
-  ⭐⭐ M5  XAUUSD-OTC  23:30 CALL  acc=90% target=$2
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M3  XAUUSD-OTC  23:45 CALL  acc=98% target=$1
-  ⭐⭐⭐ M5  XAUUSD-OTC  23:45 CALL  acc=97% target=$1
-  ⭐⭐⭐ M1  XAUUSD-OTC  23:45 CALL  acc=95% target=$2
-  ⭐⭐ M10 XAUUSD-OTC  23:45 CALL  acc=93% target=$1
-  ⭐⭐ M3  XAUUSD-OTC  23:45 CALL  acc=92% target=$2
+  ⭐⭐⭐ M1  XAUUSD      23:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      23:00 CALL  acc=98% target=$2
+  ⭐⭐⭐ M3  XAUUSD      23:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      23:00 CALL  acc=98% target=$1
+  ⭐⭐⭐ M10 XAUUSD      23:00 CALL  acc=96% target=$1
+  ⭐⭐⭐ M3  XAUUSD      23:00 CALL  acc=95% target=$2
+  ⭐⭐ M5  XAUUSD      23:00 CALL  acc=92% target=$2
+  ⭐⭐⭐ M1  XAUUSD      23:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      23:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      23:15 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      23:15 CALL  acc=97% target=$2
+  ⭐⭐⭐ M10 XAUUSD      23:15 CALL  acc=95% target=$1
+  ⭐⭐ M3  XAUUSD      23:15 CALL  acc=94% target=$2
+  ⭐⭐ M5  XAUUSD      23:15 CALL  acc=91% target=$2
+  ⭐⭐⭐ M1  XAUUSD      23:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      23:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      23:30 CALL  acc=98% target=$1
+  ⭐⭐⭐ M1  XAUUSD      23:30 CALL  acc=96% target=$2
+  ⭐⭐ M10 XAUUSD      23:30 CALL  acc=94% target=$1
+  ⭐⭐ M3  XAUUSD      23:30 CALL  acc=93% target=$2
+  ⭐⭐ M5  XAUUSD      23:30 CALL  acc=90% target=$2
+  ⭐⭐⭐ M1  XAUUSD      23:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M3  XAUUSD      23:45 CALL  acc=98% target=$1
+  ⭐⭐⭐ M5  XAUUSD      23:45 CALL  acc=97% target=$1
+  ⭐⭐⭐ M1  XAUUSD      23:45 CALL  acc=95% target=$2
+  ⭐⭐ M10 XAUUSD      23:45 CALL  acc=93% target=$1
+  ⭐⭐ M3  XAUUSD      23:45 CALL  acc=92% target=$2
 
   ----------------------------------------------------------------------------
   📊 Sunday Summary

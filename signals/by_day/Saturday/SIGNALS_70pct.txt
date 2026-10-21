@@ -3,12 +3,12 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:     XAUUSD (Gold) ONLY
   Day:       Saturday
-  Generated: 2026-10-21 20:41:25
+  Generated: 2026-10-21 20:45:53
   Threshold: ≥70% accuracy
   Data:      974 days × 5m candles (2021-2026)
   Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
-  Format: ⭐ M<expiry> XAUUSD-OTC HH:MM <CALL|PUT> acc=XX% target=$X
+  Format: ⭐ M<expiry> XAUUSD HH:MM <CALL|PUT> acc=XX% target=$X
   Timezone: UTC (add +1 hour for UTC+1 / Algeria)
 ================================================================================
 
