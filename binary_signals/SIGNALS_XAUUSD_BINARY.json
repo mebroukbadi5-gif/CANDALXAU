@@ -1,0 +1,130 @@
+{
+  "engine": "CANDALXAU Signal Engine v19.0",
+  "generated": "2026-10-22 00:59:45",
+  "timezone": "UTC+1 (Algeria)",
+  "trade_type": "Binary Options (CALL/PUT with expiry)",
+  "data_source": "1-minute candles (400 days, 575,998 candles)",
+  "payout": 0.85,
+  "call_strategy": {
+    "conditions": "RSI(14) ≤ 25 + BB lower touch",
+    "direction": "CALL",
+    "expiry_minutes": 30,
+    "target_dollars": 1.0,
+    "total_signals": 3982,
+    "wins": 3644,
+    "win_rate": 91.51180311401306,
+    "net_profit_per_trade": 0.6929683576092416
+  },
+  "put_strategy": {
+    "conditions": "Spike $5.0+ in 30min + RSI(14) ≥ 70",
+    "direction": "PUT",
+    "expiry_minutes": 60,
+    "target_dollars": 1.0,
+    "total_signals": 16592,
+    "wins": 15146,
+    "win_rate": 91.28495660559307,
+    "net_profit_per_trade": 0.6887716972034715
+  },
+  "per_day_stats": {
+    "call": {
+      "Sunday": {
+        "total_signals": 91,
+        "wins": 85,
+        "win_rate": 93.4065934065934,
+        "signals_per_day": 3.5,
+        "unique_days": 26,
+        "net_profit_per_trade": 0.7280219780219779
+      },
+      "Monday": {
+        "total_signals": 709,
+        "wins": 659,
+        "win_rate": 92.94781382228491,
+        "signals_per_day": 12.43859649122807,
+        "unique_days": 57,
+        "net_profit_per_trade": 0.719534555712271
+      },
+      "Tuesday": {
+        "total_signals": 931,
+        "wins": 834,
+        "win_rate": 89.58109559613318,
+        "signals_per_day": 16.333333333333332,
+        "unique_days": 57,
+        "net_profit_per_trade": 0.6572502685284638
+      },
+      "Wednesday": {
+        "total_signals": 807,
+        "wins": 725,
+        "win_rate": 89.83890954151177,
+        "signals_per_day": 13.913793103448276,
+        "unique_days": 58,
+        "net_profit_per_trade": 0.6620198265179678
+      },
+      "Thursday": {
+        "total_signals": 833,
+        "wins": 765,
+        "win_rate": 91.83673469387756,
+        "signals_per_day": 15.145454545454545,
+        "unique_days": 55,
+        "net_profit_per_trade": 0.698979591836735
+      },
+      "Friday": {
+        "total_signals": 611,
+        "wins": 576,
+        "win_rate": 94.27168576104746,
+        "signals_per_day": 10.910714285714286,
+        "unique_days": 56,
+        "net_profit_per_trade": 0.744026186579378
+      }
+    },
+    "put": {
+      "Sunday": {
+        "total_signals": 194,
+        "wins": 183,
+        "win_rate": 94.3298969072165,
+        "signals_per_day": 8.083333333333334,
+        "unique_days": 24,
+        "net_profit_per_trade": 0.7451030927835051
+      },
+      "Monday": {
+        "total_signals": 3428,
+        "wins": 3137,
+        "win_rate": 91.51108518086347,
+        "signals_per_day": 60.14035087719298,
+        "unique_days": 57,
+        "net_profit_per_trade": 0.6929550758459742
+      },
+      "Tuesday": {
+        "total_signals": 2970,
+        "wins": 2759,
+        "win_rate": 92.89562289562289,
+        "signals_per_day": 52.10526315789474,
+        "unique_days": 57,
+        "net_profit_per_trade": 0.7185690235690236
+      },
+      "Wednesday": {
+        "total_signals": 3549,
+        "wins": 3245,
+        "win_rate": 91.4342068188222,
+        "signals_per_day": 61.189655172413794,
+        "unique_days": 58,
+        "net_profit_per_trade": 0.6915328261482108
+      },
+      "Thursday": {
+        "total_signals": 3341,
+        "wins": 3009,
+        "win_rate": 90.06285543250524,
+        "signals_per_day": 60.74545454545454,
+        "unique_days": 55,
+        "net_profit_per_trade": 0.666162825501347
+      },
+      "Friday": {
+        "total_signals": 3110,
+        "wins": 2813,
+        "win_rate": 90.45016077170418,
+        "signals_per_day": 55.535714285714285,
+        "unique_days": 56,
+        "net_profit_per_trade": 0.6733279742765274
+      }
+    }
+  }
+}

@@ -1,0 +1,98 @@
+==============================================================================================================
+  CANDALXAU Signal Engine v19.0 — Binary Options Signals
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold)
+  Generated:    2026-10-22 00:59:45
+  Trade type:   Binary Options (CALL/PUT with expiry)
+  Data source:  1-minute candles (400 days, 575,998 candles)
+  Indicators:   RSI(14), Bollinger Bands(20, 2.0)
+  Payout:       85% (typical for gold)
+==============================================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🟢 CALL Strategy: RSI≤25 + BB Lower Touch
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Conditions:
+    1. RSI(14) drops to ≤ 25 (oversold)
+    2. Price touches lower Bollinger Band(20, 2.0)
+    Both conditions must be true at the same time
+
+  Trade:
+    Direction:  CALL (price expected to go UP)
+    Expiry:     30 minutes
+    Target:     $1.0 above entry (touch)
+    Win = price touches entry + $1.0 within 30 minutes
+
+  Historical Performance:
+    Total signals:  3,982
+    Wins:            3,644
+    Win rate:        91.5%
+    Net/trade:       $0.693 (after 85% payout)
+
+  Per-day breakdown:
+    Day          Signals    Win%     Per Day    Net/Trade   
+    ------------ ---------- -------- ---------- ------------
+    Sunday       91         93.4%  3.5     $0.728
+    Monday       709        92.9%  12.4     $0.720
+    Tuesday      931        89.6%  16.3     $0.657
+    Wednesday    807        89.8%  13.9     $0.662
+    Thursday     833        91.8%  15.1     $0.699
+    Friday       611        94.3%  10.9     $0.744
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  🔴 PUT Strategy: Spike $5.0+ + RSI≥70
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  Conditions:
+    1. Price spiked up $5.0+ in last 30 minutes
+    2. RSI(14) rises to ≥ 70 (overbought)
+    Both conditions must be true at the same time
+
+  Trade:
+    Direction:  PUT (price expected to go DOWN)
+    Expiry:     60 minutes
+    Target:     $1.0 below entry (touch)
+    Win = price touches entry - $1.0 within 60 minutes
+
+  Historical Performance:
+    Total signals:  16,592
+    Wins:            15,146
+    Win rate:        91.3%
+    Net/trade:       $0.689 (after 85% payout)
+
+  Per-day breakdown:
+    Day          Signals    Win%     Per Day    Net/Trade   
+    ------------ ---------- -------- ---------- ------------
+    Sunday       194        94.3%  8.1     $0.745
+    Monday       3428       91.5%  60.1     $0.693
+    Tuesday      2970       92.9%  52.1     $0.719
+    Wednesday    3549       91.4%  61.2     $0.692
+    Thursday     3341       90.1%  60.7     $0.666
+    Friday       3110       90.5%  55.5     $0.673
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📊 How to Use These Signals
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  These are REAL-TIME signals — they fire whenever conditions are met.
+  Not time-based. Pure indicator-driven.
+
+  CALL Signal fires when:
+    → RSI(14) ≤ 25
+    → AND price touches lower Bollinger Band
+    → Open CALL with 30min expiry
+
+  PUT Signal fires when:
+    → Price spiked $5.0+ in last 30 min
+    → AND RSI(14) ≥ 70
+    → Open PUT with 60min expiry
+
+  Expected signals per day:
+    CALL: ~14.4 signals/day
+    PUT:  ~59.6 signals/day
+    Total: ~74.0 signals/day
+
+  ⚠ Note: Win rate is TOUCH probability (price touches target).
+     With 85% payout, break-even is ~54% win rate.
+     Both strategies exceed 90% — highly profitable.
