@@ -1,0 +1,39 @@
+==============================================================================================================
+  XAUUSD Indicator-Based Signals — Friday
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Day:          Friday
+  Generated:    2026-10-22 00:29:21
+  Pattern:      Double Bottom Breakout + Technical Indicators
+  Data source:  1-minute candles (400 days, 575,998 candles)
+  Indicators:   RSI, MACD, EMA(9/21), Bollinger Bands, Volume
+  Threshold:    ≥3 indicator confirmations, ≥70% win rate
+  Target:       $5.0 above entry
+  Stop Loss:    $3.0 below entry
+  Hold time:    up to 240 minutes (4 hours)
+  Total signals: 2
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ BUY  confirm=N/5  win=ZZ%  target=$5  stop=$3  cases=N
+  Timezone: UTC+1 (Algeria)
+==============================================================================================================
+
+  ⭐⭐ BUY  confirm=4/5  win=76%  target=$5  stop=$3  cases=648/854  avg_time=43min  net=$2.83
+  ⭐⭐ BUY  confirm=3/5  win=78%  target=$5  stop=$3  cases=3054/3928  avg_time=44min  net=$2.92
+
+  ----------------------------------------------------------------------------------------------------------
+  📊 Friday Summary
+  ----------------------------------------------------------------------------------------------------------
+    Total: 2 indicator-confirmed signals
+    Average win rate: 76.8%
+    Total historical cases: 4782
+    Average net profit/trade: $2.88
+
+  ────────────────────────────────────────────────
+  Indicators Used:
+    1. RSI (14) — rising but not overbought
+    2. MACD (12/26/9) — bullish cross + histogram rising
+    3. EMA (9/21) — fast above slow (uptrend)
+    4. Bollinger Bands (20, 2) — touched lower band recently
+    5. Volume — spike > 1.5x average
+  Need ≥3/5 confirmations for signal
+  ────────────────────────────────────────────────

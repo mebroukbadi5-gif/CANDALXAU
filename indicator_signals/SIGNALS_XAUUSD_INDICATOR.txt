@@ -1,0 +1,71 @@
+==============================================================================================================
+  CANDALXAU Signal Engine v18.0 — Indicator-Based Signals
+  ──────────────────────────────────────────────────────────────────────────
+  Asset:        XAUUSD (Gold) — Real spot gold
+  Generated:    2026-10-22 00:29:21
+  Pattern:      Double Bottom Breakout + Technical Indicators
+  Data source:  1-minute candles (400 days, 575,998 candles)
+  Indicators:   RSI(14), MACD(12/26/9), EMA(9/21), Bollinger(20), Volume
+  Threshold:    ≥3 indicator confirmations, ≥70% win rate
+  Target:       $5.0 above entry
+  Stop Loss:    $3.0 below entry
+  Hold time:    up to 240 minutes (4 hours)
+  Total signals: 12
+  ──────────────────────────────────────────────────────────────────────────
+  Format: ⭐ BUY  confirm=N/5  win=ZZ%  target=$5  stop=$3  cases=N
+  Timezone: UTC+1 (Algeria)
+==============================================================================================================
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 SUNDAY  (2 indicator signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⭐⭐⭐⭐ BUY  confirm=4/5  win=93%  target=$5  stop=$3  cases=13/14  avg_time=43min  net=$2.83
+  ⭐⭐⭐ BUY  confirm=3/5  win=89%  target=$5  stop=$3  cases=78/88  avg_time=44min  net=$2.92
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 MONDAY  (2 indicator signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⭐⭐ BUY  confirm=4/5  win=79%  target=$5  stop=$3  cases=713/904  avg_time=43min  net=$2.83
+  ⭐⭐ BUY  confirm=3/5  win=81%  target=$5  stop=$3  cases=3197/3965  avg_time=44min  net=$2.92
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 TUESDAY  (2 indicator signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⭐⭐ BUY  confirm=4/5  win=75%  target=$5  stop=$3  cases=679/902  avg_time=43min  net=$2.83
+  ⭐⭐ BUY  confirm=3/5  win=76%  target=$5  stop=$3  cases=3131/4099  avg_time=44min  net=$2.92
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 WEDNESDAY  (2 indicator signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⭐⭐ BUY  confirm=4/5  win=79%  target=$5  stop=$3  cases=707/892  avg_time=43min  net=$2.83
+  ⭐⭐ BUY  confirm=3/5  win=80%  target=$5  stop=$3  cases=3373/4194  avg_time=44min  net=$2.92
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 THURSDAY  (2 indicator signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⭐⭐ BUY  confirm=4/5  win=79%  target=$5  stop=$3  cases=666/839  avg_time=43min  net=$2.83
+  ⭐⭐ BUY  confirm=3/5  win=79%  target=$5  stop=$3  cases=3027/3826  avg_time=44min  net=$2.92
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📅 FRIDAY  (2 indicator signals)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  ⭐⭐ BUY  confirm=4/5  win=76%  target=$5  stop=$3  cases=648/854  avg_time=43min  net=$2.83
+  ⭐⭐ BUY  confirm=3/5  win=78%  target=$5  stop=$3  cases=3054/3928  avg_time=44min  net=$2.92
+
+  ────────────────────────────────────────────────
+  Indicators Used:
+    1. RSI(14) — rising but not overbought
+    2. MACD(12/26/9) — bullish cross + histogram rising
+    3. EMA(9/21) — fast above slow (uptrend)
+    4. Bollinger Bands(20, 2.0) — touched lower band recently
+    5. Volume — spike > 1.5x average
+  Need ≥3/5 confirmations for signal
+  ────────────────────────────────────────────────
+  Strategy:
+    1. Wait for Double Bottom Breakout pattern
+    2. Check ≥3 indicators confirm bullish
+    3. BUY when pattern + indicators align
+    4. Take Profit at entry + $5.0
+    5. Stop Loss at entry - $3.0
+    6. Hold max 240 minutes
+  ────────────────────────────────────────────────
