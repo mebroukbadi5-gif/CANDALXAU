@@ -31,27 +31,27 @@ User: "نمط يتكرر تقريبا وهو:
 
 ## 📊 Pattern Statistics
 
-- Total patterns detected: **43,163**
-- Overall win rate: **94.4%**
-- High-accuracy signals (≥90% win rate): **218**
+- Total patterns detected: **43,156**
+- Overall win rate: **89.8%**
+- High-accuracy signals (≥90% win rate): **131**
 
 ## 📊 Signal Counts Per Day
 
 | Day | Signals |
 |-----|---------|
 | Sunday | 0 |
-| Monday | 45 |
-| Tuesday | 43 |
-| Wednesday | 43 |
-| Thursday | 43 |
-| Friday | 44 |
+| Monday | 30 |
+| Tuesday | 28 |
+| Wednesday | 24 |
+| Thursday | 25 |
+| Friday | 24 |
 | Saturday | 0 |
-| **TOTAL** | **218** |
+| **TOTAL** | **131** |
 
 ## 📐 Signal Format
 
 ```
-⭐⭐⭐ 14:30 BUY  win=92%  target=$5  stop=$2.50  cases=12/13  avg_time=18min
+⭐⭐⭐ 14:30 BUY  win=92%  target=$2  stop=$2  cases=12/13  avg_time=18min
 ```
 - **14:30**: Pattern formation time in UTC+1 (Algeria)
 - **BUY**: Direction (always BUY — Double Bottom is bullish reversal)

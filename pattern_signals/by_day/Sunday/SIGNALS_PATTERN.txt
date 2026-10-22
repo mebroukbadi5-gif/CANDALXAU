@@ -3,16 +3,16 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Sunday
-  Generated:    2026-10-22 00:11:18
+  Generated:    2026-10-22 00:24:51
   Pattern:      Double Bottom Breakout (L1 → H1 → L2>L1 → break H1 → BUY)
   Data source:  1-minute candles (400 days, 575,998 candles)
   Threshold:    ≥90% win rate, ≥3 historical cases
-  Target:       $0.5 above H1
+  Target:       $2.0 above H1
   Stop Loss:    below L2 (higher low)
-  Hold time:    up to 60 minutes
+  Hold time:    up to 180 minutes
   Total signals: 0
   ──────────────────────────────────────────────────────────────────────────
-  Format: ⭐ HH:MM BUY  win=ZZ%  target=$5  stop=$X.XX  cases=N
+  Format: ⭐ HH:MM BUY  win=ZZ%  target=$2  stop=$2  cases=N
   Timezone: UTC+1 (Algeria)
 ==============================================================================================================
 

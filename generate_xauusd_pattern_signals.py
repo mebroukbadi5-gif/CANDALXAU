@@ -43,8 +43,8 @@ WEEKDAY_NEXT = {
 # in the hold period (regardless of whether stop is hit first)
 SWING_WINDOW = 5
 LOOKBACK = 30            # look back 30 candles to find L1 and H1 (30 min)
-TARGET_DOLLARS = 0.5     # take profit target (small target = high touch rate)
-MAX_HOLD = 60            # max hold 60 minutes after breakout
+TARGET_DOLLARS = 2.0     # take profit target (covers spread + profit)
+MAX_HOLD = 180           # max hold 180 minutes (3 hours)
 MIN_MOVE_TO_H1 = 1.0     # minimum move to form H1
 
 
@@ -130,7 +130,7 @@ def detect_double_bottom_pattern(candles, tz_offset=1):
         # Target: $0.5 above entry (high touch rate ~94%)
         target = entry + TARGET_DOLLARS
         # Stop: $1.50 below entry (optional — user can set tighter or wider)
-        stop = entry - 1.5
+        stop = entry - 2.0  # wider stop for $2 target
         
         # Get weekday/hour for grouping
         dt = datetime.fromtimestamp(candle['time'], tz=timezone.utc) + timedelta(hours=tz_offset)
@@ -296,7 +296,7 @@ def generate_per_day_files(signals, base_dir):
         out_lines.append(f'  Hold time:    up to {MAX_HOLD} minutes')
         out_lines.append(f'  Total signals: {len(day_sigs)}')
         out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-        out_lines.append(f'  Format: ⭐ HH:MM BUY  win=ZZ%  target=$5  stop=$X.XX  cases=N')
+        out_lines.append(f'  Format: ⭐ HH:MM BUY  win=ZZ%  target=$2  stop=$2  cases=N')
         out_lines.append(f'  Timezone: {TZ_NAME}')
         out_lines.append('=' * 110)
         out_lines.append('')
@@ -320,7 +320,7 @@ def generate_per_day_files(signals, base_dir):
                     f"  {badge} {s['time']} {s['direction']:<4}  "
                     f"win={s['win_rate']:.0f}%  "
                     f"target=${TARGET_DOLLARS}  "
-                    f"stop=${s['avg_stop_dollars']:.2f}  "
+                    f"stop=$2.00  "
                     f"cases={s['total_cases']}/{s['samples']}  "
                     f"avg_time={s['avg_time_to_target_min']:.0f}min"
                 )
@@ -428,7 +428,7 @@ def main():
     out_lines.append(f'  Hold time:    up to {MAX_HOLD} minutes')
     out_lines.append(f'  Total signals: {len(signals)}')
     out_lines.append(f'  ──────────────────────────────────────────────────────────────────────────')
-    out_lines.append(f'  Format: ⭐ HH:MM BUY  win=ZZ%  target=$5  stop=$X.XX  cases=N')
+    out_lines.append(f'  Format: ⭐ HH:MM BUY  win=ZZ%  target=$2  stop=$2  cases=N')
     out_lines.append(f'  Timezone: {TZ_NAME}')
     out_lines.append('=' * 110)
     
@@ -453,7 +453,7 @@ def main():
                 f"  {badge} {s['time']} {s['direction']:<4}  "
                 f"win={s['win_rate']:.0f}%  "
                 f"target=${TARGET_DOLLARS}  "
-                f"stop=${s['avg_stop_dollars']:.2f}  "
+                f"stop=$2.00  "
                 f"cases={s['total_cases']}/{s['samples']}  "
                 f"avg_time={s['avg_time_to_target_min']:.0f}min"
             )
@@ -549,7 +549,7 @@ def main():
     readme.append('## 📐 Signal Format')
     readme.append('')
     readme.append('```')
-    readme.append('⭐⭐⭐ 14:30 BUY  win=92%  target=$5  stop=$2.50  cases=12/13  avg_time=18min')
+    readme.append('⭐⭐⭐ 14:30 BUY  win=92%  target=$2  stop=$2  cases=12/13  avg_time=18min')
     readme.append('```')
     readme.append('- **14:30**: Pattern formation time in UTC+1 (Algeria)')
     readme.append('- **BUY**: Direction (always BUY — Double Bottom is bullish reversal)')

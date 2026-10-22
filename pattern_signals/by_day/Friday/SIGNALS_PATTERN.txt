@@ -3,118 +3,82 @@
   ──────────────────────────────────────────────────────────────────────────
   Asset:        XAUUSD (Gold) — Real spot gold
   Day:          Friday
-  Generated:    2026-10-22 00:11:18
+  Generated:    2026-10-22 00:24:51
   Pattern:      Double Bottom Breakout (L1 → H1 → L2>L1 → break H1 → BUY)
   Data source:  1-minute candles (400 days, 575,998 candles)
   Threshold:    ≥90% win rate, ≥3 historical cases
-  Target:       $0.5 above H1
+  Target:       $2.0 above H1
   Stop Loss:    below L2 (higher low)
-  Hold time:    up to 60 minutes
-  Total signals: 44
+  Hold time:    up to 180 minutes
+  Total signals: 24
   ──────────────────────────────────────────────────────────────────────────
-  Format: ⭐ HH:MM BUY  win=ZZ%  target=$5  stop=$X.XX  cases=N
+  Format: ⭐ HH:MM BUY  win=ZZ%  target=$2  stop=$2  cases=N
   Timezone: UTC+1 (Algeria)
 ==============================================================================================================
 
 
   ── 00:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 00:00 BUY   win=94%  target=$0.5  stop=$1.50  cases=106/106  avg_time=5min
-  ⭐⭐⭐⭐ 00:30 BUY   win=96%  target=$0.5  stop=$1.50  cases=107/107  avg_time=6min
-
-  ── 01:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 01:00 BUY   win=93%  target=$0.5  stop=$1.50  cases=165/165  avg_time=7min
-  ⭐⭐⭐ 01:30 BUY   win=94%  target=$0.5  stop=$1.50  cases=200/200  avg_time=4min
+  ⭐⭐⭐ 00:00 BUY   win=94%  target=$2.0  stop=$2.00  cases=106/106  avg_time=26min
 
   ── 02:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 02:00 BUY   win=97%  target=$0.5  stop=$1.50  cases=194/194  avg_time=5min
-  ⭐⭐⭐⭐ 02:30 BUY   win=96%  target=$0.5  stop=$1.50  cases=217/217  avg_time=4min
+  ⭐⭐⭐ 02:00 BUY   win=90%  target=$2.0  stop=$2.00  cases=194/194  avg_time=15min
+  ⭐⭐⭐ 02:30 BUY   win=91%  target=$2.0  stop=$2.00  cases=217/217  avg_time=14min
 
   ── 03:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 03:00 BUY   win=93%  target=$0.5  stop=$1.50  cases=215/215  avg_time=3min
-  ⭐⭐⭐ 03:30 BUY   win=95%  target=$0.5  stop=$1.50  cases=235/235  avg_time=3min
-
-  ── 04:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 04:30 BUY   win=93%  target=$0.5  stop=$1.50  cases=210/210  avg_time=3min
+  ⭐⭐⭐ 03:30 BUY   win=91%  target=$2.0  stop=$2.00  cases=235/235  avg_time=11min
 
   ── 05:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 05:00 BUY   win=98%  target=$0.5  stop=$1.50  cases=186/186  avg_time=3min
-  ⭐⭐⭐ 05:30 BUY   win=92%  target=$0.5  stop=$1.50  cases=190/190  avg_time=5min
+  ⭐⭐⭐ 05:00 BUY   win=90%  target=$2.0  stop=$2.00  cases=186/186  avg_time=20min
+  ⭐⭐⭐ 05:30 BUY   win=92%  target=$2.0  stop=$2.00  cases=190/190  avg_time=23min
 
   ── 06:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 06:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=205/205  avg_time=5min
-  ⭐⭐⭐⭐ 06:30 BUY   win=97%  target=$0.5  stop=$1.50  cases=199/199  avg_time=5min
+  ⭐⭐⭐ 06:30 BUY   win=91%  target=$2.0  stop=$2.00  cases=199/199  avg_time=18min
 
   ── 07:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 07:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=221/221  avg_time=4min
-  ⭐⭐⭐ 07:30 BUY   win=94%  target=$0.5  stop=$1.50  cases=195/195  avg_time=4min
+  ⭐⭐⭐ 07:00 BUY   win=92%  target=$2.0  stop=$2.00  cases=221/221  avg_time=18min
 
   ── 08:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 08:00 BUY   win=96%  target=$0.5  stop=$1.50  cases=203/203  avg_time=4min
-  ⭐⭐⭐ 08:30 BUY   win=95%  target=$0.5  stop=$1.50  cases=172/172  avg_time=4min
+  ⭐⭐⭐ 08:00 BUY   win=93%  target=$2.0  stop=$2.00  cases=203/203  avg_time=20min
 
   ── 09:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 09:00 BUY   win=96%  target=$0.5  stop=$1.50  cases=201/201  avg_time=4min
-  ⭐⭐⭐⭐ 09:30 BUY   win=96%  target=$0.5  stop=$1.50  cases=201/201  avg_time=3min
+  ⭐⭐⭐ 09:00 BUY   win=92%  target=$2.0  stop=$2.00  cases=201/201  avg_time=15min
+  ⭐⭐⭐ 09:30 BUY   win=93%  target=$2.0  stop=$2.00  cases=201/201  avg_time=16min
 
   ── 10:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 10:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=191/191  avg_time=4min
-  ⭐⭐⭐⭐ 10:30 BUY   win=97%  target=$0.5  stop=$1.50  cases=194/194  avg_time=3min
+  ⭐⭐⭐ 10:30 BUY   win=90%  target=$2.0  stop=$2.00  cases=194/194  avg_time=16min
 
   ── 11:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 11:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=189/189  avg_time=5min
-  ⭐⭐⭐ 11:30 BUY   win=94%  target=$0.5  stop=$1.50  cases=186/186  avg_time=4min
+  ⭐⭐⭐ 11:30 BUY   win=91%  target=$2.0  stop=$2.00  cases=186/186  avg_time=26min
 
   ── 12:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 12:00 BUY   win=94%  target=$0.5  stop=$1.50  cases=206/206  avg_time=4min
-  ⭐⭐⭐⭐ 12:30 BUY   win=95%  target=$0.5  stop=$1.50  cases=197/197  avg_time=4min
+  ⭐⭐⭐ 12:00 BUY   win=92%  target=$2.0  stop=$2.00  cases=206/206  avg_time=22min
+  ⭐⭐⭐ 12:30 BUY   win=93%  target=$2.0  stop=$2.00  cases=197/197  avg_time=25min
 
   ── 13:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 13:00 BUY   win=94%  target=$0.5  stop=$1.50  cases=221/221  avg_time=4min
-  ⭐⭐⭐⭐ 13:30 BUY   win=96%  target=$0.5  stop=$1.50  cases=199/199  avg_time=4min
+  ⭐⭐⭐⭐ 13:00 BUY   win=95%  target=$2.0  stop=$2.00  cases=221/221  avg_time=24min
+  ⭐⭐⭐⭐ 13:30 BUY   win=97%  target=$2.0  stop=$2.00  cases=199/199  avg_time=19min
 
   ── 14:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 14:00 BUY   win=96%  target=$0.5  stop=$1.50  cases=185/185  avg_time=4min
-  ⭐⭐⭐⭐ 14:30 BUY   win=98%  target=$0.5  stop=$1.50  cases=176/176  avg_time=4min
+  ⭐⭐⭐ 14:00 BUY   win=93%  target=$2.0  stop=$2.00  cases=185/185  avg_time=16min
+  ⭐⭐⭐ 14:30 BUY   win=95%  target=$2.0  stop=$2.00  cases=176/176  avg_time=12min
 
   ── 15:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 15:00 BUY   win=97%  target=$0.5  stop=$1.50  cases=199/199  avg_time=3min
-  ⭐⭐⭐⭐ 15:30 BUY   win=97%  target=$0.5  stop=$1.50  cases=197/197  avg_time=2min
+  ⭐⭐⭐⭐ 15:00 BUY   win=97%  target=$2.0  stop=$2.00  cases=199/199  avg_time=13min
+  ⭐⭐⭐ 15:30 BUY   win=94%  target=$2.0  stop=$2.00  cases=197/197  avg_time=10min
 
   ── 16:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 16:00 BUY   win=98%  target=$0.5  stop=$1.50  cases=187/187  avg_time=3min
-  ⭐⭐⭐⭐ 16:30 BUY   win=98%  target=$0.5  stop=$1.50  cases=174/174  avg_time=4min
+  ⭐⭐⭐ 16:00 BUY   win=94%  target=$2.0  stop=$2.00  cases=187/187  avg_time=14min
+  ⭐⭐⭐ 16:30 BUY   win=95%  target=$2.0  stop=$2.00  cases=174/174  avg_time=9min
 
   ── 17:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 17:00 BUY   win=96%  target=$0.5  stop=$1.50  cases=175/175  avg_time=3min
-  ⭐⭐⭐⭐ 17:30 BUY   win=98%  target=$0.5  stop=$1.50  cases=150/150  avg_time=4min
-
-  ── 18:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 18:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=201/201  avg_time=2min
-  ⭐⭐⭐⭐ 18:30 BUY   win=96%  target=$0.5  stop=$1.50  cases=158/158  avg_time=4min
-
-  ── 19:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 19:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=147/147  avg_time=3min
-  ⭐⭐⭐ 19:30 BUY   win=94%  target=$0.5  stop=$1.50  cases=154/154  avg_time=4min
-
-  ── 20:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 20:00 BUY   win=96%  target=$0.5  stop=$1.50  cases=173/173  avg_time=4min
-  ⭐⭐⭐ 20:30 BUY   win=94%  target=$0.5  stop=$1.50  cases=175/175  avg_time=5min
-
-  ── 21:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 21:00 BUY   win=94%  target=$0.5  stop=$1.50  cases=156/156  avg_time=5min
-
-  ── 22:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐ 22:00 BUY   win=92%  target=$0.5  stop=$1.50  cases=166/166  avg_time=4min
-
-  ── 23:00 UTC+1 (Algeria) ──
-  ⭐⭐⭐⭐ 23:00 BUY   win=95%  target=$0.5  stop=$1.50  cases=44/44  avg_time=6min
+  ⭐⭐⭐ 17:00 BUY   win=94%  target=$2.0  stop=$2.00  cases=175/175  avg_time=14min
 
   ----------------------------------------------------------------------------------------------------------
   📊 Friday Summary
   ----------------------------------------------------------------------------------------------------------
-    Total: 44 high-accuracy patterns
-    Average win rate: 95.4%
-    Total historical cases tested: 8022
+    Total: 24 high-accuracy patterns
+    Average win rate: 93.0%
+    Total historical cases tested: 4649
 
   ────────────────────────────────────────────────
   Pattern Logic (Double Bottom Breakout):
